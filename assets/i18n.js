@@ -89,9 +89,23 @@ const translations = {
         'footer.rights': '© 2024 Arrahma Centro Islámico. Todos los derechos reservados.',
 
         // Cookies Banner
+        'cookie.banner_title': 'Su privacidad es importante para nosotros',
         'cookie.banner_text': 'Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle contenido relacionado con sus preferencias mediante el análisis de sus hábitos de navegación. Si continúa navegando, consideramos que acepta su uso. Puede obtener más información en nuestra ',
+        'cookie.banner_more': 'Para más información, consulte nuestra',
         'cookie.link_text': 'Política de Cookies',
-        'cookie.accept_btn': 'Aceptar y continuar'
+        'cookie.more_options': 'Más Opciones',
+        'cookie.accept_btn': 'Aceptar y continuar',
+
+        // Additional translations
+        'prayer.hrs': 'Horas',
+        'prayer.mins': 'Min',
+        'prayer.secs': 'Seg',
+        'wa.title': 'Consulta por WhatsApp',
+        'wa.desc': 'Selecciona el asunto de tu consulta:',
+        'wa.opt1': 'Pregunta Religiosa (Fatwa)',
+        'wa.opt2': 'Consejería Matrimonial',
+        'wa.opt3': 'Conversión al Islam',
+        'wa.opt4': 'Otro'
     },
     ar: {
         // Navigation
@@ -183,9 +197,23 @@ const translations = {
         'footer.rights': '© 2024 المركز الإسلامي الرحمة. جميع الحقوق محفوظة.',
 
         // Cookies Banner
+        'cookie.banner_title': 'خصوصيتك تهمنا',
         'cookie.banner_text': 'نستخدم ملفات تعريف الارتباط الخاصة بنا وبجهات خارجية لتحسين خدماتنا وعرض المحتوى المتعلق بتفضيلاتك من خلال تحليل عادات التصفح لديك. إذا واصلت التصفح، فإننا نعتبر أنك تقبل استخدامها. يمكنك الحصول على مزيد من المعلومات في ',
+        'cookie.banner_more': 'لمزيد من المعلومات راجع',
         'cookie.link_text': 'سياسة ملفات تعريف الارتباط',
-        'cookie.accept_btn': 'قبول ومتابعة'
+        'cookie.more_options': 'خيارات أكثر',
+        'cookie.accept_btn': 'قبول ومتابعة',
+
+        // Additional translations
+        'prayer.hrs': 'ساعات',
+        'prayer.mins': 'دقائق',
+        'prayer.secs': 'ثواني',
+        'wa.title': 'الاستشارة عبر الواتساب',
+        'wa.desc': 'اختر موضوع استشارتك:',
+        'wa.opt1': 'سؤال ديني (فتوى)',
+        'wa.opt2': 'استشارة زوجية',
+        'wa.opt3': 'اعتناق الإسلام',
+        'wa.opt4': 'أخرى'
     }
 };
 
