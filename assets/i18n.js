@@ -9,9 +9,10 @@ const translations = {
         'nav.support': 'Apoya la Mezquita',
         
         // Hero 1
-        'hero.title': 'Arrahma Centro Islámico',
+        'hero.title': 'Mezquita Arrahma',
         'hero.subtitle': 'Un espacio de paz, adoración y comunidad en Palma de Mallorca',
         'hero.cta': 'Ver horarios de rezos',
+        'hero.quran': 'Leer y Escuchar el Corán',
         
         // Hero 2
         'hero2.title': 'Una Comunidad Viva',
@@ -86,7 +87,7 @@ const translations = {
         'footer.legal2': 'Privacidad',
         'footer.legal3': 'Política de Cookies',
         'footer.dev': 'Desarrollado por',
-        'footer.rights': '© 2024 Arrahma Centro Islámico. Todos los derechos reservados.',
+        'footer.rights': '© 2024 Mezquita Arrahma. Todos los derechos reservados.',
 
         // Cookies Banner
         'cookie.banner_title': 'Su privacidad es importante para nosotros',
@@ -120,6 +121,7 @@ const translations = {
         'hero.title': 'المركز الإسلامي الرحمة',
         'hero.subtitle': 'مساحة للسلام والعبادة والمجتمع في بالما دي مايوركا',
         'hero.cta': 'عرض مواقيت الصلاة',
+        'hero.quran': 'قراءة واستماع للقرآن',
         
         // Hero 2
         'hero2.title': 'مجتمع حي',

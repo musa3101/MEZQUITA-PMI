@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth snap-y snap-mandatory">
+<html lang="es" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Arrahma Centro Islámico - Palma de Mallorca</title>
+    <title>Mezquita Arrahma - Palma de Mallorca</title>
     <meta name="description"
         content="Bienvenidos a la Mezquita Arrahma, un espacio de paz, adoración y comunidad en Palma de Mallorca. Conozca nuestros horarios de rezos y servicios espirituales." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mequita-pmi-v2.pages.dev/" />
-    <meta property="og:title" content="Arrahma Centro Islámico - Palma de Mallorca" />
+    <meta property="og:title" content="Mezquita Arrahma - Palma de Mallorca" />
     <meta property="og:description"
         content="Bienvenidos a la Mezquita Arrahma, un espacio de paz, adoración y comunidad en Palma de Mallorca. Conozca nuestros horarios de rezos y servicios espirituales." />
     <meta property="og:image" content="https://mequita-pmi-v2.pages.dev/assets/logo_footer.png" />
@@ -19,7 +19,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://mequita-pmi-v2.pages.dev/" />
-    <meta property="twitter:title" content="Arrahma Centro Islámico - Palma de Mallorca" />
+    <meta property="twitter:title" content="Mezquita Arrahma - Palma de Mallorca" />
     <meta property="twitter:description"
         content="Bienvenidos a la Mezquita Arrahma, un espacio de paz, adoración y comunidad en Palma de Mallorca. Conozca nuestros horarios de rezos y servicios espirituales." />
     <meta property="twitter:image" content="https://mequita-pmi-v2.pages.dev/assets/logo_footer.png" />
@@ -149,11 +149,37 @@
         }
 
         .glass-panel {
-            background: rgba(250, 249, 247, 0.85);
+            background: rgba(250, 249, 247, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .premium-glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(209, 197, 180, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .premium-glass-card:hover {
+            box-shadow: 0 15px 35px 0 rgba(168, 124, 43, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+            border-color: rgba(168, 124, 43, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .timer-glass-box {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: inset 3px 3px 8px rgba(255, 255, 255, 0.9), inset -3px -3px 8px rgba(0, 0, 0, 0.03), 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .timer-glass-box:hover {
+            transform: scale(1.05);
+            box-shadow: inset 3px 3px 8px rgba(255, 255, 255, 1), inset -3px -3px 8px rgba(0, 0, 0, 0.04), 0 8px 20px rgba(168, 124, 43, 0.1);
         }
 
         @keyframes slowPan {
@@ -196,6 +222,21 @@
                 transform: scale(1.03);
                 opacity: 0.85;
             }
+        }
+
+        @keyframes blob-bounce {
+            0%, 100% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .animate-blob {
+            animation: blob-bounce 15s infinite alternate;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
         }
 
         /* --- PRELOADER CSS --- */
@@ -269,9 +310,16 @@
 </head>
 
 <body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+    <!-- Floating Background Blobs -->
+    <div class="fixed inset-0 z-[-2] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[80px] animate-blob"></div>
+        <div class="absolute top-[40%] right-[-10%] w-[50%] h-[50%] rounded-full bg-tertiary-fixed-dim/20 blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[90px] animate-blob animation-delay-4000"></div>
+    </div>
+    
     <!-- Preloader -->
     <div id="page-loader"
-        class="fixed inset-0 z-[99999] bg-[#faf9f7] flex items-center justify-center transition-opacity duration-300">
+        class="fixed inset-0 z-[99999] bg-[#eae8e3] flex items-center justify-center transition-opacity duration-300">
         <div class="loader">
             <span class="l"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 11 18" class="letter">
                     <path fill="black"
@@ -318,6 +366,7 @@
                 onclick="window.scrollTo(0,0); window.location.reload();">
                 <img alt="Arrahma Logo" width="512" height="160"
                     class="h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                    style="clip-path: inset(0 0 30% 0);"
                     src="assets/logo_header.png" />
             </a>
             <!-- Desktop Navigation -->
@@ -428,8 +477,8 @@
                     <!-- Step 2 (The User's Favorite Image) -->
                     <section
                         class="w-1/4 h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
-                        <img alt="Mezquita Arrahma" width="832" height="1248" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover z-0" src="assets/img_3527.jpg" />
+                        <img alt="Mezquita Arrahma - Caligrafía" width="1024" height="1024" loading="lazy"
+                            class="absolute inset-0 w-full h-full object-cover z-0" src="assets/hero_arabic.png" />
                         <div
                             class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 z-0 pointer-events-none">
                         </div>
@@ -458,18 +507,18 @@
 
                 <!-- Absolute Global Button inside the sticky container -->
                 <div class="absolute bottom-16 left-0 right-0 flex justify-center z-30 transition-opacity duration-300">
-                    <a class="group flex items-center gap-2 px-6 py-2.5 bg-[#fbca1f] text-black font-black text-[14px] uppercase tracking-wider border-[3px] border-black rounded-[0.4em] shadow-[2px_2px_0px_black] transition-all duration-200 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_black] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_black]"
+                    <a class="group flex items-center gap-2 px-4 py-2 md:px-6 md:py-2.5 bg-[#fbca1f] text-black font-black text-[12px] md:text-[14px] uppercase tracking-wider border-[3px] border-black rounded-[0.4em] shadow-[2px_2px_0px_black] transition-all duration-200 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_black] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_black]"
                         href="#horarios">
                         <span data-i18n="hero.cta">Ver horarios de rezos</span>
                         <span
-                            class="material-symbols-outlined text-[16px] font-bold transition-transform group-hover:translate-y-1">expand_more</span>
+                            class="material-symbols-outlined text-[14px] md:text-[16px] font-bold transition-transform group-hover:translate-y-1">expand_more</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <!-- Prayer Times Section -->
-        <section class="py-section-gap snap-start scroll-mt-[72px] bg-background bg-pattern relative overflow-hidden"
+        <section class="py-section-gap snap-start scroll-mt-[72px] bg-white/40 backdrop-blur-xl bg-pattern relative overflow-hidden"
             id="horarios">
             <div class="container mx-auto px-0 md:px-gutter max-w-container-max relative z-10 flex flex-col gap-10">
                 <!-- Title -->
@@ -501,7 +550,7 @@
                         <div id="countdown-container"
                             class="mt-4 flex items-center justify-center gap-3 z-10 w-full max-w-sm">
                             <div
-                                class="bg-surface-container-lowest/80 backdrop-blur-md rounded-2xl p-4 flex flex-col items-center justify-center border border-outline-variant/30 shadow-inner w-20">
+                                class="timer-glass-box rounded-2xl p-4 flex flex-col items-center justify-center w-20">
                                 <strong class="text-3xl md:text-4xl font-display-lg text-on-surface mb-1"
                                     id="countdown-h">00</strong>
                                 <span
@@ -510,7 +559,7 @@
                             </div>
                             <span class="text-3xl font-light text-on-surface-variant/40 pb-5">:</span>
                             <div
-                                class="bg-surface-container-lowest/80 backdrop-blur-md rounded-2xl p-4 flex flex-col items-center justify-center border border-outline-variant/30 shadow-inner w-20">
+                                class="timer-glass-box rounded-2xl p-4 flex flex-col items-center justify-center w-20">
                                 <strong class="text-3xl md:text-4xl font-display-lg text-on-surface mb-1"
                                     id="countdown-m">00</strong>
                                 <span
@@ -519,7 +568,7 @@
                             </div>
                             <span class="text-3xl font-light text-on-surface-variant/40 pb-5">:</span>
                             <div
-                                class="bg-surface-container-lowest/80 backdrop-blur-md rounded-2xl p-4 flex flex-col items-center justify-center border border-primary/50 shadow-inner w-20 bg-primary/5">
+                                class="timer-glass-box rounded-2xl p-4 flex flex-col items-center justify-center w-20 border-primary/40">
                                 <strong class="text-3xl md:text-4xl font-display-lg text-primary mb-1"
                                     id="countdown-s">00</strong>
                                 <span class="text-[9px] font-label-caps text-primary tracking-widest uppercase"
@@ -542,7 +591,7 @@
                         class="flex overflow-x-auto hide-scrollbar gap-4 pb-8 pt-2 px-margin-mobile snap-x snap-mandatory md:justify-center md:gap-6">
 
                         <!-- Fajr -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center bg-surface rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift relative"
+                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
                             data-prayer="Fajr" data-time="05:30">
                             <div
                                 class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
@@ -557,7 +606,7 @@
                         </div>
 
                         <!-- Dhuhr -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center bg-surface rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift relative"
+                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
                             data-prayer="Dhuhr" data-time="13:15">
                             <div
                                 class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
@@ -572,7 +621,7 @@
                         </div>
 
                         <!-- Asr -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center bg-surface rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift relative"
+                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
                             data-prayer="Asr" data-time="16:45">
                             <div
                                 class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
@@ -587,7 +636,7 @@
                         </div>
 
                         <!-- Maghrib -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center bg-surface rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift relative"
+                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
                             data-prayer="Maghrib" data-time="18:45">
                             <div
                                 class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
@@ -602,7 +651,7 @@
                         </div>
 
                         <!-- Isha -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center bg-surface rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift relative"
+                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
                             data-prayer="Isha" data-time="20:15">
                             <div
                                 class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
@@ -617,11 +666,21 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Quran Link Button -->
+                <div class="flex justify-center mt-2 mb-4 px-margin-mobile">
+                    <a class="group flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary font-black text-[13px] md:text-[15px] uppercase tracking-wider border-[3px] border-primary rounded-[0.4em] shadow-[2px_2px_0px_var(--tw-shadow-color)] shadow-primary transition-all duration-200 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_var(--tw-shadow-color)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_var(--tw-shadow-color)]"
+                        href="https://quran.com/es" target="_blank" rel="noopener noreferrer">
+                        <span data-i18n="hero.quran">Leer y Escuchar el Corán</span>
+                        <span
+                            class="material-symbols-outlined text-[16px] md:text-[18px] font-bold transition-transform group-hover:translate-x-1">menu_book</span>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Consult the Imam Section -->
-        <section class="py-section-gap snap-start scroll-mt-[72px] bg-surface-container-low relative" id="consulta">
+        <section class="py-section-gap snap-start scroll-mt-[72px] bg-surface-container-low/40 backdrop-blur-xl relative" id="consulta">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                     <div class="flex flex-col justify-center">
@@ -648,7 +707,7 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div
-                                class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+                                class="premium-glass-card rounded-2xl p-6 group">
                                 <div
                                     class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
                                     <span
@@ -676,7 +735,7 @@
                     </div>
                     <!-- Contact Form -->
                     <div
-                        class="bg-surface rounded-xl p-8 shadow-sm border border-outline-variant/30 relative hover-lift">
+                        class="premium-glass-card rounded-xl p-8 relative">
                         <div
                             class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed/30 rounded-bl-full pointer-events-none">
                         </div>
@@ -743,12 +802,12 @@
         </section>
 
         <!-- Support the Mosque Bento Grid Section -->
-        <section class="py-section-gap snap-start scroll-mt-[72px] bg-background" id="apoya">
+        <section class="py-section-gap snap-start scroll-mt-[72px] bg-white/40 backdrop-blur-xl" id="apoya">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <!-- Main Support Card -->
                     <div
-                        class="md:col-span-8 bg-surface-container rounded-xl p-8 md:p-12 relative overflow-hidden group hover-lift">
+                        class="md:col-span-8 premium-glass-card rounded-xl p-8 md:p-12 relative overflow-hidden group">
                         <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-0"></div>
                         <div class="relative z-10 flex flex-col h-full justify-between">
                             <div>
@@ -788,7 +847,7 @@
                                 src="assets/hero_1.jpg" />
                         </div>
                         <div
-                            class="bg-surface-container rounded-xl p-6 border border-outline-variant/30 relative hover-lift flex flex-col items-center text-center shadow-sm">
+                            class="premium-glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
                             <span
                                 class="material-symbols-outlined text-primary text-3xl mb-3 opacity-80">format_quote</span>
                             <blockquote
@@ -806,7 +865,7 @@
 
         <!-- Contact & Location -->
         <section id="donde-estamos"
-            class="py-section-gap snap-start scroll-mt-[72px] bg-surface-container-low border-t border-outline-variant/20">
+            class="py-section-gap snap-start scroll-mt-[72px] bg-surface-container-low/40 backdrop-blur-xl border-t border-outline-variant/20">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <!-- Contact Info -->
@@ -833,7 +892,7 @@
                             </div>
                         </div>
                         <div
-                            class="mt-12 bg-surface-container rounded-2xl p-8 border border-[#fbca1f]/30 relative overflow-hidden group hover:shadow-[0_0_30px_rgba(251,202,31,0.15)] transition-all duration-500">
+                            class="mt-12 premium-glass-card rounded-2xl p-8 relative overflow-hidden group">
                             <!-- Subtle gold glow inside -->
                             <div
                                 class="absolute -right-10 -top-10 w-40 h-40 bg-[#fbca1f]/10 rounded-full blur-3xl group-hover:bg-[#fbca1f]/20 transition-colors duration-500 pointer-events-none">
@@ -894,7 +953,7 @@
         <dialog id="donation-modal"
             class="bg-transparent m-auto p-0 backdrop:bg-black/60 backdrop:backdrop-blur-sm transition-all">
             <div
-                class="bg-surface rounded-xl shadow-2xl w-[90vw] max-w-md p-8 relative overflow-hidden border border-outline-variant/30">
+                class="premium-glass-card rounded-xl w-[90vw] max-w-md p-8 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full pointer-events-none"></div>
                 <button id="close-donation-modal"
                     class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface p-3 rounded-full hover:bg-surface-variant transition-colors">
@@ -940,7 +999,7 @@
         <dialog id="text-modal"
             class="bg-transparent m-auto p-0 backdrop:bg-black/60 backdrop:backdrop-blur-sm transition-all">
             <div
-                class="bg-surface rounded-xl shadow-2xl w-[90vw] max-w-2xl p-8 relative overflow-hidden border border-outline-variant/30 flex flex-col max-h-[80dvh]">
+                class="premium-glass-card rounded-xl w-[90vw] max-w-2xl p-8 relative overflow-hidden flex flex-col max-h-[80dvh]">
                 <button id="close-text-modal"
                     class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface p-3 rounded-full hover:bg-surface-variant transition-colors z-10">
                     <span class="material-symbols-outlined">close</span>
@@ -1077,7 +1136,7 @@
             <div
                 class="md:col-span-12 mt-12 pt-8 border-t border-white/10 flex flex-col items-center justify-center gap-2 order-4">
                 <p class="font-body-md text-body-md text-white/50 text-sm text-center" data-i18n="footer.rights">
-                    © 2024 Arrahma Centro Islámico. Todos los derechos reservados.
+                    © 2024 Mezquita Arrahma. Todos los derechos reservados.
                 </p>
                 <p
                     class="font-body-md text-body-md text-white/30 text-xs text-center mt-2 tracking-wider uppercase opacity-85 hover:opacity-100 transition-opacity duration-300">
@@ -1278,7 +1337,8 @@
             }
 
             // Hide on scroll down, show on scroll up (ONLY after passing the horizontal hero section)
-            if (currentScrollY > lastScrollY && currentScrollY > 100 && currentScrollY > heroThreshold) {
+            // En móviles (<=768px), el menú se queda siempre fijo para evitar que desaparezca.
+            if (currentScrollY > lastScrollY && currentScrollY > 100 && currentScrollY > heroThreshold && window.innerWidth > 768) {
                 // Scrolling down and past the first page - hide
                 navbar.style.transform = 'translateY(-100%)';
                 navbar.style.opacity = '0';
@@ -1354,7 +1414,7 @@
                     timeEl.className = 'font-body-lg text-body-lg time-el text-on-tertiary-fixed-variant font-bold';
                     if (indicatorEl) indicatorEl.classList.remove('hidden');
                 } else {
-                    col.className = 'prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift bg-surface border border-outline-variant/30 shadow-sm opacity-80 hover:opacity-100 relative';
+                    col.className = 'prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 premium-glass-card opacity-80 hover:opacity-100 relative';
                     iconEl.className = 'material-symbols-outlined mb-4 text-4xl icon-el text-primary/70';
                     iconEl.style.fontVariationSettings = 'normal';
                     nameEl.className = 'font-[\'Outfit\'] text-xl text-on-surface mb-2 name-el font-bold uppercase tracking-wide';
@@ -1507,7 +1567,7 @@
             'aviso-legal': {
                 title: 'Aviso Legal',
                 content: `
-                    <p><strong>1. Datos identificativos</strong><br>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se reflejan los siguientes datos: la asociación titular de dominio web es Arrahma Centro Islámico, con domicilio a estos efectos en Carrer Hort de Torrella, 11C, 07005 Palma, Illes Balears. Correo electrónico de contacto: info@arrahma.es.</p>
+                    <p><strong>1. Datos identificativos</strong><br>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se reflejan los siguientes datos: la asociación titular de dominio web es Mezquita Arrahma, con domicilio a estos efectos en Carrer Hort de Torrella, 11C, 07005 Palma, Illes Balears. Correo electrónico de contacto: info@arrahma.es.</p>
                     <p><strong>2. Usuarios</strong><br>El acceso y/o uso de este portal atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.</p>
                     <p><strong>3. Uso del portal</strong><br>Arrahma proporciona el acceso a multitud de informaciones, servicios, programas o datos (en adelante, "los contenidos") en Internet pertenecientes a la mezquita o a sus licenciantes a los que el USUARIO pueda tener acceso. El USUARIO asume la responsabilidad del uso del portal.</p>
                     <p><strong>4. Propiedad intelectual e industrial</strong><br>Arrahma por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como de los elementos contenidos en la misma.</p>
@@ -1516,7 +1576,7 @@
             'privacidad': {
                 title: 'Política de Privacidad',
                 content: `
-                    <p><strong>1. Tratamiento de datos</strong><br>Arrahma Centro Islámico se compromete a proteger y respetar tu privacidad. Esta política establece las bases sobre las que procesaremos cualquier dato personal que nos proporciones o que recopilemos de ti.</p>
+                    <p><strong>1. Tratamiento de datos</strong><br>Mezquita Arrahma se compromete a proteger y respetar tu privacidad. Esta política establece las bases sobre las que procesaremos cualquier dato personal que nos proporciones o que recopilemos de ti.</p>
                     <p><strong>2. Finalidad</strong><br>Los datos personales que se recopilen a través de formularios (como el de "Consulta al Imán") se utilizarán exclusivamente para gestionar tus consultas, proporcionarte información relevante y organizar las actividades de la comunidad.</p>
                     <p><strong>3. Conservación</strong><br>Los datos proporcionados se conservarán mientras se mantenga la relación con el usuario o durante los años necesarios para cumplir con las obligaciones legales.</p>
                     <p><strong>4. Derechos</strong><br>Tienes derecho a obtener confirmación sobre si en Arrahma estamos tratando tus datos personales, por tanto tienes derecho a acceder a tus datos personales, rectificar los datos inexactos o solicitar su supresión cuando los datos ya no sean necesarios para los fines que fueron recogidos.</p>
