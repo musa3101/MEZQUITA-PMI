@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mequita-pmi-v2.pages.dev/sitemap.xml
