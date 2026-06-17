@@ -887,7 +887,7 @@
                                 <div>
                                     <h4 class="font-['Outfit'] text-sm font-semibold text-primary uppercase tracking-wide mb-1"
                                         data-i18n="contact.email">Email</h4>
-                                    <p class="font-body-md text-body-md text-on-surface">Skimarrakech@gmail.com</p>
+                                    <p class="font-body-md text-body-md text-on-surface" id="contact-email-display">Skimarrakech@gmail.com</p>
                                 </div>
                             </div>
                         </div>
@@ -1219,6 +1219,7 @@
         const supabaseUrl = 'https://nulblnrdrfmlxribjboc.supabase.co';
         const supabaseKey = 'sb_publishable_5y03TiJC416eBE4iuTW_Qw_yv3qZovI';
         let supabaseClient = null;
+        let siteContactEmail = 'Skimarrakech@gmail.com';
 
         try {
             if (supabaseUrl && window.supabase) {
@@ -1463,6 +1464,11 @@
                             const phoneEl = document.getElementById('phone-number');
                             if (phoneEl) phoneEl.innerText = c.value;
                         }
+                        if (c.key === 'contact_email') {
+                            siteContactEmail = c.value;
+                            const emailEl = document.getElementById('contact-email-display');
+                            if (emailEl) emailEl.innerText = c.value;
+                        }
                     });
                 }
 
@@ -1510,7 +1516,7 @@
                 const message = document.getElementById('message').value;
 
                 // Create mailto link
-                const mailtoUrl = `mailto:Skimarrakech@gmail.com?subject=Consulta: ${encodeURIComponent(subject)}&body=${encodeURIComponent("Nombre: " + name + "\nEmail: " + email + "\n\nMensaje:\n" + message)}`;
+                const mailtoUrl = `mailto:${siteContactEmail}?subject=Consulta: ${encodeURIComponent(subject)}&body=${encodeURIComponent("Nombre: " + name + "\nEmail: " + email + "\n\nMensaje:\n" + message)}`;
 
                 // Simulate loading state
                 const submitText = submitBtn.querySelector('.submit-text');
