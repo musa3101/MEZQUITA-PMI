@@ -1,23 +1,39 @@
-# Última Sesión — 26 de junio de 2026
+# Sesión Actual — 26 de junio de 2026
 
 ## ¿Qué se ha hecho hoy?
-- **Cabecera de Ordenador (Desktop)**: Se reemplazó el botón de "Donar" por el botón premium de **"Leer y Escuchar el Corán"**, que redirige en una nueva pestaña a Quran.com.
-- **Menú Móvil**: Se actualizó el estilo del botón "Leer y Escuchar el Corán" en el menú lateral móvil para que use un gradiente dorado/ámbar destacado que luce elegante y visible sobre el fondo oscuro.
-- **Sección de Horarios**: Rediseño completo en formato cuadrícula (grid layout), destacando el rezo actual con fondo verde sólido y eliminando scrolls incómodos.
-- **Sección Hero**: Simplificación del carrusel eliminando fotos redundantes para que cargue mucho más rápido y sea más liviano en móviles.
-- **Accesos Rápidos al Corán**: Añadido un bloque de 3 tarjetas elegantes (Al-Fatiha, Ya-Sin y Al-Kahf para el viernes) justo debajo de los horarios.
-- **Pantalla de Carga (Preloader)**: Sustituido el "LOADING" genérico por el nombre de la mezquita con una duración fluida de 2 segundos.
-- **Responsividad y Enlaces**: Todos los enlaces externos se configuraron con `target="_blank" rel="noopener noreferrer"` para proteger la navegación de la web principal. Responsividad pulida en ordenadores, tablets y móviles.
+
+### 1. Separación de código (CSS y JS)
+- Se extrajo todo el CSS personalizado de `index.html` → `assets/style.css`.
+- Se extrajo todo el JavaScript principal de `index.html` → `assets/main.js`.
+- El `index.html` carga ambos archivos externos con `<link>` y `<script defer>`.
+- Se corrigió un `ReferenceError` al declarar correctamente `const horariosSection` en `main.js`.
+
+### 2. SEO Local — Palma de Mallorca
+- Añadido esquema JSON-LD de tipo `Mosque` para Google (dirección, coordenadas, teléfono, email).
+- Añadido `<h1>` semántico oculto para accesibilidad y mejor posicionamiento local.
+- Actualizado `<meta name="description">` con palabras clave de Palma de Mallorca.
+
+### 3. Subida a repositorios
+- Commit: `feat: separar CSS y JS en archivos externos + SEO local Palma de Mallorca`
+- Push a **GitHub** (`origin/main`) ✅
+- Push a **GitLab** (`gitlab/main`) ✅
+- Cloudflare Pages desplegará automáticamente desde GitHub.
+
+---
 
 ## Archivos modificados
-- [index.html](file:///Users/musa/Downloads/WEBS%20recientes/mez-arrahma/arrahma-v2-%E2%9C%85/index.html)
-- [SESSION_LATEST_ES.md](file:///Users/musa/Downloads/WEBS%20recientes/mez-arrahma/arrahma-v2-%E2%9C%85/docs/SESSION_LATEST_ES.md)
-- [ROADMAP.md](file:///Users/musa/Downloads/WEBS%20recientes/mez-arrahma/arrahma-v2-%E2%9C%85/docs/ROADMAP.md)
+| Archivo | Cambio |
+|---|---|
+| `index.html` | Eliminado CSS/JS inline; links externos + SEO headers |
+| `assets/style.css` | **NUEVO** — CSS personalizado extraído |
+| `assets/main.js` | **NUEVO** — JavaScript principal extraído |
+| `docs/ROADMAP.md` | Actualizado con tareas completadas |
+| `docs/SESSION_LATEST_ES.md` | Este archivo |
 
-## Problemas solucionados
-- Botón móvil del Corán oscuro/apagado: ahora usa el gradiente corporativo para mayor elegancia.
-- Sincronización y consistencia de los accesos principales a las lecturas entre la versión de escritorio y la móvil.
+---
 
-## Pendiente
-- Separar en un futuro el CSS embebido y el JavaScript en archivos independientes para agilizar el mantenimiento del `index.html`.
-- Evaluar implementación de caché offline para los horarios (PWA).
+## ¿Qué queda pendiente?
+- Verificar en producción (Cloudflare Pages) que no hay regresiones.
+- Probar en Google Search Console que el JSON-LD está validado.
+- Valorar añadir un `sitemap.xml` para mejorar el crawling local.
+- Valorar comprimir imágenes a WebP para mejor Lighthouse score.
