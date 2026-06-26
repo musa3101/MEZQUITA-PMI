@@ -445,11 +445,9 @@
     <!-- Main Content -->
     <main class="pt-[72px]">
         <!-- Hero Horizontal Scroll Container -->
-        <div id="hero-scroll-container" class="relative h-[400vh]">
+        <div id="hero-scroll-container" class="relative h-[200vh]">
             <!-- Invisible precise snap points for the horizontal carousel -->
             <div class="absolute inset-0 w-full pointer-events-none flex flex-col">
-                <div class="h-[calc(100vh+24px)] w-full snap-start scroll-mt-[72px]"></div>
-                <div class="h-[calc(100vh+24px)] w-full snap-start scroll-mt-[72px]"></div>
                 <div class="h-[calc(100vh+24px)] w-full snap-start scroll-mt-[72px]"></div>
                 <div class="h-[calc(100vh-72px)] w-full snap-start scroll-mt-[72px]"></div>
             </div>
@@ -457,13 +455,12 @@
             <div class="sticky top-[72px] h-[calc(100vh-72px)] w-full overflow-hidden bg-black">
 
                 <!-- The Horizontal Track -->
-                <div id="hero-horizontal-track" class="flex w-[400%] h-full will-change-transform">
+                <div id="hero-horizontal-track" class="flex w-[200%] h-full will-change-transform">
 
-                    <!-- Step 1 (Video First) -->
+                    <!-- Step 1 (Video) -->
                     <section
-                        class="w-1/4 h-full relative flex-shrink-0 flex flex-col justify-center items-center overflow-hidden bg-black"
+                        class="w-1/2 h-full relative flex-shrink-0 flex flex-col justify-center items-center overflow-hidden bg-black"
                         id="inicio">
-                        <!-- Fullscreen Video Background - Object contain to prevent zoom cut-off -->
                         <video id="hero-video"
                             class="absolute inset-0 w-full h-full object-contain z-0 opacity-90 scale-95 md:scale-100"
                             autoplay muted loop playsinline preload="auto" poster="assets/img_3527.jpg">
@@ -474,31 +471,11 @@
                         </div>
                     </section>
 
-                    <!-- Step 2 (The User's Favorite Image) -->
+                    <!-- Step 2 (Favourite Image) -->
                     <section
-                        class="w-1/4 h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
-                        <img alt="Mezquita Arrahma - Caligrafía" width="1024" height="1024" loading="lazy"
+                        class="w-1/2 h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
+                        <img alt="Mezquita Arrahma - Interior" width="1024" height="1024" loading="lazy"
                             class="absolute inset-0 w-full h-full object-cover z-0" src="assets/img_3527.jpg" />
-                        <div
-                            class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 z-0 pointer-events-none">
-                        </div>
-                    </section>
-
-                    <!-- Step 3 (Supporting Image 1) -->
-                    <section
-                        class="w-1/4 h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
-                        <img alt="Comunidad Arrahma" width="1024" height="1536" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover z-0" src="assets/hero_4.jpg" />
-                        <div
-                            class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 z-0 pointer-events-none">
-                        </div>
-                    </section>
-
-                    <!-- Step 4 (Supporting Image 2) -->
-                    <section
-                        class="w-1/4 h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
-                        <img alt="La Kaaba al amanecer" width="736" height="1212" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover z-0" src="assets/hero_3.jpg" />
                         <div
                             class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 z-0 pointer-events-none">
                         </div>
@@ -518,200 +495,201 @@
         </div>
 
         <!-- Prayer Times Section -->
-        <section class="py-section-gap snap-start scroll-mt-[72px] bg-white/40 backdrop-blur-xl bg-pattern relative overflow-hidden"
-            id="horarios">
-            <div class="container mx-auto px-0 md:px-gutter max-w-container-max relative z-10 flex flex-col gap-10">
-                <!-- Title -->
-                <div class="text-center px-margin-mobile">
-                    <h2 class="font-['Outfit'] uppercase font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl text-primary"
-                        data-i18n="prayer.title">Horarios de Oración</h2>
-                </div>
+        <section class="snap-start scroll-mt-[72px] bg-pattern relative overflow-hidden"
+            id="horarios"
+            style="background-color: #faf8f4; padding: 48px 0 56px;">
+            <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max relative z-10">
 
-                <!-- Next Prayer Highlight (Top) -->
-                <div class="px-margin-mobile flex justify-center">
-                    <div
-                        class="w-full max-w-2xl glass-panel rounded-2xl p-10 flex flex-col items-center justify-center text-center shadow-[0_8px_40px_rgba(168,124,43,0.15)] border border-primary/20 relative overflow-hidden group hover-lift">
-                        <div class="absolute top-0 left-0 w-full h-1.5 bg-primary"></div>
-                        <div
-                            class="absolute -top-16 -right-16 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none">
+                <!-- Premium Header: Title left + Next Prayer right (desktop) / stacked (mobile) -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
+                    <!-- Left: Title & source badge -->
+                    <div>
+                        <div class="inline-flex items-center gap-2 mb-3">
+                            <span class="w-6 h-[2px] bg-primary rounded-full"></span>
+                            <span class="font-['Outfit'] text-xs font-semibold text-primary uppercase tracking-widest">Sincronizado con Mawaqit</span>
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                         </div>
-                        <div
-                            class="absolute -bottom-16 -left-16 w-40 h-40 bg-tertiary/10 rounded-full blur-3xl pointer-events-none">
-                        </div>
-
-                        <span class="font-['Outfit'] text-sm font-bold text-secondary uppercase tracking-wide mb-3 z-10"
-                            data-i18n="prayer.next">Próxima Oración</span>
-                        <h3 id="next-prayer-name"
-                            class="font-['Outfit'] text-5xl md:text-6xl text-primary mb-2 z-10 font-black tracking-tight drop-shadow-sm uppercase">
-                            Maghrib</h3>
-                        <div id="next-prayer-time-val"
-                            class="text-5xl md:text-6xl font-light text-on-surface mb-8 z-10">18:45</div>
-
-                        <div id="countdown-container"
-                            class="mt-4 flex items-center justify-center gap-3 z-10 w-full max-w-sm">
-                            <div
-                                class="timer-glass-box rounded-2xl p-4 flex flex-col items-center justify-center w-20">
-                                <strong class="text-3xl md:text-4xl font-display-lg text-on-surface mb-1"
-                                    id="countdown-h">00</strong>
-                                <span
-                                    class="text-[9px] font-label-caps text-on-surface-variant tracking-widest uppercase"
-                                    data-i18n="prayer.hrs">Horas</span>
+                        <h2 class="font-['Outfit'] uppercase font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl text-on-surface" data-i18n="prayer.title">Horarios de Oración</h2>
+                        <p class="text-on-surface-variant mt-2 text-sm md:text-base" id="today-date-label"></p>
+                    </div>
+                    <!-- Right: Compact Next Prayer + Countdown -->
+                    <div class="flex-shrink-0 w-full md:w-auto">
+                        <div class="glass-panel rounded-2xl px-6 py-5 flex flex-col sm:flex-row md:flex-col items-center gap-4 border border-primary/20 shadow-[0_4px_30px_rgba(168,124,43,0.12)] relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+                            <div class="text-center">
+                                <p class="font-['Outfit'] text-xs font-bold text-primary uppercase tracking-widest mb-1" data-i18n="prayer.next">Próxima Oración</p>
+                                <h3 id="next-prayer-name" class="font-['Outfit'] text-3xl md:text-4xl text-on-surface font-black tracking-tight uppercase">Isha</h3>
+                                <div id="next-prayer-time-val" class="text-2xl font-light text-primary mt-0.5">22:51</div>
                             </div>
-                            <span class="text-3xl font-light text-on-surface-variant/40 pb-5">:</span>
-                            <div
-                                class="timer-glass-box rounded-2xl p-4 flex flex-col items-center justify-center w-20">
-                                <strong class="text-3xl md:text-4xl font-display-lg text-on-surface mb-1"
-                                    id="countdown-m">00</strong>
-                                <span
-                                    class="text-[9px] font-label-caps text-on-surface-variant tracking-widest uppercase"
-                                    data-i18n="prayer.mins">Min</span>
-                            </div>
-                            <span class="text-3xl font-light text-on-surface-variant/40 pb-5">:</span>
-                            <div
-                                class="timer-glass-box rounded-2xl p-4 flex flex-col items-center justify-center w-20 border-primary/40">
-                                <strong class="text-3xl md:text-4xl font-display-lg text-primary mb-1"
-                                    id="countdown-s">00</strong>
-                                <span class="text-[9px] font-label-caps text-primary tracking-widest uppercase"
-                                    data-i18n="prayer.secs">Seg</span>
+                            <div id="countdown-container" class="flex items-center gap-2">
+                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
+                                    <strong class="text-2xl font-black text-on-surface" id="countdown-h">00</strong>
+                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.hrs">h</span>
+                                </div>
+                                <span class="text-2xl font-light text-on-surface-variant/40 pb-3">:</span>
+                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
+                                    <strong class="text-2xl font-black text-on-surface" id="countdown-m">00</strong>
+                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.mins">min</span>
+                                </div>
+                                <span class="text-2xl font-light text-on-surface-variant/40 pb-3">:</span>
+                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
+                                    <strong class="text-2xl font-black text-primary" id="countdown-s">00</strong>
+                                    <span class="text-[9px] text-primary tracking-widest uppercase" data-i18n="prayer.secs">seg</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Timetable (Bottom - Horizontal scrollable) -->
-                <div class="w-full relative px-0">
-                    <div
-                        class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 md:hidden pointer-events-none">
-                    </div>
-                    <div
-                        class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10 md:hidden pointer-events-none">
-                    </div>
+                <!-- Prayer Cards: horizontal scroll on mobile, 5-col grid on desktop -->
+                <div class="w-full relative">
+                    <!-- Mobile fade edges -->
+                    <div class="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-[#faf8f4] to-transparent z-10 md:hidden pointer-events-none"></div>
+                    <div class="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#faf8f4] to-transparent z-10 md:hidden pointer-events-none"></div>
 
+                    <!-- Mobile: flex scroll / Desktop: 5-col grid -->
                     <div id="prayers-container"
-                        class="flex overflow-x-auto hide-scrollbar gap-4 pb-8 pt-2 px-margin-mobile snap-x snap-mandatory md:justify-center md:gap-6">
+                        class="flex overflow-x-auto hide-scrollbar gap-3 pb-4 pt-1 snap-x snap-mandatory
+                               md:grid md:grid-cols-5 md:overflow-visible md:gap-4 md:pb-0 md:snap-none">
 
                         <!-- Fajr -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
+                        <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
+                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
+                                    md:min-h-[220px] border border-white/60"
                             data-prayer="Fajr" data-time="04:18">
-                            <div
-                                class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
-                                Rezo Actual</div>
-                            <span
-                                class="material-symbols-outlined text-primary/70 mb-4 text-4xl icon-el transition-colors">wb_twilight</span>
-                            <h4
-                                class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-on-surface mb-2 name-el transition-colors">
-                                Fajr</h4>
-                            <span
-                                class="font-body-lg text-body-lg text-on-surface-variant time-el transition-colors">04:18</span>
+                            <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
+                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                ● Ahora
+                            </div>
+                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">wb_twilight</span>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Fajr</h4>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">04:18</span>
+                            <!-- Progress bar (only shows on active) -->
+                            <div class="prayer-progress hidden mt-3 w-full">
+                                <div class="h-1 bg-white/30 rounded-full overflow-hidden">
+                                    <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Dhuhr -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
+                        <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
+                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
+                                    md:min-h-[220px] border border-white/60"
                             data-prayer="Dhuhr" data-time="13:52">
-                            <div
-                                class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
-                                Rezo Actual</div>
-                            <span
-                                class="material-symbols-outlined text-primary/70 mb-4 text-4xl icon-el transition-colors">light_mode</span>
-                            <h4
-                                class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-on-surface mb-2 name-el transition-colors">
-                                Dhuhr</h4>
-                            <span
-                                class="font-body-lg text-body-lg text-on-surface-variant time-el transition-colors">13:52</span>
+                            <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
+                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                ● Ahora
+                            </div>
+                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">light_mode</span>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Dhuhr</h4>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">13:52</span>
+                            <div class="prayer-progress hidden mt-3 w-full">
+                                <div class="h-1 bg-white/30 rounded-full overflow-hidden">
+                                    <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Asr -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
+                        <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
+                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
+                                    md:min-h-[220px] border border-white/60"
                             data-prayer="Asr" data-time="17:50">
-                            <div
-                                class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
-                                Rezo Actual</div>
-                            <span
-                                class="material-symbols-outlined text-primary/70 mb-4 text-4xl icon-el transition-colors">wb_sunny</span>
-                            <h4
-                                class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-on-surface mb-2 name-el transition-colors">
-                                Asr</h4>
-                            <span
-                                class="font-body-lg text-body-lg text-on-surface-variant time-el transition-colors">17:50</span>
+                            <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
+                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                ● Ahora
+                            </div>
+                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">wb_sunny</span>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Asr</h4>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">17:50</span>
+                            <div class="prayer-progress hidden mt-3 w-full">
+                                <div class="h-1 bg-white/30 rounded-full overflow-hidden">
+                                    <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Maghrib -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
+                        <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
+                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
+                                    md:min-h-[220px] border border-white/60"
                             data-prayer="Maghrib" data-time="21:21">
-                            <div
-                                class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
-                                Rezo Actual</div>
-                            <span
-                                class="material-symbols-outlined text-primary/70 mb-4 text-4xl icon-el transition-colors">nights_stay</span>
-                            <h4
-                                class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-on-surface mb-2 name-el transition-colors">
-                                Maghrib</h4>
-                            <span
-                                class="font-body-lg text-body-lg text-on-surface-variant time-el transition-colors">21:21</span>
+                            <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
+                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                ● Ahora
+                            </div>
+                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">nights_stay</span>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Maghrib</h4>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">21:21</span>
+                            <div class="prayer-progress hidden mt-3 w-full">
+                                <div class="h-1 bg-white/30 rounded-full overflow-hidden">
+                                    <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Isha -->
-                        <div class="prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center premium-glass-card rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 relative"
+                        <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
+                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
+                                    md:min-h-[220px] border border-white/60"
                             data-prayer="Isha" data-time="22:51">
-                            <div
-                                class="current-indicator hidden absolute -top-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md">
-                                Rezo Actual</div>
-                            <span
-                                class="material-symbols-outlined text-primary/70 mb-4 text-4xl icon-el transition-colors">dark_mode</span>
-                            <h4
-                                class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-on-surface mb-2 name-el transition-colors">
-                                Isha</h4>
-                            <span
-                                class="font-body-lg text-body-lg text-on-surface-variant time-el transition-colors">22:51</span>
+                            <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
+                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                ● Ahora
+                            </div>
+                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">dark_mode</span>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Isha</h4>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">22:51</span>
+                            <div class="prayer-progress hidden mt-3 w-full">
+                                <div class="h-1 bg-white/30 rounded-full overflow-hidden">
+                                    <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
-                <!-- Quran Link Button -->
-                <div class="flex justify-center mt-2 mb-4 px-margin-mobile">
-                    <a class="group flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary font-black text-[13px] md:text-[15px] uppercase tracking-wider border-[3px] border-primary rounded-[0.4em] shadow-[2px_2px_0px_var(--tw-shadow-color)] shadow-primary transition-all duration-200 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_var(--tw-shadow-color)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_var(--tw-shadow-color)]"
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mt-8 mb-2">
+                    <a class="group flex items-center justify-center gap-2 px-6 py-3 bg-on-surface text-surface font-black text-[12px] md:text-[13px] uppercase tracking-wider border-[2px] border-on-surface rounded-lg shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md w-full sm:w-auto"
                         href="https://quran.com/es" target="_blank" rel="noopener noreferrer">
                         <span data-i18n="hero.quran">Leer y Escuchar el Corán</span>
-                        <span
-                            class="material-symbols-outlined text-[16px] md:text-[18px] font-bold transition-transform group-hover:translate-x-1">menu_book</span>
+                        <span class="material-symbols-outlined text-[16px] font-bold transition-transform group-hover:translate-x-1">menu_book</span>
+                    </a>
+                    <a href="/assets/horario-mensual.html" target="_blank" rel="noopener noreferrer"
+                        class="group flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto
+                               bg-transparent text-primary font-semibold text-[12px] md:text-[13px] uppercase tracking-wider
+                               border-2 border-primary/40 rounded-lg
+                               transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary/5">
+                        <span class="material-symbols-outlined text-[18px] transition-transform group-hover:scale-110">calendar_month</span>
+                        <span data-i18n="prayer.download_monthly">Ver Horario del Mes</span>
+                        <span class="text-[10px] font-bold bg-primary/10 text-primary px-1.5 py-0.5 rounded uppercase tracking-wider">PDF</span>
+                    </a>
+                    <!-- Botón Ramadán (oculto por defecto) -->
+                    <a href="/assets/horario-ramadan.pdf" download id="ramadan-download-btn"
+                        class="hidden group flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto
+                               text-tertiary font-semibold text-[12px] md:text-[13px] uppercase tracking-wider
+                               border-2 border-tertiary/40 rounded-lg
+                               transition-all duration-300 hover:-translate-y-0.5 hover:border-tertiary hover:bg-tertiary/5">
+                        <span class="material-symbols-outlined text-[18px]">nights_stay</span>
+                        <span data-i18n="prayer.download_ramadan">Horario Especial Ramadán</span>
+                        <span class="text-[10px] font-bold bg-tertiary/10 text-tertiary px-1.5 py-0.5 rounded uppercase">PDF</span>
                     </a>
                 </div>
 
-                <!-- Downloads Section -->
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mt-2 mb-2 px-margin-mobile">
-                    <!-- Botón 1: Horario Mensual -->
-                    <a href="/assets/horario-mensual.html" target="_blank" rel="noopener noreferrer"
-                        class="group flex items-center justify-center gap-2.5 px-5 py-3 w-full sm:w-auto
-                               bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm
-                               text-primary font-semibold text-[12px] md:text-[13px] uppercase tracking-wider
-                               border-2 border-primary/30 rounded-xl
-                               shadow-sm hover:shadow-[0_4px_20px_rgba(168,124,43,0.2)]
-                               transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60
-                               active:translate-y-0 active:shadow-sm">
-                        <span class="material-symbols-outlined text-[20px] text-primary/80 transition-transform group-hover:scale-110">calendar_month</span>
-                        <span data-i18n="prayer.download_monthly">Ver Horario del Mes</span>
-                        <span class="text-[10px] font-bold bg-primary/15 text-primary px-1.5 py-0.5 rounded-md uppercase tracking-wider">PDF</span>
-                    </a>
-                    <!-- Botón 2: Horario Ramadán PDF (oculto por defecto) -->
-                    <a href="/assets/horario-ramadan.pdf" download id="ramadan-download-btn"
-                        class="hidden group flex items-center justify-center gap-2.5 px-5 py-3 w-full sm:w-auto
-                               bg-gradient-to-r from-tertiary/5 to-tertiary/10 backdrop-blur-sm
-                               text-tertiary font-semibold text-[12px] md:text-[13px] uppercase tracking-wider
-                               border-2 border-tertiary/30 rounded-xl
-                               shadow-sm hover:shadow-[0_4px_20px_rgba(15,76,58,0.2)]
-                               transition-all duration-300 hover:-translate-y-0.5 hover:border-tertiary/60
-                               active:translate-y-0 active:shadow-sm">
-                        <span class="material-symbols-outlined text-[20px] text-tertiary/80 transition-transform group-hover:scale-110">nights_stay</span>
-                        <span data-i18n="prayer.download_ramadan">Horario Especial Ramadán</span>
-                        <span class="text-[10px] font-bold bg-tertiary/15 text-tertiary px-1.5 py-0.5 rounded-md uppercase tracking-wider">PDF</span>
-                    </a>
-                </div>
             </div>
         </section>
 
         <!-- Consult the Imam Section -->
         <section class="py-section-gap snap-start scroll-mt-[72px] relative" id="consulta" style="background: linear-gradient(135deg, #f5efe4 0%, #ede6d6 50%, #f0ead9 100%);">
-            <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max">
+            <!-- Decorative community image strip (desktop only) -->
+            <div class="hidden md:block absolute inset-y-0 right-0 w-2/5 lg:w-1/3 overflow-hidden">
+                <img src="assets/hero_4.jpg" alt="Comunidad Mezquita Arrahma" class="w-full h-full object-cover object-center opacity-25" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-r from-[#f0ead9] via-[#f0ead9]/60 to-transparent"></div>
+            </div>
+            <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                     <div class="flex flex-col justify-center">
                         <div class="inline-flex items-center gap-3 mb-6">
@@ -872,9 +850,9 @@
                     <div class="md:col-span-4 flex flex-col gap-4">
                         <div
                             class="rounded-xl overflow-hidden relative h-[280px] md:h-[320px] hover-lift shadow-sm border border-outline-variant/20">
-                            <img alt="Interior de la Mezquita" width="1080" height="1920" loading="lazy"
-                                class="absolute inset-0 w-full h-full object-cover object-bottom"
-                                src="assets/quran_4k.jpg" />
+                            <img alt="La Kaaba al amanecer" width="736" height="1212" loading="lazy"
+                                class="absolute inset-0 w-full h-full object-cover object-center"
+                                src="assets/hero_3.jpg" />
                         </div>
                         <div
                             class="premium-glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
@@ -1292,7 +1270,7 @@
 
                     // If we are completely below the container
                     if (rect.bottom < window.innerHeight) {
-                        horizontalTrack.style.transform = `translateX(-75%)`; // 3 out of 4 screens
+                        horizontalTrack.style.transform = `translateX(-50%)`; // 1 out of 2 screens
                         return;
                     }
 
@@ -1303,7 +1281,7 @@
                     let progress = scrolled / scrollableDistance;
                     progress = Math.max(0, Math.min(1, progress));
 
-                    horizontalTrack.style.transform = `translateX(-${progress * 75}%)`;
+                    horizontalTrack.style.transform = `translateX(-${progress * 50}%)`;
                 }
                 window.addEventListener('scroll', updateHeroScroll, { passive: true });
                 updateHeroScroll();
@@ -1492,19 +1470,37 @@
                 const indicatorEl = col.querySelector('.current-indicator');
 
                 if (isCurrent) {
-                    col.className = 'prayer-col flex-shrink-0 w-[45%] min-w-[150px] max-w-[180px] snap-center rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 transition-all hover-lift bg-tertiary/10 border-2 border-tertiary shadow-lg scale-110 relative';
-                    iconEl.className = 'material-symbols-outlined mb-4 text-4xl icon-el text-tertiary';
+                    // Active card: solid green, large, prominent
+                    col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all bg-tertiary text-white shadow-xl scale-105 md:scale-100 md:-translate-y-2 z-10';
+                    iconEl.className = 'material-symbols-outlined mb-3 text-4xl md:text-5xl icon-el text-white';
                     iconEl.style.fontVariationSettings = '"FILL" 1';
-                    nameEl.className = 'font-[\'Outfit\'] text-xl mb-2 name-el text-on-tertiary-fixed-variant font-bold uppercase tracking-wide';
-                    timeEl.className = 'font-body-lg text-body-lg time-el text-on-tertiary-fixed-variant font-bold';
+                    nameEl.className = "font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide mb-2 name-el text-white";
+                    timeEl.className = "font-['Outfit'] text-2xl md:text-3xl font-black time-el text-white";
                     if (indicatorEl) indicatorEl.classList.remove('hidden');
+                    // Show progress bar
+                    const progressWrap = col.querySelector('.prayer-progress');
+                    if (progressWrap) {
+                        progressWrap.classList.remove('hidden');
+                        // Calculate progress since this prayer started
+                        const prevIdx = prayers.indexOf(currentPrayer);
+                        const nextIdx = prayers.indexOf(nextPrayer);
+                        const currentStart = currentPrayer.hours * 3600 + currentPrayer.minutes * 60;
+                        const nextEnd = nextPrayerTotalSeconds;
+                        const duration = nextEnd - currentStart;
+                        const elapsed = currentTotalSeconds - currentStart;
+                        const pct = duration > 0 ? Math.min(100, Math.max(0, (elapsed / duration) * 100)) : 0;
+                        const bar = progressWrap.querySelector('.prayer-progress-bar');
+                        if (bar) bar.style.width = pct + '%';
+                    }
                 } else {
-                    col.className = 'prayer-col flex-shrink-0 w-2/5 min-w-[140px] max-w-[160px] snap-center rounded-2xl flex flex-col items-center justify-center p-6 md:p-8 premium-glass-card opacity-80 hover:opacity-100 relative';
-                    iconEl.className = 'material-symbols-outlined mb-4 text-4xl icon-el text-primary/70';
+                    col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] premium-glass-card border border-white/60 opacity-80 hover:opacity-100 transition-all';
+                    iconEl.className = 'material-symbols-outlined mb-3 text-4xl md:text-5xl icon-el text-primary/70';
                     iconEl.style.fontVariationSettings = 'normal';
-                    nameEl.className = 'font-[\'Outfit\'] text-xl text-on-surface mb-2 name-el font-bold uppercase tracking-wide';
-                    timeEl.className = 'font-body-lg text-body-lg text-on-surface-variant time-el';
+                    nameEl.className = "font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el";
+                    timeEl.className = "font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el";
                     if (indicatorEl) indicatorEl.classList.add('hidden');
+                    const progressWrap = col.querySelector('.prayer-progress');
+                    if (progressWrap) progressWrap.classList.add('hidden');
                 }
             });
 
@@ -1565,6 +1561,14 @@
         updatePrayers();
         setInterval(updatePrayers, 1000);
         setTimeout(fetchSupabaseConfig, 500);
+
+        // Set today's date label
+        const dateLabel = document.getElementById('today-date-label');
+        if (dateLabel) {
+            const now = new Date();
+            const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            dateLabel.textContent = now.toLocaleDateString('es-ES', opts).replace(/^(.)/, c => c.toUpperCase());
+        }
 
         // Imam Contact Form Logic
         const imamForm = document.getElementById('imam-form');
