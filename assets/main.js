@@ -56,7 +56,31 @@ try {
             let progress = scrolled / scrollableDistance;
             progress = Math.max(0, Math.min(1, progress));
 
-            horizontalTrack.style.transform = `translateX(-${progress * 50}%)`;
+            const maxTranslate = horizontalTrack.scrollWidth - window.innerWidth;
+            horizontalTrack.style.transform = `translate3d(-${progress * maxTranslate}px, 0, 0)`;
+
+            // Button toggle logic
+            const btnHorarios = document.getElementById('btn-hero-horarios');
+            const btnQuran = document.getElementById('btn-hero-quran');
+            if (btnHorarios && btnQuran) {
+                const currentSlide = (progress * maxTranslate) / window.innerWidth;
+                const isMobile = window.innerWidth < 768;
+                const threshold = isMobile ? 1.5 : 0.5;
+
+                if (currentSlide >= threshold) {
+                    btnHorarios.classList.add('opacity-0', 'pointer-events-none');
+                    btnHorarios.classList.remove('opacity-100', 'pointer-events-auto');
+
+                    btnQuran.classList.remove('opacity-0', 'pointer-events-none');
+                    btnQuran.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    btnHorarios.classList.remove('opacity-0', 'pointer-events-none');
+                    btnHorarios.classList.add('opacity-100', 'pointer-events-auto');
+
+                    btnQuran.classList.add('opacity-0', 'pointer-events-none');
+                    btnQuran.classList.remove('opacity-100', 'pointer-events-auto');
+                }
+            }
         }
         window.addEventListener('scroll', updateHeroScroll, { passive: true });
         updateHeroScroll();
@@ -245,13 +269,30 @@ function updatePrayers() {
         const indicatorEl = col.querySelector('.current-indicator');
 
         if (isCurrent) {
-            // Active card: solid green, large, prominent
-            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all bg-tertiary text-white shadow-xl scale-105 md:scale-100 md:-translate-y-2 z-10';
+            // Active card: solid green, prominent cartulina style
+            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300 bg-[#2C5F44] text-white border-2 border-[#2C5F44] shadow-[0_10px_20px_rgba(44,95,68,0.4)] scale-[1.02] md:scale-100 md:-translate-y-2 z-10';
+            
+            // Auto-scroll to current prayer on mobile
+            if (col.dataset.scrolled !== 'true' && window.innerWidth < 768) {
+                const scrollContainer = document.getElementById('prayer-grid-scroll');
+                if (scrollContainer) {
+                    prayers.forEach(p => p.element.dataset.scrolled = 'false');
+                    col.dataset.scrolled = 'true';
+                    setTimeout(() => {
+                        const scrollLeft = col.offsetLeft - (scrollContainer.clientWidth / 2) + (col.clientWidth / 2);
+                        scrollContainer.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+
             iconEl.className = 'material-symbols-outlined mb-3 text-4xl md:text-5xl icon-el text-white';
             iconEl.style.fontVariationSettings = '"FILL" 1';
             nameEl.className = "font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide mb-2 name-el text-white";
             timeEl.className = "font-['Outfit'] text-2xl md:text-3xl font-black time-el text-white";
-            if (indicatorEl) indicatorEl.classList.remove('hidden');
+            if (indicatorEl) {
+                indicatorEl.classList.remove('hidden', 'bg-tertiary', 'text-white', '-top-3');
+                indicatorEl.classList.add('bg-[#fbca1f]', 'text-black', '-top-4', 'border', 'border-black/10');
+            }
             // Show progress bar
             const progressWrap = col.querySelector('.prayer-progress');
             if (progressWrap) {
@@ -268,7 +309,7 @@ function updatePrayers() {
                 if (bar) bar.style.width = pct + '%';
             }
         } else {
-            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] premium-glass-card border border-white/60 opacity-80 hover:opacity-100 transition-all';
+            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300 bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer';
             iconEl.className = 'material-symbols-outlined mb-3 text-4xl md:text-5xl icon-el text-primary/70';
             iconEl.style.fontVariationSettings = 'normal';
             nameEl.className = "font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el";
@@ -569,4 +610,37 @@ if (heroVideo) {
             }
         }
     });
+}
+
+// --- FRIDAY SPECIAL SURA LOGIC ---
+try {
+    const kahfCard = document.getElementById('sura-kahf-card');
+    const kahfBadge = document.getElementById('kahf-badge');
+    const kahfIconContainer = document.getElementById('kahf-icon-container');
+    const kahfTitle = document.getElementById('kahf-title');
+    const kahfSubtitle = document.getElementById('kahf-subtitle');
+
+    if (kahfCard && kahfBadge) {
+        const today = new Date().getDay(); // 5 is Friday
+        if (today === 5) {
+            // Activate Friday styling
+            kahfBadge.classList.remove('hidden');
+            
+            // Change card border/background
+            kahfCard.classList.remove('border-primary/10', 'hover:border-primary/40', 'bg-white/50');
+            kahfCard.classList.add('border-[#fbca1f]', 'border-2', 'bg-[#fbca1f]/5');
+            
+            // Update text colors to match the special theme
+            kahfTitle.classList.add('text-[#2C5F44]');
+            kahfSubtitle.innerHTML = 'Especial Viernes';
+            kahfSubtitle.classList.add('text-[#fbca1f]');
+            
+            // Change icon container
+            kahfIconContainer.classList.remove('bg-[#2C5F44]/10', 'text-[#2C5F44]');
+            kahfIconContainer.classList.add('bg-[#fbca1f]', 'text-black', 'shadow-md');
+            kahfIconContainer.innerHTML = '<span class="material-symbols-outlined text-[20px]">star</span>';
+        }
+    }
+} catch (e) {
+    console.error('Error in Friday special logic:', e);
 }

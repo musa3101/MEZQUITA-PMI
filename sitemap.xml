@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Página principal -->
   <url>
     <loc>https://mequita-pmi-v2.pages.dev/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://mequita-pmi-v2.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mequita-pmi-v2.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mequita-pmi-v2.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mequita-pmi-v2.pages.dev/"/>
   </url>
+
+  <!-- Horario mensual de rezos -->
+  <url>
+    <loc>https://mequita-pmi-v2.pages.dev/assets/horario-mensual.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

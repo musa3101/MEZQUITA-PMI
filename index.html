@@ -68,8 +68,8 @@
     <meta property="twitter:image" content="https://mequita-pmi-v2.pages.dev/assets/IMG_3602.jpg" />
 
     <!-- Critical Assets Preload -->
-    <link rel="preload" href="assets/logo_header.png" as="image" />
-    <link rel="preload" href="assets/img_3527.jpg" as="image" />
+    <link rel="preload" href="assets/logo_header.webp" as="image" type="image/webp" />
+    <link rel="preload" href="assets/img_3527.webp" as="image" type="image/webp" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo_header.png" />
@@ -213,10 +213,13 @@
             <!-- Brand -->
             <a class="flex items-center gap-2 group cursor-pointer" href="javascript:void(0)"
                 onclick="window.scrollTo(0,0); window.location.reload();">
-                <img alt="Arrahma Logo" width="512" height="160"
-                    class="h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                    style="clip-path: inset(0 0 30% 0);"
-                    src="assets/logo_header.png" />
+                    <picture>
+                        <source srcset="assets/logo_header.webp" type="image/webp" />
+                        <img alt="Arrahma Logo" width="512" height="160"
+                            class="h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                            style="clip-path: inset(0 0 30% 0);"
+                            src="assets/logo_header.png" />
+                    </picture>
             </a>
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-12 lg:gap-16">
@@ -299,25 +302,31 @@
     <main class="pt-[72px]">
         <h1 class="sr-only">Mezquita Arrahma Palma de Mallorca - Comunidad Islámica y Horarios de Rezo</h1>
         <!-- Hero Horizontal Scroll Container -->
-        <div id="hero-scroll-container" class="relative h-[200vh]">
-            <!-- Invisible precise snap points for the horizontal carousel -->
-            <div class="absolute inset-0 w-full pointer-events-none flex flex-col">
-                <div class="h-[calc(100vh+24px)] w-full snap-start scroll-mt-[72px]"></div>
-                <div class="h-[calc(100vh-72px)] w-full snap-start scroll-mt-[72px]"></div>
-            </div>
+        <div id="hero-scroll-container" class="relative h-[400vh] md:h-[300vh]">
 
             <div class="sticky top-[72px] h-[calc(100vh-72px)] w-full overflow-hidden bg-black">
 
                 <!-- The Horizontal Track -->
-                <div id="hero-horizontal-track" class="flex w-[200%] h-full will-change-transform">
+                <div id="hero-horizontal-track" class="flex w-max h-full will-change-transform">
 
-                    <!-- Step 1 (Video) -->
+                    <!-- Step 1 (Imagen de bienvenida SOLO en móviles) -->
                     <section
-                        class="w-1/2 h-full relative flex-shrink-0 flex flex-col justify-center items-center overflow-hidden bg-black"
+                        class="w-screen h-full relative flex-shrink-0 flex flex-col justify-center items-center overflow-hidden bg-black block md:hidden"
+                        id="inicio-mobile">
+                        <picture class="absolute inset-0 w-full h-full z-0">
+                            <source srcset="assets/hero_1_movil.webp" type="image/webp" />
+                            <img src="assets/hero_1.jpg" alt="Mezquita Arrahma" class="w-full h-full object-cover" />
+                        </picture>
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 z-0 pointer-events-none"></div>
+                    </section>
+
+                    <!-- Step 2 (Video - en móvil es 2do, en desktop es 1ro) -->
+                    <section
+                        class="w-screen h-full relative flex-shrink-0 flex flex-col justify-center items-center overflow-hidden bg-black"
                         id="inicio">
                         <video id="hero-video"
                             class="absolute inset-0 w-full h-full object-contain z-0 opacity-90 scale-95 md:scale-100"
-                            autoplay muted loop playsinline preload="auto" poster="assets/img_3527.jpg">
+                            autoplay muted loop playsinline preload="auto" poster="assets/hero_1_movil.webp">
                             <source src="assets/video_hero_nuevo.mp4" type="video/mp4">
                         </video>
                         <div
@@ -325,24 +334,51 @@
                         </div>
                     </section>
 
-                    <!-- Step 2 (Favourite Image) -->
+                    <!-- Step 3 (Libro - Corán) -->
                     <section
-                        class="w-1/2 h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
-                        <img alt="Mezquita Arrahma - Interior" width="1024" height="1024" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover z-0" src="assets/img_3527.jpg" />
+                        class="w-screen h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
+                        <picture>
+                            <source srcset="assets/hero_3_libro.webp" type="image/webp" />
+                            <img alt="Mezquita Arrahma - Corán" width="1024" height="1024" loading="lazy"
+                                class="absolute inset-0 w-full h-full object-cover z-0" src="assets/hero_3.jpg" />
+                        </picture>
                         <div
-                            class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80 z-0 pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 z-0 pointer-events-none">
+                        </div>
+                    </section>
+
+                    <!-- Step 4 (Nueva Imagen - Comunidad) -->
+                    <section
+                        class="w-screen h-full relative flex-shrink-0 flex justify-center items-center overflow-hidden bg-black py-0">
+                        <picture>
+                            <source srcset="assets/hero_4.webp" type="image/webp" />
+                            <img alt="Mezquita Arrahma - Comunidad" width="1024" height="1024" loading="lazy"
+                                class="absolute inset-0 w-full h-full object-cover z-0" src="assets/hero_4.jpg" />
+                        </picture>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 z-0 pointer-events-none">
                         </div>
                     </section>
                 </div>
 
-                <!-- Absolute Global Button inside the sticky container -->
-                <div class="absolute bottom-16 left-0 right-0 flex justify-center z-30 transition-opacity duration-300">
-                    <a class="group flex items-center gap-2 px-4 py-2 md:px-6 md:py-2.5 bg-[#fbca1f] text-black font-black text-[12px] md:text-[14px] uppercase tracking-wider border-[3px] border-black rounded-[0.4em] shadow-[2px_2px_0px_black] transition-all duration-200 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_black] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_black]"
+                <!-- Absolute Global Buttons inside the sticky container -->
+                <div class="absolute bottom-16 left-0 right-0 flex justify-center z-30 pointer-events-none">
+                    <!-- Botón Horarios -->
+                    <a id="btn-hero-horarios"
+                        class="pointer-events-auto group flex items-center gap-2 px-4 py-2 md:px-6 md:py-2.5 bg-[#fbca1f] text-black font-black text-[12px] md:text-[14px] uppercase tracking-wider border-[3px] border-black rounded-[0.4em] shadow-[2px_2px_0px_black] transition-all duration-300 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_black] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_black] opacity-100"
                         href="#horarios">
                         <span data-i18n="hero.cta">Ver horarios de rezos</span>
                         <span
                             class="material-symbols-outlined text-[14px] md:text-[16px] font-bold transition-transform group-hover:translate-y-1">expand_more</span>
+                    </a>
+
+                    <!-- Botón Quran -->
+                    <a id="btn-hero-quran"
+                        class="pointer-events-auto absolute group flex items-center gap-2 px-4 py-2 md:px-6 md:py-2.5 bg-[#2C5F44] text-white font-black text-[12px] md:text-[14px] uppercase tracking-wider border-[3px] border-black rounded-[0.4em] shadow-[2px_2px_0px_black] transition-all duration-300 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-[3px_3px_0px_black] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[1px_1px_0px_black] opacity-0 pointer-events-none"
+                        href="https://quran.com/es" target="_blank" rel="noopener noreferrer">
+                        <span data-i18n="hero.quran_cta">Leer Quran gratis</span>
+                        <span
+                            class="material-symbols-outlined text-[14px] md:text-[16px] font-bold transition-transform group-hover:translate-x-1">open_in_new</span>
                     </a>
                 </div>
             </div>
@@ -380,45 +416,35 @@
                                     <strong class="text-2xl font-black text-on-surface" id="countdown-h">00</strong>
                                     <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.hrs">h</span>
                                 </div>
-                                <span class="text-2xl font-light text-on-surface-variant/40 pb-3">:</span>
                                 <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
                                     <strong class="text-2xl font-black text-on-surface" id="countdown-m">00</strong>
-                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.mins">min</span>
+                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.min">min</span>
                                 </div>
-                                <span class="text-2xl font-light text-on-surface-variant/40 pb-3">:</span>
                                 <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
-                                    <strong class="text-2xl font-black text-primary" id="countdown-s">00</strong>
-                                    <span class="text-[9px] text-primary tracking-widest uppercase" data-i18n="prayer.secs">seg</span>
+                                    <strong class="text-2xl font-black text-on-surface" id="countdown-s">00</strong>
+                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.sec">seg</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Prayer Cards: horizontal scroll on mobile, 5-col grid on desktop -->
-                <div class="w-full relative">
-                    <!-- Mobile fade edges -->
-                    <div class="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-[#faf8f4] to-transparent z-10 md:hidden pointer-events-none"></div>
-                    <div class="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#faf8f4] to-transparent z-10 md:hidden pointer-events-none"></div>
-
-                    <!-- Mobile: flex scroll / Desktop: 5-col grid -->
-                    <div id="prayers-container"
-                        class="flex overflow-x-auto hide-scrollbar gap-3 pb-4 pt-1 snap-x snap-mandatory
-                               md:grid md:grid-cols-5 md:overflow-visible md:gap-4 md:pb-0 md:snap-none">
-
+                <!-- Prayer Grid -->
+                <div class="relative w-full overflow-visible pb-4">
+                    <div id="prayer-grid-scroll" class="flex md:grid md:grid-cols-5 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pt-6 pb-4 md:pb-0">
+                        
                         <!-- Fajr -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
-                                    md:min-h-[220px] border border-white/60"
-                            data-prayer="Fajr" data-time="04:18">
+                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                            data-prayer="Fajr" data-time="05:32">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
                                         bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">wb_twilight</span>
                             <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Fajr</h4>
-                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">04:18</span>
-                            <!-- Progress bar (only shows on active) -->
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">05:32</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
                                     <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
@@ -428,16 +454,16 @@
 
                         <!-- Dhuhr -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
-                                    md:min-h-[220px] border border-white/60"
-                            data-prayer="Dhuhr" data-time="13:52">
+                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                            data-prayer="Dhuhr" data-time="13:50">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
                                         bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">light_mode</span>
                             <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Dhuhr</h4>
-                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">13:52</span>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">13:50</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
                                     <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
@@ -447,16 +473,16 @@
 
                         <!-- Asr -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
-                                    md:min-h-[220px] border border-white/60"
-                            data-prayer="Asr" data-time="17:50">
+                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                            data-prayer="Asr" data-time="17:31">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
                                         bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">wb_sunny</span>
                             <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Asr</h4>
-                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">17:50</span>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">17:31</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
                                     <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
@@ -466,16 +492,16 @@
 
                         <!-- Maghrib -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
-                                    md:min-h-[220px] border border-white/60"
-                            data-prayer="Maghrib" data-time="21:21">
+                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                            data-prayer="Maghrib" data-time="20:25">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
                                         bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
                                 ● Ahora
                             </div>
-                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">nights_stay</span>
+                            <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">bedtime</span>
                             <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Maghrib</h4>
-                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">21:21</span>
+                            <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">20:25</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
                                     <div class="prayer-progress-bar h-full bg-white rounded-full transition-all duration-1000" style="width:0%"></div>
@@ -485,8 +511,8 @@
 
                         <!-- Isha -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    premium-glass-card rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative
-                                    md:min-h-[220px] border border-white/60"
+                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
                             data-prayer="Isha" data-time="22:51">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
                                         bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
@@ -532,10 +558,8 @@
                         <span class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-primary/30 absolute h-[60%] group-hover:h-[90%] rounded-bl-lg border-l-2 border-b-2 left-0 bottom-0"></span>
                         <span class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-primary/30 absolute h-[20%] rounded-br-lg border-r-2 border-b-2 right-0 bottom-0"></span>
                     </a>
-                    <!-- Botón Ramadán (oculto por defecto) -->
-                    <a href="/assets/horario-ramadan.pdf" download id="ramadan-download-btn"
-                        class="hidden group flex items-center justify-center gap-2 px-6 py-3 w-full sm:w-auto
-                               text-tertiary font-semibold text-[12px] md:text-[13px] uppercase tracking-wider
+                    
+                    <a href="#" id="download-ramadan-btn" class="hidden flex-shrink-0 cursor-pointer py-3.5 px-6 font-['Outfit'] inline-flex justify-center items-center gap-2 text-[12px] md:text-[13px] font-semibold uppercase text-tertiary
                                border-2 border-tertiary/40 rounded-lg
                                transition-all duration-300 hover:-translate-y-0.5 hover:border-tertiary hover:bg-tertiary/5">
                         <span class="material-symbols-outlined text-[18px]">nights_stay</span>
@@ -545,48 +569,112 @@
                 </div>
 
                 <!-- Quran Quick Access Block -->
-                <div class="mt-8 pt-6 border-t border-primary/10 flex flex-col md:flex-row gap-4 justify-center items-stretch w-full max-w-4xl mx-auto">
+                <div class="mt-10 pt-8 border-t border-primary/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-stretch w-full max-w-6xl mx-auto">
+                    
+                    <!-- Sura 1: Al-Fatiha -->
                     <a href="https://quran.com/1" target="_blank" rel="noopener noreferrer" 
-                       class="flex-1 group premium-glass-card rounded-xl p-4 flex items-center justify-between transition-all hover:-translate-y-1 border border-primary/20 hover:border-primary/50">
+                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                                <span class="material-symbols-outlined">auto_stories</span>
+                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
+                                <span class="material-symbols-outlined text-[20px]">menu_book</span>
                             </div>
-                            <div class="text-left">
-                                <h4 class="font-bold text-on-surface text-sm">Sura Al-Fatiha</h4>
-                                <p class="text-xs text-on-surface-variant">La Apertura</p>
+                            <div>
+                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors">Sura Al-Fatiha</h4>
+                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">La Apertura</p>
                             </div>
                         </div>
-                        <span class="material-symbols-outlined text-primary/50 group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow">
+                            Es la esencia del Corán y la recitamos en cada una de nuestras oraciones diarias para pedir guía.
+                        </p>
+                        <div class="flex justify-end mt-1">
+                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                        </div>
                     </a>
 
+                    <!-- Sura 2: Al-Baqarah -->
+                    <a href="https://quran.com/2" target="_blank" rel="noopener noreferrer" 
+                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
+                                <span class="material-symbols-outlined text-[20px]">history_edu</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors">Sura Al-Baqarah</h4>
+                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">La Vaca</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow">
+                            La sura más larga. Su recitación protege el hogar, trae bendición y aleja las malas influencias.
+                        </p>
+                        <div class="flex justify-end mt-1">
+                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                        </div>
+                    </a>
+
+                    <!-- Sura 3: Ya-Sin -->
                     <a href="https://quran.com/36" target="_blank" rel="noopener noreferrer" 
-                       class="flex-1 group premium-glass-card rounded-xl p-4 flex items-center justify-between transition-all hover:-translate-y-1 border border-primary/20 hover:border-primary/50">
+                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                                <span class="material-symbols-outlined">auto_stories</span>
+                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
+                                <span class="material-symbols-outlined text-[20px]">favorite</span>
                             </div>
-                            <div class="text-left">
-                                <h4 class="font-bold text-on-surface text-sm">Sura Ya-Sin</h4>
-                                <p class="text-xs text-on-surface-variant">El Corazón del Corán</p>
+                            <div>
+                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors">Sura Ya-Sin</h4>
+                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">El Corazón del Corán</p>
                             </div>
                         </div>
-                        <span class="material-symbols-outlined text-primary/50 group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow">
+                            Una sura hermosa y profunda que solemos recitar para pedir facilidad, perdón y paz espiritual.
+                        </p>
+                        <div class="flex justify-end mt-1">
+                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                        </div>
                     </a>
 
-                    <a href="https://quran.com/18" target="_blank" rel="noopener noreferrer" 
-                       class="flex-1 group bg-primary/5 rounded-xl p-4 flex items-center justify-between transition-all hover:-translate-y-1 border-2 border-primary relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-primary text-white text-[9px] font-bold px-2 py-0.5 rounded-bl-lg uppercase tracking-wider">Recomendado Hoy</div>
-                        <div class="flex items-center gap-3 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md">
-                                <span class="material-symbols-outlined">star</span>
+                    <!-- Sura 4: Al-Mulk -->
+                    <a href="https://quran.com/67" target="_blank" rel="noopener noreferrer" 
+                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
+                                <span class="material-symbols-outlined text-[20px]">shield</span>
                             </div>
-                            <div class="text-left">
-                                <h4 class="font-bold text-primary text-sm">Sura Al-Kahf</h4>
-                                <p class="text-xs text-primary/70 font-semibold">Especial Viernes</p>
+                            <div>
+                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors">Sura Al-Mulk</h4>
+                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">La Soberanía</p>
                             </div>
                         </div>
-                        <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow">
+                            Recomendada para leer cada noche, ya que intercede por quien la recita y otorga gran protección.
+                        </p>
+                        <div class="flex justify-end mt-1">
+                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                        </div>
+                    </a>
+
+                    <!-- Sura 5: Al-Kahf -->
+                    <a href="https://quran.com/18" target="_blank" rel="noopener noreferrer" id="sura-kahf-card"
+                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden md:col-span-2 lg:col-span-1">
+                        
+                        <!-- Badge Viernes (Hidden por defecto, se activa en JS) -->
+                        <div id="kahf-badge" class="hidden absolute top-0 right-0 bg-[#fbca1f] text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-sm">
+                            Recomendado Hoy
+                        </div>
+
+                        <div class="flex items-center gap-3 mt-1">
+                            <div id="kahf-icon-container" class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
+                                <span class="material-symbols-outlined text-[20px]">auto_stories</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" id="kahf-title">Sura Al-Kahf</h4>
+                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" id="kahf-subtitle">La Caverna</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow">
+                            Es tradición recitarla. Aporta luz entre dos viernes consecutivos a quien la lee y protege el alma.
+                        </p>
+                        <div class="flex justify-end mt-1">
+                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                        </div>
                     </a>
                 </div>
 
@@ -597,7 +685,10 @@
         <section class="py-section-gap snap-start scroll-mt-[72px] relative" id="consulta" style="background: linear-gradient(135deg, #f5efe4 0%, #ede6d6 50%, #f0ead9 100%);">
             <!-- Decorative community image strip (desktop only) -->
             <div class="hidden md:block absolute inset-y-0 right-0 w-2/5 lg:w-1/3 overflow-hidden">
-                <img src="assets/hero_4.jpg" alt="Comunidad Mezquita Arrahma" class="w-full h-full object-cover object-center opacity-25" loading="lazy" />
+                <picture>
+                    <source srcset="assets/extra_3835.webp" type="image/webp" />
+                    <img src="assets/extra_3835.jpg" alt="Comunidad Mezquita Arrahma" class="w-full h-full object-cover object-center opacity-25" loading="lazy" />
+                </picture>
                 <div class="absolute inset-0 bg-gradient-to-r from-[#f0ead9] via-[#f0ead9]/60 to-transparent"></div>
             </div>
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max relative z-10">
@@ -653,11 +744,13 @@
                         </div>
                     </div>
                     <!-- Contact Form -->
-                    <div
-                        class="premium-glass-card rounded-xl p-8 relative">
-                        <div
-                            class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed/30 rounded-bl-full pointer-events-none">
-                        </div>
+                    <div class="rounded-xl p-6 md:p-8 relative overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-primary/20">
+                        <!-- Background Image & Overlay -->
+                        <div class="absolute inset-0 bg-[url('assets/contacto_bg.webp')] bg-cover bg-right-top z-0 opacity-50"></div>
+                        <div class="absolute inset-0 bg-white/75 z-0"></div>
+                        
+                        <!-- Decorative element -->
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-bl-full pointer-events-none z-0"></div>
                         <div id="imam-form-success"
                             class="hidden absolute inset-0 z-20 bg-surface flex flex-col items-center justify-center text-center p-8 rounded border border-primary/20">
                             <span class="material-symbols-outlined text-primary text-6xl mb-4">check_circle</span>
@@ -761,9 +854,12 @@
                     <div class="md:col-span-4 flex flex-col gap-4">
                         <div
                             class="rounded-xl overflow-hidden relative h-[280px] md:h-[320px] hover-lift shadow-sm border border-outline-variant/20">
-                            <img alt="La Kaaba al amanecer" width="736" height="1212" loading="lazy"
-                                class="absolute inset-0 w-full h-full object-cover object-center"
-                                src="assets/hero_3.jpg" />
+                            <picture>
+                                <source srcset="assets/extra_3839.webp" type="image/webp" />
+                                <img alt="La Kaaba al amanecer" width="736" height="1212" loading="lazy"
+                                    class="absolute inset-0 w-full h-full object-cover object-center"
+                                    src="assets/extra_3839.jpg" />
+                            </picture>
                         </div>
                         <div
                             class="premium-glass-card rounded-xl p-6 relative flex flex-col items-center text-center">
@@ -852,16 +948,7 @@
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
 
-                            <!-- Custom Overlay Button 'Cómo llegar' -->
-                            <div
-                                class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-full flex justify-center px-4">
-                                <a href="https://maps.google.com/maps?q=Mezquita%20Arrahma%20la%20misericordia,%20Carrer%20Hort%20de%20Torrella,%2011C,%2007005%20Palma"
-                                    target="_blank" rel="noopener noreferrer"
-                                    class="pointer-events-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-[#fbca1f] text-black font-black text-[15px] uppercase tracking-wider rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:scale-105 hover:shadow-[0_10px_40px_rgba(251,202,31,0.6)] transition-all duration-300">
-                                    <span class="material-symbols-outlined text-[20px]">directions</span>
-                                    <span>Cómo llegar</span>
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -934,9 +1021,9 @@
 
         <!-- WhatsApp Floating Button -->
         <button id="whatsapp-btn"
-            class="fixed bottom-6 right-6 z-[60] bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none flex items-center justify-center">
+            class="fixed bottom-6 right-6 z-[60] bg-[#25D366] text-white p-3 md:p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none flex items-center justify-center lg:hidden">
             <!-- SVG for WhatsApp Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="md:w-[28px] md:h-[28px]" fill="currentColor" viewBox="0 0 16 16">
                 <path
                     d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
             </svg>
@@ -1000,15 +1087,18 @@
             <div class="md:col-span-4 flex flex-col items-center justify-center order-1 md:order-2">
                 <a href="javascript:void(0)" onclick="window.scrollTo(0,0); window.location.reload();"
                     class="w-36 h-36 md:w-32 md:h-32 rounded-full overflow-hidden border border-primary/20 bg-white/5 p-2 flex items-center justify-center cursor-pointer group hover:scale-105 transition-transform duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-                    <img alt="Arrahma Logo" loading="lazy"
-                        class="w-full h-full object-contain scale-110 group-hover:scale-125 transition-transform duration-300"
-                        src="assets/IMG_3602.jpg" />
+                    <picture>
+                        <source srcset="assets/IMG_3602.webp" type="image/webp" />
+                        <img alt="Arrahma Logo" loading="lazy"
+                            class="w-full h-full object-contain scale-110 group-hover:scale-125 transition-transform duration-300"
+                            src="assets/IMG_3602.jpg" />
+                    </picture>
                 </a>
             </div>
 
             <!-- Column 1: Colaboración (2nd on Mobile, Left on Desktop) -->
             <div
-                class="md:col-span-4 flex flex-col gap-4 order-2 md:order-1 text-center md:text-left items-center md:items-start">
+                class="md:col-span-4 flex flex-col gap-4 order-2 md:order-1 text-center md:text-left items-center md:items-start relative group/footer-img">
                 <span class="font-label-caps text-label-caps text-primary/80 mb-1 uppercase tracking-widest"
                     data-i18n="footer.colab">Colaboración</span>
                 <p class="font-body-md text-body-md text-white/70 leading-relaxed max-w-sm md:max-w-none"
@@ -1019,33 +1109,33 @@
 
             <!-- Column 3: Navegación & Legal (3rd on Mobile, Right on Desktop) -->
             <div
-                class="md:col-span-4 w-full flex flex-row justify-center md:justify-end gap-12 md:gap-12 order-3 md:order-3 pt-4 md:pt-0 border-t border-white/10 md:border-t-0">
-                <div class="flex flex-col gap-4 text-center md:text-left">
-                    <span class="font-label-caps text-label-caps text-white/50 mb-2 uppercase tracking-widest"
+                class="md:col-span-4 w-full flex flex-row justify-center md:justify-end gap-12 md:gap-16 order-3 md:order-3 pt-6 md:pt-0 border-t border-white/10 md:border-t-0">
+                <div class="flex flex-col gap-4 text-left">
+                    <span class="font-label-caps text-label-caps text-white/40 mb-1 uppercase tracking-widest text-[11px] md:text-xs"
                         data-i18n="footer.nav">Navegación</span>
-                    <nav class="flex flex-col gap-3 items-center md:items-start">
-                        <a class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                    <nav class="flex flex-col gap-3 items-start">
+                        <a class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#inicio" data-i18n="nav.home">Inicio</a>
-                        <a class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                        <a class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#horarios" data-i18n="nav.times">Horarios</a>
-                        <a class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                        <a class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#consulta" data-i18n="nav.ask">Consulta al Imán</a>
-                        <a class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                        <a class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#donde-estamos" data-i18n="nav.location">Dónde estamos</a>
                     </nav>
                 </div>
-                <div class="flex flex-col gap-4 text-center md:text-left">
-                    <span class="font-label-caps text-label-caps text-white/50 mb-2 uppercase tracking-widest"
+                <div class="flex flex-col gap-4 text-left">
+                    <span class="font-label-caps text-label-caps text-white/40 mb-1 uppercase tracking-widest text-[11px] md:text-xs"
                         data-i18n="footer.legal">Legal</span>
-                    <nav class="flex flex-col gap-3 items-center md:items-start">
+                    <nav class="flex flex-col gap-3 items-start">
                         <a id="link-aviso"
-                            class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                            class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#" data-i18n="footer.legal1">Aviso Legal</a>
                         <a id="link-privacidad"
-                            class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                            class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#" data-i18n="footer.legal2">Privacidad</a>
                         <a id="link-cookies-footer"
-                            class="font-body-md text-body-md text-white/80 hover:text-primary transition-colors"
+                            class="font-body-md text-sm md:text-body-md text-white/70 hover:text-white tracking-wide transition-colors"
                             href="#" data-i18n="footer.legal3">Política de Cookies</a>
                     </nav>
                 </div>
