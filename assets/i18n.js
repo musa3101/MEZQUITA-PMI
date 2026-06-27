@@ -106,7 +106,27 @@ const translations = {
         'wa.opt1': 'Pregunta Religiosa (Fatwa)',
         'wa.opt2': 'Consejería Matrimonial',
         'wa.opt3': 'Conversión al Islam',
-        'wa.opt4': 'Otro'
+        'wa.opt4': 'Otro',
+
+        // Quran Section
+        'quran.s1_title': 'Sura Al-Fatiha',
+        'quran.s1_sub': 'La Apertura',
+        'quran.s1_desc': 'Es la esencia del Corán y la recitamos en cada una de nuestras oraciones diarias para pedir guía.',
+        'quran.s2_title': 'Sura Al-Baqarah',
+        'quran.s2_sub': 'La Vaca',
+        'quran.s2_desc': 'La sura más larga. Su recitación protege el hogar, trae bendición y aleja las malas influencias.',
+        'quran.s3_title': 'Sura Ya-Sin',
+        'quran.s3_sub': 'El Corazón del Corán',
+        'quran.s3_desc': 'Llena de sabiduría, se recomienda leerla para buscar el perdón y aliviar las dificultades.',
+        'quran.s4_title': 'Sura Al-Mulk',
+        'quran.s4_sub': 'El Dominio',
+        'quran.s4_desc': 'Se recita antes de dormir. Intercede por quien la lee y protege del castigo de la tumba.',
+        'quran.s5_title': 'Sura Al-Kahf',
+        'quran.s5_sub': 'La Caverna',
+        'quran.s5_desc': 'Una luz brillante de guía. Su lectura nos protege contra las pruebas y el engaño.',
+        'quran.s5_badge': 'Recomendado Hoy',
+        'map.box_title': 'Mezquita Arrahma',
+        'map.box_address': 'Carrer Hort de Torrella 11C, Palma'
     },
     ar: {
         // Navigation
@@ -208,14 +228,34 @@ const translations = {
 
         // Additional translations
         'prayer.hrs': 'ساعات',
-        'prayer.mins': 'دقائق',
-        'prayer.secs': 'ثواني',
-        'wa.title': 'الاستشارة عبر الواتساب',
+        'prayer.mins': 'دقيقة',
+        'prayer.secs': 'ثانية',
+        'wa.title': 'استشارة عبر الواتساب',
         'wa.desc': 'اختر موضوع استشارتك:',
         'wa.opt1': 'سؤال ديني (فتوى)',
         'wa.opt2': 'استشارة زوجية',
         'wa.opt3': 'اعتناق الإسلام',
-        'wa.opt4': 'أخرى'
+        'wa.opt4': 'أخرى',
+
+        // Quran Section
+        'quran.s1_title': 'سورة الفاتحة',
+        'quran.s1_sub': 'الافتتاح',
+        'quran.s1_desc': 'هي جوهر القرآن ونقرأها في كل صلاة من صلواتنا اليومية لطلب الهداية.',
+        'quran.s2_title': 'سورة البقرة',
+        'quran.s2_sub': 'البقرة',
+        'quran.s2_desc': 'أطول سورة. قراءتها تحمي البيت وتجلب البركة وتبعد التأثيرات السيئة.',
+        'quran.s3_title': 'سورة يس',
+        'quran.s3_sub': 'قلب القرآن',
+        'quran.s3_desc': 'مليئة بالحكمة، يوصى بقراءتها لطلب المغفرة وتخفيف الصعوبات.',
+        'quran.s4_title': 'سورة الملك',
+        'quran.s4_sub': 'الملك',
+        'quran.s4_desc': 'تقرأ قبل النوم. تشفع لمن يقرأها وتحميه من عذاب القبر.',
+        'quran.s5_title': 'سورة الكهف',
+        'quran.s5_sub': 'الكهف',
+        'quran.s5_desc': 'نور ساطع للهداية. قراءتها تحمينا من الفتن والخداع.',
+        'quran.s5_badge': 'موصى به اليوم',
+        'map.box_title': 'المركز الإسلامي الرحمة',
+        'map.box_address': 'شارع هورت دي توريلا ١١ ج، بالما'
     }
 };
 
