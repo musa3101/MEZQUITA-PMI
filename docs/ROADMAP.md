@@ -1,23 +1,18 @@
-# Roadmap - Mezquita Arrahma V2
+# ROADMAP - Mezquita Arrahma
 
 ## Tareas Completadas
-- [x] Rediseño integral de la página principal (UI/UX) con estética premium (modo oscuro, dorados, verde esmeralda).
-- [x] Implementación y vinculación del reloj de Mawaqit (vía API en `main.js`).
-- [x] Construcción del Hero con carrusel híbrido (imágenes + vídeos) adaptable a móvil y escritorio.
-- [x] Rediseño de la sección del Corán (5 suras destacadas con lógica de Viernes para Al-Kahf).
-- [x] Ajustes de los horarios de rezo en formato de tarjetas premium (scroll dinámico en móvil).
-- [x] Optimización de Google Maps (ocultación de la caja estándar y creación de un diseño a medida con estrellas e información de dirección).
-- [x] Remodelación del formulario de Contacto con fondo unificado (`contacto_bg.webp`) en cristal esmerilado sin perder legibilidad.
-- [x] Depuración del botón de WhatsApp (responsive).
-- [x] Inicialización del cliente de Supabase para almacenar configuraciones (cookie consent, etc.).
+- Rediseño premium de la web v2.0 completado y validado.
+- Creación e integración dinámica de horarios de oración usando API externa (Mawaqit).
+- Diseño responsivo al 100% (móviles, tabletas, ordenadores).
+- Optimización de velocidad (imágenes webp, sliders ligeros nativos).
+- Formulario de contacto y diseño del pie de página adaptados para móviles.
+- Páginas legales (Privacidad y Aviso Legal) creadas (`legal.html`).
+- Traducciones finalizadas en el archivo `i18n.js` y aplicadas al código HTML (`data-i18n`).
 
 ## Tareas en Progreso
-- [ ] Optimización final continua (Lazy Loading, limpieza de imágenes `.jpg` pesadas residuales).
-- [ ] Monitorización del auto-scroll de los rezos en diferentes dispositivos móviles reales.
-- [ ] Seguimiento del correcto guardado de datos en Supabase a medida que entre tráfico.
+- Fase de pruebas en el mundo real por los usuarios de la Mezquita Arrahma.
 
 ## Próximas Mejoras Prioritarias
-1. **Sección de Donaciones:** Expandir las opciones de pago/colaboración (Bizum, Transferencia) de forma clara y accesible.
-2. **Sistema de Blog / Avisos:** Implementar en el futuro un pequeño tablón de anuncios (o fetching desde Supabase) para que el Imán pueda publicar comunicados importantes.
-3. **Sección PDF (Horario de Ramadán):** Automatizar o preparar una plantilla para cuando comience el mes de Ramadán, facilitando la descarga del calendario.
-4. **Traducciones completas:** Revisar la implementación de idiomas (Español/Árabe) en todos los componentes dinámicos nuevos a través del archivo `i18n.js`.
+- **Pasarelas de donación:** Implementar pagos integrados para donaciones recurrentes.
+- **Tablón de Anuncios:** Sección dinámica controlada desde Supabase o un pequeño panel administrativo para avisos de la Mezquita.
+- **Calendario de Ramadán:** Módulo específico o página dedicada para cuando llegue la temporada de Ramadán.
