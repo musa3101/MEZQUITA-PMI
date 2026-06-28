@@ -76,7 +76,7 @@
                             <span class="material-symbols-outlined text-[18px]">timer</span>
                             <span data-i18n="ramadan.countdown_title">Tiempo restante para el próximo Ramadán</span>
                         </h3>
-                        <div class="flex justify-center items-center gap-6 md:gap-12 text-center" id="ramadan-countdown">
+                        <div class="flex justify-center items-center gap-6 md:gap-12 text-center" id="ramadan-countdown" dir="ltr">
                             <div class="flex flex-col items-center">
                                 <span class="text-5xl md:text-7xl font-black text-white font-['Outfit'] block drop-shadow-md" id="r-d">00</span>
                                 <span class="text-xs md:text-sm uppercase text-white/50 mt-2 block font-semibold tracking-wider" data-i18n="prayer.days">Días</span>
@@ -284,7 +284,10 @@
                 if (tableContainer) tableContainer.classList.remove('hidden');
                 if (placeholder) placeholder.classList.add('hidden');
                 if (countdownTitle) {
-                    countdownTitle.innerHTML = currentLang === 'ar' ? 'الوقت المتبقي لـ <span class="text-primary ml-1 font-black">الإفطار</span>' : 'Tiempo restante para <span class="text-primary ml-1 font-black">IFTAR</span>';
+                    countdownTitle.setAttribute('data-i18n', 'ramadan.countdown_iftar');
+                    if(typeof setLanguage === 'function') {
+                        setLanguage(currentLang || 'es');
+                    }
                 }
             } else {
                 // Para que no se vea vacío al imprimir fuera de temporada, la tabla la mantenemos lista internamente
