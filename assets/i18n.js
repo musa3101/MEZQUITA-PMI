@@ -28,9 +28,11 @@ const translations = {
         
         // Prayer Times
         'prayer.title': 'Horarios de Oración',
-        'prayer.desc': 'Encuentra la paz en tu rutina diaria. Los horarios se actualizan según la posición del sol en nuestra hermosa comunidad.',
+        'prayer.desc': 'Encuentra paz en tu rutina diaria. Los horarios se actualizan basados en la posición del sol en nuestra hermosa comunidad.',
         'prayer.next': 'Próxima Oración',
         'prayer.remaining': 'Faltan',
+        'prayer.download_monthly': 'Descargar horario del mes',
+        'prayer.download_month': 'Descargar horario del mes',
         
         // Imam
         'imam.title': 'Consulta al Imán',
@@ -142,7 +144,10 @@ const translations = {
         'ramadan.dhuhr': 'Dhuhr',
         'ramadan.asr': 'Asr',
         'ramadan.maghrib': 'Maghrib (Iftar)',
-        'ramadan.isha': 'Isha'
+        'ramadan.isha': 'Isha',
+        'ramadan.placeholder_title': 'El horario estará disponible pronto',
+        'ramadan.placeholder_desc': 'El calendario detallado de los 30 días aparecerá aquí de forma automática una vez que comience el mes bendito de Ramadán.',
+        'ramadan.notice': '* Los horarios son calculados según la posición del sol para Palma de Mallorca. Durante el mes de Ramadán es recomendable dejar un margen de precaución para el inicio y ruptura del ayuno.'
     },
     ar: {
         // Navigation
@@ -176,6 +181,9 @@ const translations = {
         'prayer.desc': 'ابحث عن السلام في روتينك اليومي. يتم تحديث المواقيت بناءً على موقع الشمس في مجتمعنا الجميل.',
         'prayer.next': 'الصلاة القادمة',
         'prayer.remaining': 'متبقي',
+        'prayer.today': 'مواقيت اليوم',
+        'prayer.download_monthly': 'تحميل جدول الشهر',
+        'prayer.download_month': 'تحميل جدول الشهر',
         
         // Imam
         'imam.title': 'اسأل الإمام',
@@ -287,7 +295,10 @@ const translations = {
         'ramadan.dhuhr': 'الظهر',
         'ramadan.asr': 'العصر',
         'ramadan.maghrib': 'المغرب (الإفطار)',
-        'ramadan.isha': 'العشاء'
+        'ramadan.isha': 'العشاء',
+        'ramadan.placeholder_title': 'سيتوفر الجدول قريباً',
+        'ramadan.placeholder_desc': 'سيظهر تقويم الـ 30 يوماً المفصل هنا تلقائياً بمجرد بدء شهر رمضان المبارك.',
+        'ramadan.notice': '* يتم حساب المواقيت بناءً على موقع الشمس في بالما دي مايوركا. خلال شهر رمضان، يوصى بترك هامش احتياطي لبدء الصيام والإفطار.'
     }
 };
 
