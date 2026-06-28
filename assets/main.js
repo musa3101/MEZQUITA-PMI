@@ -45,7 +45,10 @@ try {
 
             // If we are completely below the container
             if (rect.bottom < window.innerHeight) {
-                horizontalTrack.style.transform = `translateX(-50%)`; // 1 out of 2 screens
+                const maxTranslate = horizontalTrack.scrollWidth - window.innerWidth;
+                if (window.innerWidth >= 768) {
+                    horizontalTrack.style.transform = `translate3d(-${maxTranslate}px, 0, 0)`;
+                }
                 return;
             }
 
@@ -57,7 +60,13 @@ try {
             progress = Math.max(0, Math.min(1, progress));
 
             const maxTranslate = horizontalTrack.scrollWidth - window.innerWidth;
-            horizontalTrack.style.transform = `translate3d(-${progress * maxTranslate}px, 0, 0)`;
+            
+            if (window.innerWidth < 768) {
+                // Disable JS transform on mobile, rely on native CSS scroll snap
+                horizontalTrack.style.transform = `none`;
+            } else {
+                horizontalTrack.style.transform = `translate3d(-${progress * maxTranslate}px, 0, 0)`;
+            }
 
             // Button toggle logic
             const btnHorarios = document.getElementById('btn-hero-horarios');
@@ -84,9 +93,36 @@ try {
         }
         window.addEventListener('scroll', updateHeroScroll, { passive: true });
         updateHeroScroll();
+
+        // Native horizontal scroll sync for mobile buttons
+        const trackParent = horizontalTrack.parentElement;
+        if (trackParent) {
+            trackParent.addEventListener('scroll', () => {
+                if (window.innerWidth < 768) {
+                    const currentSlide = trackParent.scrollLeft / window.innerWidth;
+                    const btnHorarios = document.getElementById('btn-hero-horarios');
+                    const btnQuran = document.getElementById('btn-hero-quran');
+                    if (btnHorarios && btnQuran) {
+                        if (currentSlide >= 1.5) {
+                            btnHorarios.classList.add('opacity-0', 'pointer-events-none');
+                            btnHorarios.classList.remove('opacity-100', 'pointer-events-auto');
+
+                            btnQuran.classList.remove('opacity-0', 'pointer-events-none');
+                            btnQuran.classList.add('opacity-100', 'pointer-events-auto');
+                        } else {
+                            btnHorarios.classList.remove('opacity-0', 'pointer-events-none');
+                            btnHorarios.classList.add('opacity-100', 'pointer-events-auto');
+
+                            btnQuran.classList.add('opacity-0', 'pointer-events-none');
+                            btnQuran.classList.remove('opacity-100', 'pointer-events-auto');
+                        }
+                    }
+                }
+            });
+        }
     }
 } catch (e) {
-    console.error("Hero Scroll Error:", e);
+    console.log("No hero slider here", e);
 }
 
 // --- 2. REST OF THE SCRIPT ---
