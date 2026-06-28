@@ -1,25 +1,21 @@
-# Resumen de Sesión
+# Resumen de Sesión - Mezquita Arrahma
 
 ## Qué se ha hecho hoy
-- Completado el rediseño "premium" de toda la página web principal.
-- Se ha creado y finalizado la página legal y de privacidad (`legal.html`).
-- Se han configurado todos los enlaces, botones y descargas (ej. horario PDF).
-- Se han implementado todas las traducciones al árabe/español de los componentes dinámicos en `i18n.js`.
-- Se ha optimizado la versión para móviles (responsive, fluidez, ajustes visuales).
+- Creación de la página dedicada al **Mes de Ramadán** (`ramadan.html`).
+- Implementación de un **motor de cálculo lunar nativo en JavaScript** para el inicio del Ramadán.
+- Sincronización automática de `ramadan.html` con los horarios precargados de `main.js` (Mawaqit).
+- Creación de contador inteligente: muestra los días/horas hasta el próximo Ramadán fuera de temporada, y el tiempo hasta el próximo *Iftar* durante el mes sagrado.
+- Añadidos estilos especiales para impresión (`print:`) para descargar el PDF correctamente.
+- Reemplazo de imágenes en el carrusel de inicio (`index.html`) por fotografías 4K (Corán y mezquita).
 
-## Qué archivos se han modificado
-- `index.html` (Cambios estéticos, de estructura, y vinculación de rutas).
-- `assets/main.js` (Lógicas de deslizamiento, carrusel y traducciones dinámicas).
-- `assets/i18n.js` (Adición de claves en español y árabe).
-- `legal.html` (Nuevo archivo creado).
-- Archivos en `/assets/` (Varias imágenes convertidas a formato ligero `.webp`).
+## Archivos Modificados
+- `ramadan.html` (NUEVO)
+- `index.html` (imágenes del hero, navbar).
+- `assets/i18n.js` (Traducciones del contador).
 
-## Qué problemas se han solucionado
-- Solucionado el diseño recortado ("overflow") en la tarjeta de rezos activos en móviles.
-- Retirada la publicidad invasiva predeterminada en el iframe de Google Maps usando una estructura a medida.
-- Ajustada la resolución y desenfoque del fondo en el formulario de contacto para una correcta legibilidad.
+## Problemas Solucionados
+- Distorsión de imágenes en monitores de escritorio para el carrusel principal resuelto.
+- Automatización del panel del Ramadán lograda 100% sin requerir backend.
 
-## Qué queda pendiente
-- Habilitar los nuevos métodos de donaciones digitales en la sección "Apoya".
-- Habilitar un sistema de publicación/blog para el Imán en el futuro si se precisa.
-- Supervisar el correcto funcionamiento de los botones de WhatsApp en producción.
+## Pendiente
+- Revisar analíticas tras el despliegue.

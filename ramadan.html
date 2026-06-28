@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Horario de Ramadán - Mezquita Arrahma</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,400..800;1,400..800&amp;family=Amiri:ital,wght@0,400;0,700;1,400;1,700&amp;family=Cairo:wght@300..700&amp;display=swap" rel="stylesheet" />
+    
+    <!-- Translation System -->
+    <script src="assets/i18n.js"></script>
+    
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdea5", "primary": "#a87c2b", "tertiary": "#0f4c3a", "surface": "#faf9f7", "background": "#faf9f7", "on-surface": "#1a1a1a", "on-background": "#1a1a1a"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Outfit", "Cairo", "sans-serif"],
+                        "headline-sm": ["Playfair Display", "Amiri", "serif"],
+                        "display-lg": ["Playfair Display", "Amiri", "serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+    
+    <!-- Header -->
+    <header class="bg-black py-4 sticky top-0 z-50 shadow-[0_4px_30px_rgba(0,0,0,0.5)] print:hidden">
+        <div class="container mx-auto px-6 max-w-7xl flex justify-between items-center">
+            <a href="index.html" class="inline-block hover:opacity-80 hover:scale-105 transition-all duration-300">
+                <img src="assets/IMG_3602.webp" alt="Mezquita Arrahma Logo" class="h-16 md:h-20 w-auto object-contain rounded-xl shadow-md">
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="text-white/80 hover:text-primary font-semibold transition-colors hidden md:block text-sm md:text-base" data-i18n="nav.home">Inicio</a>
+                <button aria-label="Cambiar idioma" class="lang-toggle-btn flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/15 hover:scale-105 transition-all duration-300 border border-white/10">
+                    <span class="text-white text-xs font-bold tracking-widest">ES | AR</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen pb-20 print:pb-0">
+        <!-- Hero Section -->
+        <section class="relative bg-[#11261a] text-white py-24 md:py-32 px-6 text-center overflow-hidden print:hidden">
+            <!-- Background Glows -->
+            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[100px]"></div>
+                <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-tertiary/30 blur-[120px]"></div>
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <div class="mb-6 flex justify-center">
+                    <span class="material-symbols-outlined text-primary text-5xl opacity-80" style="font-variation-settings: 'FILL' 1;">nightlight</span>
+                </div>
+                <h1 class="font-display-lg text-5xl md:text-7xl font-bold mb-6 text-[#e9c176] tracking-tight drop-shadow-lg" data-i18n="ramadan.title">Horario de Ramadán</h1>
+                <p class="text-xl md:text-2xl text-white/80 font-body-md font-light max-w-2xl mx-auto leading-relaxed" data-i18n="ramadan.subtitle">Mes de bendición, ayuno y perdón</p>
+                
+                <!-- Countdown -->
+                <div class="mt-16 bg-[#1a3826]/80 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl inline-block relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-primary-fixed uppercase tracking-[0.2em] text-sm mb-6 font-bold flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">timer</span>
+                            <span data-i18n="ramadan.countdown_title">Tiempo restante para el próximo Ramadán</span>
+                        </h3>
+                        <div class="flex justify-center items-center gap-6 md:gap-12 text-center" id="ramadan-countdown">
+                            <div class="flex flex-col items-center">
+                                <span class="text-5xl md:text-7xl font-black text-white font-['Outfit'] block drop-shadow-md" id="r-d">00</span>
+                                <span class="text-xs md:text-sm uppercase text-white/50 mt-2 block font-semibold tracking-wider" data-i18n="prayer.days">Días</span>
+                            </div>
+                            <span class="text-4xl md:text-6xl text-primary/40 -mt-6 font-light">:</span>
+                            <div class="flex flex-col items-center">
+                                <span class="text-5xl md:text-7xl font-black text-white font-['Outfit'] block drop-shadow-md" id="r-h">00</span>
+                                <span class="text-xs md:text-sm uppercase text-white/50 mt-2 block font-semibold tracking-wider" data-i18n="prayer.hrs">Horas</span>
+                            </div>
+                            <span class="text-4xl md:text-6xl text-primary/40 -mt-6 font-light">:</span>
+                            <div class="flex flex-col items-center">
+                                <span class="text-5xl md:text-7xl font-black text-white font-['Outfit'] block drop-shadow-md" id="r-m">00</span>
+                                <span class="text-xs md:text-sm uppercase text-white/50 mt-2 block font-semibold tracking-wider" data-i18n="prayer.mins">Min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="container mx-auto px-6 py-12 flex justify-center transform -translate-y-6 relative z-20 print:hidden">
+            <button onclick="window.print()" class="bg-gradient-to-r from-amber-600 to-yellow-500 text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 hover:from-amber-700 hover:to-yellow-600 transition-all duration-300 shadow-[0_10px_25px_rgba(180,120,20,0.4)] hover:shadow-[0_15px_35px_rgba(180,120,20,0.5)] hover:-translate-y-1 group">
+                <span class="material-symbols-outlined group-hover:animate-bounce">download</span>
+                <span data-i18n="ramadan.download_pdf" class="tracking-wide">Descargar Calendario</span>
+            </button>
+        </div>
+
+        <!-- Print Only Header -->
+        <div class="hidden print:block text-center mt-12 mb-8">
+            <img src="assets/IMG_3602.webp" alt="Mezquita Arrahma Logo" class="h-32 mx-auto mb-6 rounded-2xl shadow-sm">
+            <h1 class="font-display-lg text-5xl font-bold text-gray-900" data-i18n="ramadan.title">Horario de Ramadán</h1>
+            <p class="text-gray-500 mt-2 text-lg" data-i18n="ramadan.subtitle">Mes de bendición, ayuno y perdón</p>
+        </div>
+
+        <!-- Table Section -->
+        <section class="container mx-auto px-6 max-w-5xl mt-4">
+            <!-- Placeholder Out of Season -->
+            <div id="ramadan-placeholder" class="bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-12 text-center">
+                <span class="material-symbols-outlined text-6xl text-primary/40 mb-4">calendar_month</span>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2 font-['Outfit']">El horario estará disponible pronto</h3>
+                <p class="text-gray-500 max-w-lg mx-auto">El calendario detallado de los 30 días aparecerá aquí de forma automática una vez que comience el mes bendito de Ramadán.</p>
+            </div>
+
+            <div id="ramadan-table-container" class="hidden bg-white rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden relative">
+                
+                <!-- Table Header Decor -->
+                <div class="h-2 w-full bg-gradient-to-r from-primary via-yellow-400 to-primary"></div>
+                
+                <div class="overflow-x-auto p-4 md:p-8">
+                    <table class="w-full text-center border-collapse">
+                        <thead class="font-['Outfit'] border-b-2 border-gray-100">
+                            <tr>
+                                <th class="py-5 px-4 font-bold text-gray-400 uppercase tracking-wider text-sm" data-i18n="ramadan.day">Día</th>
+                                <th class="py-5 px-4 font-bold text-gray-400 uppercase tracking-wider text-sm" data-i18n="ramadan.date">Fecha</th>
+                                <th class="py-5 px-4 font-black text-primary uppercase tracking-wider text-sm" data-i18n="ramadan.fajr">Fajr (Imsak)</th>
+                                <th class="py-5 px-4 font-bold text-gray-400 uppercase tracking-wider text-sm hidden md:table-cell" data-i18n="ramadan.dhuhr">Dhuhr</th>
+                                <th class="py-5 px-4 font-bold text-gray-400 uppercase tracking-wider text-sm hidden sm:table-cell" data-i18n="ramadan.asr">Asr</th>
+                                <th class="py-5 px-4 font-black text-primary uppercase tracking-wider text-sm" data-i18n="ramadan.maghrib">Maghrib (Iftar)</th>
+                                <th class="py-5 px-4 font-bold text-gray-400 uppercase tracking-wider text-sm hidden sm:table-cell" data-i18n="ramadan.isha">Isha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ramadan-tbody" class="text-gray-700 divide-y divide-gray-50 font-['Outfit']">
+                            <!-- Rows will be injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                <p>* Los horarios son calculados según la posición del sol para Palma de Mallorca. Durante el mes de Ramadán es recomendable dejar un margen de precaución para el inicio y ruptura del ayuno.</p>
+                
+                <!-- MyNext Credits -->
+                <div class="mt-8 pt-6 border-t border-gray-200/60 flex flex-col items-center justify-center gap-1 opacity-90">
+                    <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Desarrollo y Diseño Benéfico</span>
+                    <a href="https://mynextbymusa.com" target="_blank" class="flex items-center gap-2 hover:opacity-80 transition-opacity mt-1">
+                        <span class="font-black text-gray-800 text-lg tracking-tight">MYNEXT</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="bg-[#11261a] text-white/70 py-10 text-center text-sm border-t border-white/10 print:hidden">
+        <p>© 2024 Mezquita Arrahma. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Inicializar el idioma
+            if(typeof setLanguage === 'function') {
+                setLanguage(currentLang || 'es');
+            }
+
+            // 1. Calcular automáticamente las fechas de Ramadán sin APIs externas
+            const getRamadanInfo = (date = new Date()) => {
+                const d = new Date(date);
+                d.setHours(0,0,0,0);
+                const formatter = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura', {month: 'numeric', day: 'numeric'});
+                const parts = formatter.formatToParts(d);
+                const hijriMonth = parts.find(p => p.type === 'month')?.value;
+                const hijriDay = parts.find(p => p.type === 'day')?.value;
+                let isRamadan = (hijriMonth === '9');
+                let startOfRamadan = new Date(d);
+                
+                if (isRamadan) {
+                    // Retrocedemos al día 1
+                    startOfRamadan.setDate(startOfRamadan.getDate() - (parseInt(hijriDay) - 1));
+                } else {
+                    // Buscamos el próximo mes 9
+                    for(let i=1; i<380; i++) {
+                        startOfRamadan.setDate(startOfRamadan.getDate() + 1);
+                        const m = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura', {month: 'numeric'}).format(startOfRamadan);
+                        if (m === '9') break;
+                    }
+                }
+                return { isRamadan, startOfRamadan };
+            };
+
+            const { isRamadan, startOfRamadan } = getRamadanInfo();
+
+            const tbody = document.getElementById('ramadan-tbody');
+            const tableContainer = document.getElementById('ramadan-table-container');
+            const placeholder = document.getElementById('ramadan-placeholder');
+            const countdownTitle = document.querySelector('[data-i18n="ramadan.countdown_title"]');
+
+            // 2. Extraer los datos reales de Mawaqit desde tu archivo main.js
+            let MAWAQIT_CALENDAR = [];
+            try {
+                const res = await fetch('assets/main.js');
+                const text = await res.text();
+                const match = text.match(/const MAWAQIT_CALENDAR = (\[[\s\S]*?\]);/);
+                if (match && match[1]) {
+                    MAWAQIT_CALENDAR = JSON.parse(match[1]);
+                }
+            } catch(e) {
+                console.error('No se pudo cargar el calendario de Mawaqit:', e);
+            }
+
+            const formatDate = (date) => {
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = date.toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'es-ES', { month: 'short' });
+                return `${day} ${month}`;
+            };
+
+            let todayTimes = null;
+
+            // 3. Generar la tabla con tiempos reales solo si es la temporada o para previsualizar al imprimir
+            if (MAWAQIT_CALENDAR.length > 0) {
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                
+                for(let i=1; i<=30; i++) {
+                    const d = new Date(startOfRamadan);
+                    d.setDate(d.getDate() + (i-1));
+                    
+                    const mawaqitMonth = d.getMonth(); 
+                    const mawaqitDay = d.getDate();
+                    
+                    // Extraer los horarios de Mawaqit para este día exacto
+                    const dayData = MAWAQIT_CALENDAR[mawaqitMonth]?.[mawaqitDay];
+                    if (!dayData) continue;
+                    
+                    const fajrTime = dayData[0];
+                    const dhuhrTime = dayData[2];
+                    const asrTime = dayData[3];
+                    const maghribTime = dayData[4];
+                    const ishaTime = dayData[5];
+
+                    const isToday = isRamadan && (d.getTime() === today.getTime());
+                    if (isToday) {
+                        todayTimes = { maghrib: maghribTime };
+                    }
+
+                    const tr = document.createElement('tr');
+                    if (isToday) {
+                        tr.className = "bg-primary/5 hover:bg-primary/10 transition-colors relative shadow-sm scale-[1.01] rounded-lg";
+                    } else {
+                        tr.className = "hover:bg-gray-50 transition-colors";
+                    }
+                    
+                    tr.innerHTML = `
+                        <td class="py-4 px-4 font-black text-lg ${isToday ? 'text-primary' : 'text-gray-800'}">
+                            ${isToday ? '<span class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-full bg-primary rounded-r-md"></span>' : ''}
+                            ${i}
+                        </td>
+                        <td class="py-4 px-4 text-gray-500 font-medium">${formatDate(d)}</td>
+                        <td class="py-4 px-4 font-black text-primary text-lg">${fajrTime}</td>
+                        <td class="py-4 px-4 text-gray-600 hidden md:table-cell">${dhuhrTime}</td>
+                        <td class="py-4 px-4 text-gray-600 hidden sm:table-cell">${asrTime}</td>
+                        <td class="py-4 px-4 font-black text-primary text-lg">${maghribTime}</td>
+                        <td class="py-4 px-4 text-gray-600 hidden sm:table-cell">${ishaTime}</td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            }
+
+            // 4. Lógica Inteligente Fuera de Temporada
+            const dEl = document.getElementById('r-d');
+            const hEl = document.getElementById('r-h');
+            const mEl = document.getElementById('r-m');
+            
+            if (isRamadan) {
+                if (tableContainer) tableContainer.classList.remove('hidden');
+                if (placeholder) placeholder.classList.add('hidden');
+                if (countdownTitle) {
+                    countdownTitle.innerHTML = currentLang === 'ar' ? 'الوقت المتبقي لـ <span class="text-primary ml-1 font-black">الإفطار</span>' : 'Tiempo restante para <span class="text-primary ml-1 font-black">IFTAR</span>';
+                }
+            } else {
+                // Para que no se vea vacío al imprimir fuera de temporada, la tabla la mantenemos lista internamente
+                if (tableContainer) tableContainer.classList.add('hidden', 'print:block');
+                if (placeholder) placeholder.classList.remove('hidden');
+                if (placeholder) placeholder.classList.add('print:hidden');
+            }
+
+            setInterval(() => {
+                const now = new Date();
+                let diff = 0;
+
+                if (isRamadan) {
+                    // Objetivo: El Iftar de hoy
+                    let target = new Date();
+                    if (todayTimes && todayTimes.maghrib) {
+                        const [mh, mm] = todayTimes.maghrib.split(':');
+                        target.setHours(parseInt(mh), parseInt(mm), 0, 0);
+                    } else {
+                        target.setHours(18, 0, 0, 0);
+                    }
+                    if (now > target) {
+                        target.setDate(target.getDate() + 1); 
+                    }
+                    diff = Math.floor((target - now) / 1000);
+                } else {
+                    // Objetivo: El inicio del próximo Ramadán
+                    let target = new Date(startOfRamadan);
+                    target.setHours(0, 0, 0, 0);
+                    diff = Math.floor((target - now) / 1000);
+                }
+                
+                if(diff > 0) {
+                    const days = Math.floor(diff / (3600 * 24));
+                    const hours = Math.floor((diff % (3600 * 24)) / 3600);
+                    const minutes = Math.floor((diff % 3600) / 60);
+
+                    if (dEl) dEl.innerText = days.toString().padStart(2, '0');
+                    if (hEl) hEl.innerText = hours.toString().padStart(2, '0');
+                    if (mEl) mEl.innerText = minutes.toString().padStart(2, '0');
+                } else {
+                    if (dEl) dEl.innerText = "00";
+                    if (hEl) hEl.innerText = "00";
+                    if (mEl) mEl.innerText = "00";
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

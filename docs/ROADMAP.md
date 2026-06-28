@@ -1,18 +1,17 @@
-# ROADMAP - Mezquita Arrahma
+# ROADMAP Mezquita Arrahma
 
 ## Tareas Completadas
-- Rediseño premium de la web v2.0 completado y validado.
-- Creación e integración dinámica de horarios de oración usando API externa (Mawaqit).
-- Diseño responsivo al 100% (móviles, tabletas, ordenadores).
-- Optimización de velocidad (imágenes webp, sliders ligeros nativos).
-- Formulario de contacto y diseño del pie de página adaptados para móviles.
-- Páginas legales (Privacidad y Aviso Legal) creadas (`legal.html`).
-- Traducciones finalizadas en el archivo `i18n.js` y aplicadas al código HTML (`data-i18n`).
+- Rediseño general V2 de la portada.
+- Integración del calendario dinámico del Ramadán (cálculo lunar sin APIs externas).
+- Actualización de assets del Hero para optimización multidispositivo (Responsive: Móvil, Tablet, Ordenador).
+- Botones de descargar en PDF (optimizado para impresión).
+- Soporte para multilenguaje en contador de Ramadán.
 
 ## Tareas en Progreso
-- Fase de pruebas en el mundo real por los usuarios de la Mezquita Arrahma.
+- Monitorización de la experiencia de usuario (UX) en la nueva sección de Ramadán.
+- Pruebas de usabilidad en dispositivos muy antiguos para JS.
 
 ## Próximas Mejoras Prioritarias
-- **Pasarelas de donación:** Implementar pagos integrados para donaciones recurrentes.
-- **Tablón de Anuncios:** Sección dinámica controlada desde Supabase o un pequeño panel administrativo para avisos de la Mezquita.
-- **Calendario de Ramadán:** Módulo específico o página dedicada para cuando llegue la temporada de Ramadán.
+- Configurar automatizaciones backend si fueran necesarias a futuro.
+- Refinar más el SEO y Structured Data si se añaden nuevos eventos o páginas.
+- Ampliar la base de traducciones (i18n.js) si se requiere más idiomas (ej. Catalán o Inglés).

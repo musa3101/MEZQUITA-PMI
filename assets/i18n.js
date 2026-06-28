@@ -7,6 +7,7 @@ const translations = {
         'nav.location': 'Dónde estamos',
         'nav.donate': 'Donar',
         'nav.support': 'Apoya la Mezquita',
+        'nav.ramadan': 'Ramadán',
         
         // Hero 1
         'hero.title': 'Mezquita Arrahma',
@@ -98,6 +99,7 @@ const translations = {
         'cookie.accept_btn': 'Aceptar y continuar',
 
         // Additional translations
+        'prayer.days': 'Días',
         'prayer.hrs': 'Horas',
         'prayer.mins': 'Min',
         'prayer.secs': 'Seg',
@@ -126,7 +128,20 @@ const translations = {
         'quran.s5_desc': 'Una luz brillante de guía. Su lectura nos protege contra las pruebas y el engaño.',
         'quran.s5_badge': 'Recomendado Hoy',
         'map.box_title': 'Mezquita Arrahma',
-        'map.box_address': 'Carrer Hort de Torrella 11C, Palma'
+        'map.box_address': 'Carrer Hort de Torrella 11C, Palma',
+        
+        // Ramadan
+        'ramadan.title': 'Horario de Ramadán',
+        'ramadan.subtitle': 'Mes de bendición, ayuno y perdón',
+        'ramadan.countdown_title': 'Tiempo restante para el próximo Ramadán',
+        'ramadan.download_pdf': 'Descargar Calendario',
+        'ramadan.day': 'Día',
+        'ramadan.date': 'Fecha',
+        'ramadan.fajr': 'Fajr',
+        'ramadan.dhuhr': 'Dhuhr',
+        'ramadan.asr': 'Asr',
+        'ramadan.maghrib': 'Maghrib (Iftar)',
+        'ramadan.isha': 'Isha'
     },
     ar: {
         // Navigation
@@ -136,6 +151,7 @@ const translations = {
         'nav.location': 'أين نحن',
         'nav.donate': 'تبرع',
         'nav.support': 'ادعم المسجد',
+        'nav.ramadan': 'رمضان',
         
         // Hero 1
         'hero.title': 'المركز الإسلامي الرحمة',
@@ -227,6 +243,7 @@ const translations = {
         'cookie.accept_btn': 'قبول ومتابعة',
 
         // Additional translations
+        'prayer.days': 'أيام',
         'prayer.hrs': 'ساعات',
         'prayer.mins': 'دقيقة',
         'prayer.secs': 'ثانية',
@@ -255,7 +272,20 @@ const translations = {
         'quran.s5_desc': 'نور ساطع للهداية. قراءتها تحمينا من الفتن والخداع.',
         'quran.s5_badge': 'موصى به اليوم',
         'map.box_title': 'المركز الإسلامي الرحمة',
-        'map.box_address': 'شارع هورت دي توريلا ١١ ج، بالما'
+        'map.box_address': 'شارع هورت دي توريلا ١١ ج، بالما',
+        
+        // Ramadan
+        'ramadan.title': 'جدول رمضان',
+        'ramadan.subtitle': 'شهر البركة والصيام والمغفرة',
+        'ramadan.countdown_title': 'الوقت المتبقي لرمضان القادم',
+        'ramadan.download_pdf': 'تحميل التقويم',
+        'ramadan.day': 'اليوم',
+        'ramadan.date': 'التاريخ',
+        'ramadan.fajr': 'الفجر',
+        'ramadan.dhuhr': 'الظهر',
+        'ramadan.asr': 'العصر',
+        'ramadan.maghrib': 'المغرب (الإفطار)',
+        'ramadan.isha': 'العشاء'
     }
 };
 
