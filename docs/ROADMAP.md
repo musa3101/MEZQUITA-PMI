@@ -8,11 +8,14 @@
 - Soporte completo para multilenguaje en contador de Ramadán, aviso de ubicación, Suras y botones.
 - Solución definitiva al bug de visualización del carrusel del Hero en iOS Safari para el modo árabe (RTL).
 - Optimización de accesibilidad en el menú de navegación móvil (scroll activado).
+- Optimización de velocidad del preloader (500ms) y restauración automática de scroll con hash tras la pantalla de carga.
+- Separadores decorativos marroquíes (Zellige) con colores de la bandera de Marruecos para transiciones entre secciones.
+- Nueva sección de Horarios de Oración en fondo verde oscuro elegante y tarjetas de oración glassmorphic integradas.
+- Catálogo extendido de 14 Suras con filtrado interactivo por categorías (Esenciales, Viernes, Ramadán, Protección) y paginación con botón expandible "Ver más/menos".
 
 ## Tareas en Progreso
-- Verificación del comportamiento del reproductor de vídeo y las imágenes en diferentes terminales móviles reales una vez propagados los cambios de caché de red.
+- Verificación en dispositivos físicos móviles una vez se refresque la caché de red del cliente.
 
 ## Próximas Mejoras Prioritarias
-- Configurar automatizaciones backend si fueran necesarias en un futuro.
-- Refinar más el SEO y Structured Data si se añaden nuevos eventos o páginas.
+- Refinar el SEO y Structured Data si se añaden nuevos eventos o páginas.
 - Ampliar la base de traducciones (i18n.js) si se requieren más idiomas (ej. Catalán o Inglés).

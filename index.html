@@ -388,10 +388,33 @@
             </div>
         </div>
 
+        <!-- Moroccan Divider: Hero → Horarios -->
+        <div class="moroccan-divider" aria-hidden="true">
+            <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1200" height="40" fill="#0a2e1f"/>
+                <!-- Central band -->
+                <rect x="0" y="8" width="1200" height="24" fill="#C1272D" opacity="0.85"/>
+                <!-- Gold border lines -->
+                <rect x="0" y="6" width="1200" height="2" fill="#a87c2b"/>
+                <rect x="0" y="32" width="1200" height="2" fill="#a87c2b"/>
+                <!-- Repeating diamond pattern -->
+                <pattern id="zellige1" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+                    <polygon points="30,10 40,20 30,30 20,20" fill="#006233" opacity="0.9"/>
+                    <polygon points="30,12 38,20 30,28 22,20" fill="none" stroke="#a87c2b" stroke-width="1"/>
+                    <circle cx="10" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                    <circle cx="50" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                </pattern>
+                <rect x="0" y="0" width="1200" height="40" fill="url(#zellige1)"/>
+                <!-- Thin accent lines -->
+                <rect x="0" y="4" width="1200" height="1" fill="#006233" opacity="0.5"/>
+                <rect x="0" y="35" width="1200" height="1" fill="#006233" opacity="0.5"/>
+            </svg>
+        </div>
+
         <!-- Prayer Times Section -->
-        <section class="snap-start scroll-mt-[72px] bg-pattern relative overflow-hidden"
+        <section class="snap-start scroll-mt-[72px] relative overflow-hidden section-dark-green"
             id="horarios"
-            style="background-color: #faf8f4; padding: 48px 0 56px;">
+            style="padding: 48px 0 56px;">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max relative z-10">
 
                 <!-- Premium Header: Title left + Next Prayer right (desktop) / stacked (mobile) -->
@@ -547,7 +570,7 @@
                         </span>
                     </a>
                     
-                    <a href="horario-mensual.html" target="_blank" rel="noopener noreferrer"
+                    <a href="assets/horario-mensual.html" target="_blank" rel="noopener noreferrer"
                         class="relative cursor-pointer py-3.5 px-6 text-center font-['Outfit'] inline-flex justify-center items-center gap-2 text-[12px] md:text-[13px] font-semibold uppercase text-primary border-2 border-primary/40 hover:border-primary/80 hover:bg-primary/5 rounded-lg border-solid transition-all duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-primary focus:outline-offset-4 overflow-hidden w-full sm:w-auto tracking-wider">
                         <span class="relative z-20 flex items-center gap-2">
                             <span class="material-symbols-outlined text-[18px]">calendar_month</span>
@@ -573,117 +596,391 @@
                 </div>
 
                 <!-- Quran Quick Access Block -->
-                <div class="mt-10 pt-8 border-t border-primary/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-stretch w-full max-w-6xl mx-auto">
+                <div class="mt-10 pt-8 border-t border-primary/10 w-full max-w-6xl mx-auto">
                     
-                    <!-- Sura 1: Al-Fatiha -->
-                    <a href="https://quran.com/1" target="_blank" rel="noopener noreferrer" 
-                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">menu_book</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s1_title">Sura Al-Fatiha</h4>
-                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s1_sub">La Apertura</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s1_desc">
-                            Es la esencia del Corán y la recitamos en cada una de nuestras oraciones diarias para pedir guía.
-                        </p>
-                        <div class="flex justify-end mt-1">
-                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
-                        </div>
-                    </a>
+                    <!-- Section Header -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-2xl" style="color: #95d3ba;">menu_book</span>
+                        <h3 class="font-['Outfit'] text-xl md:text-2xl font-bold uppercase tracking-wide" data-i18n="quran.section_title">Suras del Corán</h3>
+                    </div>
 
-                    <!-- Sura 2: Al-Baqarah -->
-                    <a href="https://quran.com/2" target="_blank" rel="noopener noreferrer" 
-                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">history_edu</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s2_title">Sura Al-Baqarah</h4>
-                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s2_sub">La Vaca</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s2_desc">
-                            La sura más larga. Su recitación protege el hogar, trae bendición y aleja las malas influencias.
-                        </p>
-                        <div class="flex justify-end mt-1">
-                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
-                        </div>
-                    </a>
+                    <!-- Filter Tabs -->
+                    <div class="flex gap-2 overflow-x-auto scrollbar-none pb-4 mb-6" id="sura-filters">
+                        <button class="sura-filter-btn active" data-filter="all">
+                            <span class="material-symbols-outlined">apps</span>
+                            <span data-i18n="quran.filter_all">Todas</span>
+                        </button>
+                        <button class="sura-filter-btn" data-filter="essential">
+                            <span class="material-symbols-outlined">star</span>
+                            <span data-i18n="quran.filter_essential">Esenciales</span>
+                        </button>
+                        <button class="sura-filter-btn" data-filter="friday">
+                            <span class="material-symbols-outlined">mosque</span>
+                            <span data-i18n="quran.filter_friday">Viernes</span>
+                        </button>
+                        <button class="sura-filter-btn" data-filter="ramadan">
+                            <span class="material-symbols-outlined">nights_stay</span>
+                            <span data-i18n="quran.filter_ramadan">Ramadán</span>
+                        </button>
+                        <button class="sura-filter-btn" data-filter="protection">
+                            <span class="material-symbols-outlined">shield</span>
+                            <span data-i18n="quran.filter_protection">Protección</span>
+                        </button>
+                    </div>
 
-                    <!-- Sura 3: Ya-Sin -->
-                    <a href="https://quran.com/36" target="_blank" rel="noopener noreferrer" 
-                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">favorite</span>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s3_title">Sura Ya-Sin</h4>
-                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s3_sub">El Corazón del Corán</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s3_desc">
-                            Una sura hermosa y profunda que solemos recitar para pedir facilidad, perdón y paz espiritual.
-                        </p>
-                        <div class="flex justify-end mt-1">
-                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
-                        </div>
-                    </a>
+                    <!-- Sura Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="sura-grid">
 
-                    <!-- Sura 4: Al-Mulk -->
-                    <a href="https://quran.com/67" target="_blank" rel="noopener noreferrer" 
-                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">shield</span>
+                        <!-- 1. Al-Fatiha -->
+                        <a href="https://quran.com/es/1" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">1</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s1_title">Sura Al-Fatiha</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s1_sub">La Apertura</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s4_title">Sura Al-Mulk</h4>
-                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s4_sub">La Soberanía</p>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s1_desc">
+                                Es la esencia del Corán y la recitamos en cada una de nuestras oraciones diarias para pedir guía.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
                             </div>
-                        </div>
-                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s4_desc">
-                            Recomendada para leer cada noche, ya que intercede por quien la recita y otorga gran protección.
-                        </p>
-                        <div class="flex justify-end mt-1">
-                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
-                        </div>
-                    </a>
+                        </a>
 
-                    <!-- Sura 5: Al-Kahf -->
-                    <a href="https://quran.com/18" target="_blank" rel="noopener noreferrer" id="sura-kahf-card"
-                       class="group premium-glass-card rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden md:col-span-2 lg:col-span-1">
-                        
-                        <!-- Badge Viernes (Hidden por defecto, se activa en JS) -->
-                        <div id="kahf-badge" class="hidden absolute top-0 right-0 bg-[#fbca1f] text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-sm">
-                            Recomendado Hoy
-                        </div>
+                        <!-- 2. Al-Baqarah -->
+                        <a href="https://quran.com/es/2" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential,ramadan">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">2</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s2_title">Sura Al-Baqarah</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s2_sub">La Vaca</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s2_desc">
+                                La sura más larga. Su recitación protege el hogar, trae bendición y aleja las malas influencias.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                    <span class="sura-badge sura-badge-ramadan" data-i18n="quran.badge_ramadan">Ramadán</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
 
-                        <div class="flex items-center gap-3 mt-1">
-                            <div id="kahf-icon-container" class="w-10 h-10 rounded-full bg-[#2C5F44]/10 flex items-center justify-center text-[#2C5F44] group-hover:bg-[#2C5F44] group-hover:text-white transition-colors shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">auto_stories</span>
+                        <!-- 36. Ya-Sin -->
+                        <a href="https://quran.com/es/36" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential,ramadan">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">36</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s3_title">Sura Ya-Sin</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s3_sub">El Corazón del Corán</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" id="kahf-title" data-i18n="quran.s5_title">Sura Al-Kahf</h4>
-                                <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" id="kahf-subtitle" data-i18n="quran.s5_sub">La Caverna</p>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s3_desc">
+                                Una sura hermosa y profunda que solemos recitar para pedir facilidad, perdón y paz espiritual.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                    <span class="sura-badge sura-badge-ramadan" data-i18n="quran.badge_ramadan">Ramadán</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
                             </div>
-                        </div>
-                        <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s5_desc">
-                            Es tradición recitarla. Aporta luz entre dos viernes consecutivos a quien la lee y protege el alma.
-                        </p>
-                        <div class="flex justify-end mt-1">
-                            <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
-                        </div>
-                    </a>
+                        </a>
+
+                        <!-- 67. Al-Mulk -->
+                        <a href="https://quran.com/es/67" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">67</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s4_title">Sura Al-Mulk</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s4_sub">La Soberanía</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s4_desc">
+                                Recomendada para leer cada noche, ya que intercede por quien la recita y otorga gran protección.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 18. Al-Kahf -->
+                        <a href="https://quran.com/es/18" target="_blank" rel="noopener noreferrer" id="sura-kahf-card"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential,friday">
+                            <div id="kahf-badge" class="hidden absolute top-0 right-0 bg-[#fbca1f] text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-sm" data-i18n="quran.s5_badge">
+                                Recomendado Hoy
+                            </div>
+                            <div class="flex items-center gap-3 mt-1">
+                                <div class="sura-number" id="kahf-icon-container">18</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" id="kahf-title" data-i18n="quran.s5_title">Sura Al-Kahf</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" id="kahf-subtitle" data-i18n="quran.s5_sub">La Caverna</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s5_desc">
+                                Es tradición recitarla. Aporta luz entre dos viernes consecutivos a quien la lee y protege el alma.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                    <span class="sura-badge sura-badge-friday" data-i18n="quran.badge_friday">Viernes</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 55. Ar-Rahman -->
+                        <a href="https://quran.com/es/55" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">55</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s6_title">Sura Ar-Rahman</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s6_sub">El Misericordioso</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s6_desc">
+                                Conocida como "la novia del Corán". Celebra los dones de Alá y nos recuerda Su infinita misericordia.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 56. Al-Waqi'ah -->
+                        <a href="https://quran.com/es/56" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="essential">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">56</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s7_title">Sura Al-Waqi'ah</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s7_sub">El Acontecimiento</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s7_desc">
+                                El Profeta ﷺ recomendó su lectura cada noche. Protege de la pobreza y trae provisión (rizq).
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-essential" data-i18n="quran.badge_essential">Esencial</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 62. Al-Jumu'ah -->
+                        <a href="https://quran.com/es/62" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="friday">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">62</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s8_title">Sura Al-Jumu'ah</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s8_sub">El Viernes</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s8_desc">
+                                La sura que lleva el nombre del día más sagrado de la semana. Recitada en la oración del Viernes.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-friday" data-i18n="quran.badge_friday">Viernes</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 63. Al-Munafiqun -->
+                        <a href="https://quran.com/es/63" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="friday">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">63</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s9_title">Sura Al-Munafiqun</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s9_sub">Los Hipócritas</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s9_desc">
+                                Complementa a Al-Jumu'ah. El Profeta ﷺ solía recitarlas juntas en la oración del Viernes.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-friday" data-i18n="quran.badge_friday">Viernes</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 97. Al-Qadr -->
+                        <a href="https://quran.com/es/97" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="ramadan">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">97</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s10_title">Sura Al-Qadr</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s10_sub">La Noche del Destino</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s10_desc">
+                                Describe Laylat al-Qadr, la noche más sagrada del Ramadán, mejor que mil meses de adoración.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-ramadan" data-i18n="quran.badge_ramadan">Ramadán</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 44. Ad-Dukhan -->
+                        <a href="https://quran.com/es/44" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="ramadan">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">44</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s11_title">Sura Ad-Dukhan</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s11_sub">El Humo</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s11_desc">
+                                Se recomienda recitarla en las noches de Ramadán. Quien la lee la noche del viernes, amanece perdonado.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-ramadan" data-i18n="quran.badge_ramadan">Ramadán</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 112. Al-Ikhlas -->
+                        <a href="https://quran.com/es/112" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="protection">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">112</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s12_title">Sura Al-Ikhlas</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s12_sub">La Pureza</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s12_desc">
+                                Equivale a un tercio del Corán. Declaración pura de la unicidad de Alá (Tawhid).
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-protection" data-i18n="quran.badge_protection">Protección</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 113. Al-Falaq -->
+                        <a href="https://quran.com/es/113" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="protection">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">113</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s13_title">Sura Al-Falaq</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s13_sub">El Amanecer</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s13_desc">
+                                Una de las Mu'awwidhat. Pide refugio en Alá contra el mal de la noche, la envidia y la brujería.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-protection" data-i18n="quran.badge_protection">Protección</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                        <!-- 114. An-Nas -->
+                        <a href="https://quran.com/es/114" target="_blank" rel="noopener noreferrer"
+                           class="sura-card group rounded-xl p-5 flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border border-primary/10 hover:border-primary/40 bg-white/50 relative overflow-hidden"
+                           data-categories="protection">
+                            <div class="flex items-center gap-3">
+                                <div class="sura-number">114</div>
+                                <div>
+                                    <h4 class="font-bold text-on-surface text-base group-hover:text-[#2C5F44] transition-colors" data-i18n="quran.s14_title">Sura An-Nas</h4>
+                                    <p class="text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold" data-i18n="quran.s14_sub">La Humanidad</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-on-surface-variant/80 leading-relaxed text-left flex-grow" data-i18n="quran.s14_desc">
+                                La última sura del Corán. Pide refugio en Alá contra los susurros del mal en los corazones.
+                            </p>
+                            <div class="flex items-center justify-between mt-1">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="sura-badge sura-badge-protection" data-i18n="quran.badge_protection">Protección</span>
+                                </div>
+                                <span class="material-symbols-outlined text-[#2C5F44]/50 group-hover:text-[#2C5F44] group-hover:translate-x-1 transition-all text-xl">arrow_forward</span>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!-- View More Button (to prevent long scroll page) -->
+                    <div class="flex justify-center mt-8" id="view-more-suras-container">
+                        <button id="view-more-suras-btn" class="bg-[#e9c176]/10 hover:bg-[#e9c176]/25 text-[#e9c176] border border-[#e9c176]/30 px-6 py-3 rounded-full font-body-md text-sm font-semibold tracking-wide transition-colors flex items-center gap-2">
+                            <span data-i18n="quran.view_more">Ver más Suras</span>
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
         </section>
+
+        <!-- Moroccan Divider: Horarios → Consulta al Imán -->
+        <div class="moroccan-divider" aria-hidden="true">
+            <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1200" height="40" fill="#f5efe4"/>
+                <!-- Central band -->
+                <rect x="0" y="8" width="1200" height="24" fill="#006233" opacity="0.9"/>
+                <!-- Gold border lines -->
+                <rect x="0" y="6" width="1200" height="2" fill="#a87c2b"/>
+                <rect x="0" y="32" width="1200" height="2" fill="#a87c2b"/>
+                <!-- Repeating diamond pattern -->
+                <pattern id="zellige2" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+                    <polygon points="30,10 40,20 30,30 20,20" fill="#C1272D" opacity="0.85"/>
+                    <polygon points="30,12 38,20 30,28 22,20" fill="none" stroke="#a87c2b" stroke-width="1"/>
+                    <circle cx="10" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                    <circle cx="50" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                </pattern>
+                <rect x="0" y="0" width="1200" height="40" fill="url(#zellige2)"/>
+                <!-- Thin accent lines -->
+                <rect x="0" y="4" width="1200" height="1" fill="#C1272D" opacity="0.4"/>
+                <rect x="0" y="35" width="1200" height="1" fill="#C1272D" opacity="0.4"/>
+            </svg>
+        </div>
 
         <!-- Consult the Imam Section -->
         <section class="py-section-gap snap-start scroll-mt-[72px] relative" id="consulta" style="background: linear-gradient(135deg, #f5efe4 0%, #ede6d6 50%, #f0ead9 100%);">
@@ -817,6 +1114,29 @@
             </div>
         </section>
 
+        <!-- Moroccan Divider: Consulta al Imán → Apoya -->
+        <div class="moroccan-divider" aria-hidden="true">
+            <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1200" height="40" fill="#f8f3ea"/>
+                <!-- Central band -->
+                <rect x="0" y="8" width="1200" height="24" fill="#006233" opacity="0.9"/>
+                <!-- Gold border lines -->
+                <rect x="0" y="6" width="1200" height="2" fill="#a87c2b"/>
+                <rect x="0" y="32" width="1200" height="2" fill="#a87c2b"/>
+                <!-- Repeating diamond pattern -->
+                <pattern id="zellige3" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+                    <polygon points="30,10 40,20 30,30 20,20" fill="#C1272D" opacity="0.85"/>
+                    <polygon points="30,12 38,20 30,28 22,20" fill="none" stroke="#a87c2b" stroke-width="1"/>
+                    <circle cx="10" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                    <circle cx="50" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                </pattern>
+                <rect x="0" y="0" width="1200" height="40" fill="url(#zellige3)"/>
+                <!-- Thin accent lines -->
+                <rect x="0" y="4" width="1200" height="1" fill="#C1272D" opacity="0.4"/>
+                <rect x="0" y="35" width="1200" height="1" fill="#C1272D" opacity="0.4"/>
+            </svg>
+        </div>
+
         <!-- Support the Mosque Bento Grid Section -->
         <section class="py-section-gap snap-start scroll-mt-[72px] relative" id="apoya" style="background: linear-gradient(180deg, #faf9f7 0%, #f2ece0 100%);">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max">
@@ -882,9 +1202,32 @@
             </div>
         </section>
 
+        <!-- Moroccan Divider: Apoya → Dónde Estamos -->
+        <div class="moroccan-divider" aria-hidden="true">
+            <svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1200" height="40" fill="#f0e8d5"/>
+                <!-- Central band -->
+                <rect x="0" y="8" width="1200" height="24" fill="#C1272D" opacity="0.85"/>
+                <!-- Gold border lines -->
+                <rect x="0" y="6" width="1200" height="2" fill="#a87c2b"/>
+                <rect x="0" y="32" width="1200" height="2" fill="#a87c2b"/>
+                <!-- Repeating diamond pattern -->
+                <pattern id="zellige4" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse">
+                    <polygon points="30,10 40,20 30,30 20,20" fill="#006233" opacity="0.9"/>
+                    <polygon points="30,12 38,20 30,28 22,20" fill="none" stroke="#a87c2b" stroke-width="1"/>
+                    <circle cx="10" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                    <circle cx="50" cy="20" r="3" fill="#a87c2b" opacity="0.6"/>
+                </pattern>
+                <rect x="0" y="0" width="1200" height="40" fill="url(#zellige4)"/>
+                <!-- Thin accent lines -->
+                <rect x="0" y="4" width="1200" height="1" fill="#006233" opacity="0.5"/>
+                <rect x="0" y="35" width="1200" height="1" fill="#006233" opacity="0.5"/>
+            </svg>
+        </div>
+
         <!-- Contact & Location -->
         <section id="donde-estamos"
-            class="py-section-gap snap-start scroll-mt-[72px] bg-surface-container-low/40 backdrop-blur-xl border-t border-outline-variant/20">
+            class="py-section-gap snap-start scroll-mt-[72px] backdrop-blur-xl" style="background: linear-gradient(180deg, #f5ead5 0%, #ede0c8 100%);">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <!-- Contact Info -->

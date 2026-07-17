@@ -21,11 +21,23 @@ const removeLoader = () => {
     if (loader) {
         loader.style.opacity = '0';
         loader.style.pointerEvents = 'none';
-        setTimeout(() => loader.remove(), 400);
+        setTimeout(() => {
+            loader.remove();
+            // Restaurar scroll al hash si existe en la URL después de que el loader desaparezca
+            if (window.location.hash) {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }, 400);
     }
 };
-// Force the loader to stay visible for exactly 2 seconds
-setTimeout(removeLoader, 2000);
+// Quitar el preloader tras la carga del contenido (o máximo 1.5s de fallback)
+window.addEventListener('load', () => {
+    setTimeout(removeLoader, 500);
+});
+setTimeout(removeLoader, 1500);
 
 // --- 1. GLOBAL HERO HORIZONTAL SCROLL LOGIC ---
 try {
@@ -645,3 +657,121 @@ try {
 } catch (e) {
     console.error('Error in Friday special logic:', e);
 }
+
+// --- QURAN SURAS FILTER LOGIC ---
+function initQuranFilters() {
+    const filterButtons = document.querySelectorAll('.sura-filter-btn');
+    const suraCards = document.querySelectorAll('.sura-card');
+    const viewMoreContainer = document.getElementById('view-more-suras-container');
+    const viewMoreBtn = document.getElementById('view-more-suras-btn');
+
+    if (!suraCards.length) return;
+
+    let showAll = false;
+    let currentFilter = 'all';
+
+    const updateVisibility = () => {
+        let visibleCount = 0;
+        let totalMatches = 0;
+
+        suraCards.forEach(card => {
+            const cardCategories = card.getAttribute('data-categories').split(',');
+            const matchesFilter = (currentFilter === 'all' || cardCategories.includes(currentFilter));
+
+            if (matchesFilter) {
+                totalMatches++;
+                // Limit to 3 if showAll is false, regardless of the filter
+                if (!showAll) {
+                    if (visibleCount < 3) {
+                        card.classList.remove('hiding');
+                        card.style.setProperty('display', '', 'important');
+                        // Restart CSS animation
+                        card.style.animation = 'none';
+                        card.offsetHeight; /* trigger reflow */
+                        card.style.animation = null;
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hiding');
+                        card.style.setProperty('display', 'none', 'important');
+                    }
+                } else {
+                    card.classList.remove('hiding');
+                    card.style.setProperty('display', '', 'important');
+                    // Restart CSS animation
+                    card.style.animation = 'none';
+                    card.offsetHeight; /* trigger reflow */
+                    card.style.animation = null;
+                    visibleCount++;
+                }
+            } else {
+                card.classList.add('hiding');
+                card.style.setProperty('display', 'none', 'important');
+            }
+        });
+
+        // Toggle "View More" button visibility
+        if (viewMoreContainer && viewMoreBtn) {
+            if (totalMatches > 3) {
+                viewMoreContainer.style.setProperty('display', 'flex', 'important');
+                const btnSpan = viewMoreBtn.querySelector('[data-i18n]');
+                const btnIcon = viewMoreBtn.querySelector('.material-symbols-outlined');
+                
+                if (showAll) {
+                    if (btnSpan) btnSpan.setAttribute('data-i18n', 'quran.view_less');
+                    if (btnIcon) btnIcon.textContent = 'expand_less';
+                } else {
+                    if (btnSpan) btnSpan.setAttribute('data-i18n', 'quran.view_more');
+                    if (btnIcon) btnIcon.textContent = 'expand_more';
+                }
+
+                // Force translation trigger
+                if (typeof setLanguage === 'function') {
+                    const currentHtmlLang = document.documentElement.lang || 'es';
+                    setLanguage(currentHtmlLang);
+                }
+            } else {
+                viewMoreContainer.style.setProperty('display', 'none', 'important');
+            }
+        }
+    };
+
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            // Remove previous listener to avoid duplicates
+            button.replaceWith(button.cloneNode(true));
+        });
+
+        // Re-select buttons after cloning
+        const newFilterButtons = document.querySelectorAll('.sura-filter-btn');
+        newFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                newFilterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                currentFilter = button.getAttribute('data-filter');
+                showAll = false;
+                updateVisibility();
+            });
+        });
+    }
+
+    if (viewMoreBtn) {
+        // Remove previous listener to avoid duplicates
+        viewMoreBtn.replaceWith(viewMoreBtn.cloneNode(true));
+        const newViewMoreBtn = document.getElementById('view-more-suras-btn');
+        newViewMoreBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAll = !showAll;
+            updateVisibility();
+        });
+    }
+
+    // Initial run
+    updateVisibility();
+}
+
+// Run immediately and also on DOMContentLoaded
+initQuranFilters();
+document.addEventListener('DOMContentLoaded', initQuranFilters);
+
+

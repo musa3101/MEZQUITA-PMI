@@ -160,3 +160,356 @@ body {
         transform: translateY(0rem);
     }
 }
+
+/* --- MOROCCAN ZELLIGE SECTION DIVIDER --- */
+.moroccan-divider {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    line-height: 0;
+    position: relative;
+    z-index: 5;
+}
+.moroccan-divider svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+@media (max-width: 640px) {
+    .moroccan-divider {
+        height: 28px;
+    }
+}
+
+/* --- DARK SECTION (Consulta al Imán) --- */
+.section-dark-green {
+    background: linear-gradient(135deg, #0a2e1f 0%, #0d3b28 40%, #0a2e1f 100%);
+    color: #f0ead9;
+}
+.section-dark-green h2,
+.section-dark-green h4,
+.section-dark-green .font-bold {
+    color: #f5efe4;
+}
+.section-dark-green p,
+.section-dark-green label,
+.section-dark-green .text-on-surface-variant {
+    color: rgba(240, 234, 217, 0.8);
+}
+.section-dark-green .premium-glass-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+    border-color: rgba(168, 124, 43, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.section-dark-green .premium-glass-card:hover {
+    border-color: rgba(168, 124, 43, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+.section-dark-green .material-symbols-outlined.text-primary {
+    color: #e9c176;
+}
+.section-dark-green .bg-primary\/10 {
+    background-color: rgba(168, 124, 43, 0.15);
+}
+.section-dark-green .text-primary {
+    color: #e9c176;
+}
+.section-dark-green .w-8.h-\[2px\].bg-primary {
+    background-color: #e9c176;
+}
+.section-dark-green .bg-gradient-to-b.from-primary {
+    --tw-gradient-from: #e9c176;
+}
+.section-dark-green .border-outline-variant\/30 {
+    border-color: rgba(168, 124, 43, 0.2);
+}
+.section-dark-green .bg-surface {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+.section-dark-green input,
+.section-dark-green select,
+.section-dark-green textarea {
+    color: #f0ead9;
+    border-color: rgba(240, 234, 217, 0.25);
+}
+.section-dark-green input::placeholder,
+.section-dark-green textarea::placeholder {
+    color: rgba(240, 234, 217, 0.4);
+}
+.section-dark-green input:focus,
+.section-dark-green select:focus,
+.section-dark-green textarea:focus {
+    border-color: #e9c176;
+}
+.section-dark-green select option {
+    background-color: #0d3b28;
+    color: #f0ead9;
+}
+/* Form card in dark section */
+.section-dark-green .shadow-\[0_8px_30px_rgba\(0\2c 0\2c 0\2c 0\.08\)\] {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(168, 124, 43, 0.3);
+}
+.section-dark-green .bg-white\/75 {
+    background: rgba(10, 46, 31, 0.85);
+}
+.section-dark-green .bg-\[url\(\'assets\/contacto_bg\.webp\'\)\] {
+    opacity: 0.15;
+}
+.section-dark-green .bg-primary\/20 {
+    background-color: rgba(233, 193, 118, 0.15);
+}
+/* Decorative image overlay in dark section */
+.section-dark-green .bg-gradient-to-r.from-\[\#f0ead9\] {
+    background: linear-gradient(to right, #0a2e1f, rgba(10, 46, 31, 0.6), transparent);
+}
+
+/* --- HORARIOS SECTION DARK OVERRIDES --- */
+/* Prayer cards (beautiful dark glass panels) */
+.section-dark-green .prayer-col {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(233, 193, 118, 0.2) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    transition: all 0.35s ease;
+}
+.section-dark-green .prayer-col:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(233, 193, 118, 0.45) !important;
+    box-shadow: 0 12px 35px rgba(233, 193, 118, 0.15);
+    transform: translateY(-4px);
+}
+.section-dark-green .prayer-col .name-el {
+    color: #f5efe4 !important;
+}
+.section-dark-green .prayer-col .time-el {
+    color: #e9c176 !important;
+}
+.section-dark-green .prayer-col .icon-el {
+    color: rgba(233, 193, 118, 0.75) !important;
+}
+/* Active prayer card: stands out as a vibrant emerald green with gold border */
+.section-dark-green .prayer-col.bg-\[\#2C5F44\] {
+    background: linear-gradient(135deg, #1e4d35 0%, #2c5f44 100%) !important;
+    border-color: #fbca1f !important;
+    border-width: 2px !important;
+    box-shadow: 0 8px 30px rgba(44, 95, 68, 0.5), 0 0 15px rgba(251, 202, 31, 0.3) !important;
+    opacity: 1 !important;
+}
+.section-dark-green .prayer-col.bg-\[\#2C5F44\] .name-el,
+.section-dark-green .prayer-col.bg-\[\#2C5F44\] .time-el {
+    color: #ffffff !important;
+}
+.section-dark-green .prayer-col.bg-\[\#2C5F44\] .icon-el {
+    color: #fbca1f !important;
+}
+
+/* Glass panel (countdown) */
+.section-dark-green .glass-panel {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(168, 124, 43, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(233, 193, 118, 0.1);
+}
+/* Timer boxes */
+.section-dark-green .timer-glass-box {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-color: rgba(233, 193, 118, 0.15);
+    box-shadow: inset 3px 3px 8px rgba(255, 255, 255, 0.05), 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+.section-dark-green .timer-glass-box strong {
+    color: #f5efe4 !important;
+}
+.section-dark-green .timer-glass-box span {
+    color: rgba(240, 234, 217, 0.6) !important;
+}
+
+/* Countdown label and value */
+.section-dark-green #next-prayer-name {
+    color: #f5efe4 !important;
+}
+.section-dark-green #next-prayer-time-val {
+    color: #e9c176 !important;
+}
+
+/* Date label */
+.section-dark-green #today-date-label {
+    color: rgba(240, 234, 217, 0.7) !important;
+}
+
+/* Mawaqit sync badge */
+.section-dark-green .tracking-widest.text-primary {
+    color: #e9c176 !important;
+}
+.section-dark-green .bg-green-500 {
+    background-color: #4ade80 !important;
+}
+
+/* Quran cards */
+.section-dark-green .border-primary\/10 {
+    border-color: rgba(168, 124, 43, 0.2);
+}
+.section-dark-green .bg-white\/50 {
+    background: rgba(255, 255, 255, 0.07);
+}
+.section-dark-green .bg-white\/50:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+.section-dark-green .text-\[\#2C5F44\] {
+    color: #95d3ba !important;
+}
+.section-dark-green .bg-\[\#2C5F44\]\/10 {
+    background-color: rgba(149, 211, 186, 0.15) !important;
+}
+.section-dark-green .text-on-surface {
+    color: #f5efe4;
+}
+.section-dark-green .text-on-surface-variant\/80 {
+    color: rgba(240, 234, 217, 0.65);
+}
+.section-dark-green .text-\[\#2C5F44\]\/50 {
+    color: rgba(149, 211, 186, 0.5) !important;
+}
+
+/* Action buttons */
+.section-dark-green .bg-\[\#1a1a1a\] {
+    background-color: #e9c176 !important;
+    color: #0a2e1f !important;
+}
+.section-dark-green .border-primary\/40 {
+    border-color: rgba(233, 193, 118, 0.5);
+}
+.section-dark-green .border-primary\/30 {
+    border-color: rgba(233, 193, 118, 0.3);
+}
+
+/* Section title */
+.section-dark-green .border-t.border-primary\/10 {
+    border-color: rgba(233, 193, 118, 0.15);
+}
+
+/* Kahf badge */
+.section-dark-green .bg-\[\#fbca1f\] {
+    background-color: #fbca1f !important;
+    color: #0a2e1f !important;
+}
+
+/* --- SURA FILTER SYSTEM --- */
+.sura-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1.5px solid rgba(168, 124, 43, 0.25);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(240, 234, 217, 0.7);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+.sura-filter-btn:hover {
+    border-color: rgba(233, 193, 118, 0.5);
+    background: rgba(233, 193, 118, 0.1);
+    color: #e9c176;
+}
+.sura-filter-btn.active {
+    background: #e9c176;
+    color: #0a2e1f;
+    border-color: #e9c176;
+    box-shadow: 0 4px 15px rgba(233, 193, 118, 0.3);
+}
+.sura-filter-btn .material-symbols-outlined {
+    font-size: 16px;
+}
+
+/* Sura card animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.sura-card {
+    animation: fadeInUp 0.35s ease forwards;
+}
+.sura-card.hiding {
+    display: none !important;
+}
+
+/* Sura number circle */
+.sura-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    background: rgba(168, 124, 43, 0.12);
+    color: #a87c2b;
+    border: 1px solid rgba(168, 124, 43, 0.15);
+}
+.section-dark-green .sura-number {
+    background: rgba(233, 193, 118, 0.15);
+    color: #e9c176;
+    border-color: rgba(233, 193, 118, 0.2);
+}
+
+/* Sura category badges */
+.sura-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.sura-badge-essential {
+    background: rgba(168, 124, 43, 0.12);
+    color: #a87c2b;
+}
+.sura-badge-friday {
+    background: rgba(44, 95, 68, 0.12);
+    color: #2C5F44;
+}
+.sura-badge-ramadan {
+    background: rgba(15, 76, 58, 0.12);
+    color: #0f4c3a;
+}
+.sura-badge-protection {
+    background: rgba(193, 39, 45, 0.1);
+    color: #C1272D;
+}
+/* Badges in dark section */
+.section-dark-green .sura-badge-essential {
+    background: rgba(233, 193, 118, 0.15);
+    color: #e9c176;
+}
+.section-dark-green .sura-badge-friday {
+    background: rgba(149, 211, 186, 0.15);
+    color: #95d3ba;
+}
+.section-dark-green .sura-badge-ramadan {
+    background: rgba(149, 211, 186, 0.12);
+    color: #95d3ba;
+}
+.section-dark-green .sura-badge-protection {
+    background: rgba(255, 150, 150, 0.12);
+    color: #ffb0b0;
+}
