@@ -3,6 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <!-- Microsoft Clarity Analytics (Solo si hay consentimiento previo) -->
+    <script type="text/javascript">
+        if (localStorage.getItem('cookiesAccepted') === 'true') {
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "yd3a9thuo2");
+        }
+    </script>
     <title>Horario de Ramadán - Mezquita Arrahma</title>
     
     <!-- Tailwind CSS -->
@@ -45,9 +55,41 @@
             </a>
             <div class="flex items-center gap-6">
                 <a href="index.html" class="text-white/80 hover:text-primary font-semibold transition-colors hidden md:block text-sm md:text-base" data-i18n="nav.home">Inicio</a>
-                <button aria-label="Cambiar idioma" class="lang-toggle-btn flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/15 hover:scale-105 transition-all duration-300 border border-white/10">
-                    <span class="text-white text-xs font-bold tracking-widest">ES | AR</span>
-                </button>
+                <!-- Language Dropdown -->
+                <div class="relative lang-selector-wrapper">
+                    <button aria-label="Cambiar idioma / Select language" aria-expanded="false"
+                        class="lang-dropdown-btn flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/15 hover:scale-105 transition-all duration-300 border border-white/10 text-white font-medium text-xs">
+                        <img class="current-lang-flag rounded-[2px] shadow-sm" src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="18" height="12" alt="Español">
+                        <span class="current-lang-code uppercase font-semibold text-white/90">ES</span>
+                        <span class="material-symbols-outlined text-[16px] text-white/60 transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="lang-dropdown-menu hidden absolute right-0 mt-2 w-44 bg-[#11261a]/95 backdrop-blur-md border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-50 py-1.5 transition-all duration-200">
+                        <button data-lang="es" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="18" height="12" alt="Español" class="rounded-[2px]">
+                            <span>Español</span>
+                        </button>
+                        <button data-lang="ar" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/sa.png" srcset="https://flagcdn.com/w40/sa.png 2x" width="18" height="12" alt="العربية" class="rounded-[2px]">
+                            <span>العربية</span>
+                        </button>
+                        <button data-lang="fr" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/fr.png" srcset="https://flagcdn.com/w40/fr.png 2x" width="18" height="12" alt="Français" class="rounded-[2px]">
+                            <span>Français</span>
+                        </button>
+                        <button data-lang="en" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="18" height="12" alt="English" class="rounded-[2px]">
+                            <span>English</span>
+                        </button>
+                        <button data-lang="bn" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/bd.png" srcset="https://flagcdn.com/w40/bd.png 2x" width="18" height="12" alt="বাংলা" class="rounded-[2px]">
+                            <span>বাংলা</span>
+                        </button>
+                        <button data-lang="ur" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/pk.png" srcset="https://flagcdn.com/w40/pk.png 2x" width="18" height="12" alt="اردو" class="rounded-[2px]">
+                            <span>اردو</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -152,7 +194,7 @@
                 <!-- MyNext Credits -->
                 <div class="mt-8 pt-6 border-t border-gray-200/60 flex flex-col items-center justify-center gap-1 opacity-90">
                     <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Desarrollo y Diseño Benéfico</span>
-                    <a href="https://mynextbymusa.com" target="_blank" class="flex items-center gap-2 hover:opacity-80 transition-opacity mt-1">
+                    <a href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:opacity-80 transition-opacity mt-1">
                         <span class="font-black text-gray-800 text-lg tracking-tight">MYNEXT</span>
                     </a>
                 </div>
@@ -228,7 +270,8 @@
 
             const formatDate = (date) => {
                 const day = date.getDate().toString().padStart(2, '0');
-                const month = date.toLocaleString(currentLang === 'ar' ? 'ar-SA' : 'es-ES', { month: 'short' });
+                const locales = { es: 'es-ES', ar: 'ar-SA', fr: 'fr-FR', en: 'en-US', bn: 'bn-BD', ur: 'ur-PK' };
+                const month = date.toLocaleString(locales[currentLang] || 'es-ES', { month: 'short' });
                 return `${day} ${month}`;
             };
 

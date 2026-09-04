@@ -392,36 +392,39 @@ body {
     color: #0a2e1f !important;
 }
 
-/* --- SURA FILTER SYSTEM --- */
+/* --- SURA FILTER SYSTEM (MYNEXT Luxury Cream & Gold) --- */
 .sura-filter-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 999px;
     font-family: 'Outfit', sans-serif;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
     cursor: pointer;
     border: 1.5px solid rgba(168, 124, 43, 0.25);
-    background: rgba(255, 255, 255, 0.06);
-    color: rgba(240, 234, 217, 0.7);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    color: #4e4639;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 .sura-filter-btn:hover {
-    border-color: rgba(233, 193, 118, 0.5);
-    background: rgba(233, 193, 118, 0.1);
-    color: #e9c176;
+    border-color: #a87c2b;
+    background: rgba(168, 124, 43, 0.1);
+    color: #a87c2b;
+    transform: translateY(-1px);
 }
 .sura-filter-btn.active {
-    background: #e9c176;
-    color: #0a2e1f;
-    border-color: #e9c176;
-    box-shadow: 0 4px 15px rgba(233, 193, 118, 0.3);
+    background: linear-gradient(135deg, #a87c2b 0%, #8c621d 100%);
+    color: #ffffff;
+    border-color: #a87c2b;
+    box-shadow: 0 4px 16px rgba(168, 124, 43, 0.35);
 }
 .sura-filter-btn .material-symbols-outlined {
     font-size: 16px;
@@ -454,17 +457,12 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Outfit', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 14px;
     flex-shrink: 0;
-    background: rgba(168, 124, 43, 0.12);
-    color: #a87c2b;
-    border: 1px solid rgba(168, 124, 43, 0.15);
-}
-.section-dark-green .sura-number {
-    background: rgba(233, 193, 118, 0.15);
-    color: #e9c176;
-    border-color: rgba(233, 193, 118, 0.2);
+    background: linear-gradient(135deg, #a87c2b 0%, #8c621d 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(168, 124, 43, 0.25);
 }
 
 /* Sura category badges */
@@ -472,7 +470,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    padding: 2px 8px;
+    padding: 3px 10px;
     border-radius: 999px;
     font-family: 'Outfit', sans-serif;
     font-size: 9px;
@@ -483,35 +481,22 @@ body {
 .sura-badge-essential {
     background: rgba(168, 124, 43, 0.12);
     color: #a87c2b;
+    border: 1px solid rgba(168, 124, 43, 0.2);
 }
 .sura-badge-friday {
-    background: rgba(44, 95, 68, 0.12);
-    color: #2C5F44;
+    background: rgba(0, 98, 51, 0.1);
+    color: #006233;
+    border: 1px solid rgba(0, 98, 51, 0.2);
 }
 .sura-badge-ramadan {
-    background: rgba(15, 76, 58, 0.12);
+    background: rgba(15, 76, 58, 0.1);
     color: #0f4c3a;
+    border: 1px solid rgba(15, 76, 58, 0.2);
 }
 .sura-badge-protection {
     background: rgba(193, 39, 45, 0.1);
     color: #C1272D;
-}
-/* Badges in dark section */
-.section-dark-green .sura-badge-essential {
-    background: rgba(233, 193, 118, 0.15);
-    color: #e9c176;
-}
-.section-dark-green .sura-badge-friday {
-    background: rgba(149, 211, 186, 0.15);
-    color: #95d3ba;
-}
-.section-dark-green .sura-badge-ramadan {
-    background: rgba(149, 211, 186, 0.12);
-    color: #95d3ba;
-}
-.section-dark-green .sura-badge-protection {
-    background: rgba(255, 150, 150, 0.12);
-    color: #ffb0b0;
+    border: 1px solid rgba(193, 39, 45, 0.2);
 }
 
 /* ==========================================================================
@@ -697,4 +682,26 @@ body {
     }
 }
 
+/* Impeccable Focus & Accessibility Rings */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid #a87c2b !important;
+    outline-offset: 3px !important;
+}
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Smooth Jutba Carousel & Indicator Dot Transitions */
+.jutba-dot {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.jutba-card {
+    will-change: transform, box-shadow;
+}

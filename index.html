@@ -80,7 +80,6 @@
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
@@ -201,14 +200,14 @@
     <div id="page-loader"
         class="fixed inset-0 z-[99999] bg-[#eae8e3] flex items-center justify-center transition-opacity duration-300">
         <div class="loader flex flex-col items-center justify-center gap-4">
-            <h2 class="text-primary font-['Outfit'] text-2xl md:text-3xl font-black tracking-[0.2em] uppercase animate-pulse">Mezquita Ar-Rahma</h2>
+            <h2 class="text-primary font-['Outfit'] text-2xl md:text-3xl font-black tracking-[0.2em] uppercase animate-pulse" data-i18n="nav.brand_name">Mezquita Ar-Rahma</h2>
             <div class="w-16 h-1 bg-primary/20 rounded-full overflow-hidden">
                 <div class="w-1/2 h-full bg-primary rounded-full animate-[shimmer_1s_infinite]"></div>
             </div>
         </div>
     </div>
     <!-- TopNavBar -->
-    <header class="fixed w-full top-0 z-50 bg-[#000000] transition-all duration-500" id="navbar">
+    <header class="fixed w-full top-0 z-50 bg-[#000000] border-b border-amber-500/10 transition-all duration-500" id="navbar">
         <div class="flex justify-between items-center px-6 md:px-12 py-3 w-full">
             <!-- Brand -->
             <a class="flex items-center gap-2 group cursor-pointer" href="javascript:void(0)"
@@ -217,7 +216,7 @@
                         <source srcset="assets/logo_header.webp" type="image/webp" />
                         <img alt="Arrahma Logo" width="512" height="160"
                             class="h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                            style="clip-path: inset(0 0 30% 0);"
+                            style="clip-path: inset(0 0 30% 0); mix-blend-mode: screen;"
                             src="assets/logo_header.png" />
                     </picture>
             </a>
@@ -238,14 +237,41 @@
             </nav>
             <!-- Actions -->
             <div class="flex items-center gap-6">
-                <button aria-label="Cambiar idioma / Switch language"
-                    class="lang-toggle-btn flex items-center justify-center gap-2 px-3.5 py-3 rounded-full bg-white/5 hover:bg-white/15 hover:scale-105 transition-all duration-300 border border-white/10">
-                    <img src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="18"
-                        height="12" alt="Español" class="rounded-[2px] shadow-sm">
-                    <span class="text-white/30 text-[10px]">|</span>
-                    <img src="https://flagcdn.com/w20/sa.png" srcset="https://flagcdn.com/w40/sa.png 2x" width="18"
-                        height="12" alt="Árabe" class="rounded-[2px] shadow-sm">
-                </button>
+                <!-- Language Dropdown -->
+                <div class="relative lang-selector-wrapper">
+                    <button aria-label="Cambiar idioma / Select language" aria-expanded="false"
+                        class="lang-dropdown-btn flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/15 hover:scale-105 transition-all duration-300 border border-white/10 text-white font-medium text-xs">
+                        <img class="current-lang-flag rounded-[2px] shadow-sm" src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="18" height="12" alt="Español">
+                        <span class="current-lang-code uppercase font-semibold text-white/90">ES</span>
+                        <span class="material-symbols-outlined text-[16px] text-white/60 transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="lang-dropdown-menu hidden absolute right-0 mt-2 w-44 bg-[#11261a]/95 backdrop-blur-md border border-white/15 rounded-2xl shadow-2xl overflow-hidden z-50 py-1.5 transition-all duration-200">
+                        <button data-lang="es" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="18" height="12" alt="Español" class="rounded-[2px]">
+                            <span>Español</span>
+                        </button>
+                        <button data-lang="ar" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/sa.png" srcset="https://flagcdn.com/w40/sa.png 2x" width="18" height="12" alt="العربية" class="rounded-[2px]">
+                            <span>العربية</span>
+                        </button>
+                        <button data-lang="fr" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/fr.png" srcset="https://flagcdn.com/w40/fr.png 2x" width="18" height="12" alt="Français" class="rounded-[2px]">
+                            <span>Français</span>
+                        </button>
+                        <button data-lang="en" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="18" height="12" alt="English" class="rounded-[2px]">
+                            <span>English</span>
+                        </button>
+                        <button data-lang="bn" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/bd.png" srcset="https://flagcdn.com/w40/bd.png 2x" width="18" height="12" alt="বাংলা" class="rounded-[2px]">
+                            <span>বাংলা</span>
+                        </button>
+                        <button data-lang="ur" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/pk.png" srcset="https://flagcdn.com/w40/pk.png 2x" width="18" height="12" alt="اردو" class="rounded-[2px]">
+                            <span>اردو</span>
+                        </button>
+                    </div>
+                </div>
                 <a href="https://quran.com/es" target="_blank" rel="noopener noreferrer"
                     class="hidden md:flex items-center gap-2 bg-gradient-to-r from-amber-700 to-yellow-600 text-white px-6 py-2.5 rounded-full font-body-md text-body-md hover:from-amber-600 hover:to-yellow-500 hover:scale-105 hover:-translate-y-0.5 transition-all duration-300 shadow-[0_4px_20px_rgba(180,120,20,0.35)] border border-amber-500/30">
                     <span class="material-symbols-outlined text-[18px]">menu_book</span>
@@ -267,24 +293,51 @@
                 href="#inicio" data-i18n="nav.home">Inicio</a>
             <a class="text-white/80 font-headline-sm text-headline-sm py-3 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
                 href="#horarios" data-i18n="nav.times">Horarios</a>
-            <a class="text-white/80 font-headline-sm text-headline-sm py-2 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
+            <a class="text-white/80 font-headline-sm text-headline-sm py-3 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
                 href="#jutba" data-i18n="nav.khutba">Jutba del Viernes</a>
-            <a class="text-white/80 font-headline-sm text-headline-sm py-2 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
-                href="#consulta" data-i18n="nav.ask">Consulta al Imán</a>
-            <a class="text-white/80 font-headline-sm text-headline-sm py-2 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
-                href="#apoya" data-i18n="nav.support">Apoya la Mezquita</a>
-            <a class="text-white/80 font-headline-sm text-headline-sm py-2 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
-                href="ramadan.html" data-i18n="nav.ramadan">Ramadán</a>
-            <a class="text-white/80 font-headline-sm text-headline-sm py-2 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
+            <a class="text-white/80 font-headline-sm text-headline-sm py-3 w-full text-center hover:bg-white/5 rounded-lg transition-colors"
                 href="#donde-estamos" data-i18n="nav.location">Dónde estamos</a>
 
             <div class="w-12 h-px bg-white/20 my-2"></div>
 
-            <button
-                class="lang-toggle-btn text-white/80 font-headline-sm text-headline-sm hover:text-primary transition-colors flex items-center gap-2 py-2 px-4 hover:bg-white/5 rounded-lg">
-                <span class="material-symbols-outlined text-xl">language</span>
-                ES / AR
-            </button>
+            <div class="w-full flex justify-center py-3">
+                <!-- Mobile Menu Language Dropdown -->
+                <div class="relative lang-selector-wrapper">
+                    <button aria-label="Cambiar idioma / Select language" aria-expanded="false"
+                        class="lang-dropdown-btn flex items-center gap-2.5 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-all duration-300 border border-white/15 text-white font-medium text-sm shadow-xl">
+                        <img class="current-lang-flag rounded-[2px] shadow-sm" src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="20" height="14" alt="Español">
+                        <span class="current-lang-code uppercase font-bold text-white tracking-wider text-xs">ES</span>
+                        <span class="current-lang-name text-white/80 font-normal text-xs ml-0.5">Español</span>
+                        <span class="material-symbols-outlined text-[20px] text-white/70 transition-transform duration-300 ml-1">expand_more</span>
+                    </button>
+                    <div class="lang-dropdown-menu hidden absolute left-1/2 -translate-x-1/2 mt-3 w-52 bg-[#11261a]/98 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden z-50 py-2 transition-all duration-200">
+                        <button data-lang="es" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/es.png" srcset="https://flagcdn.com/w40/es.png 2x" width="18" height="12" alt="Español" class="rounded-[2px]">
+                            <span class="font-medium text-xs">Español</span>
+                        </button>
+                        <button data-lang="ar" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/sa.png" srcset="https://flagcdn.com/w40/sa.png 2x" width="18" height="12" alt="العربية" class="rounded-[2px]">
+                            <span class="font-medium text-xs">العربية</span>
+                        </button>
+                        <button data-lang="fr" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/fr.png" srcset="https://flagcdn.com/w40/fr.png 2x" width="18" height="12" alt="Français" class="rounded-[2px]">
+                            <span class="font-medium text-xs">Français</span>
+                        </button>
+                        <button data-lang="en" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" width="18" height="12" alt="English" class="rounded-[2px]">
+                            <span class="font-medium text-xs">English</span>
+                        </button>
+                        <button data-lang="bn" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/bd.png" srcset="https://flagcdn.com/w40/bd.png 2x" width="18" height="12" alt="বাংলা" class="rounded-[2px]">
+                            <span class="font-medium text-xs">বাংলা</span>
+                        </button>
+                        <button data-lang="ur" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs text-white/90 hover:bg-white/10 hover:text-white transition-colors">
+                            <img src="https://flagcdn.com/w20/pk.png" srcset="https://flagcdn.com/w40/pk.png 2x" width="18" height="12" alt="اردو" class="rounded-[2px]">
+                            <span class="font-medium text-xs">اردو</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <a href="https://quran.com/es" target="_blank" rel="noopener noreferrer"
                 class="mt-6 bg-gradient-to-r from-amber-700 to-yellow-600 text-white px-8 py-4 rounded-full font-body-lg text-body-lg w-full text-center flex justify-center items-center gap-2 hover:from-amber-600 hover:to-yellow-500 hover:scale-[1.02] transition-all duration-300 shadow-[0_4px_24px_rgba(180,120,20,0.4)] border border-amber-500/30">
@@ -415,10 +468,10 @@
             </svg>
         </div>
 
-        <!-- Prayer Times Section -->
-        <section class="snap-start scroll-mt-[72px] relative overflow-hidden section-dark-green"
+        <!-- Prayer Times Section (MYNEXT Luxury Cream & Imperial Gold Theme) -->
+        <section class="snap-start scroll-mt-[72px] relative overflow-hidden py-14 md:py-20"
             id="horarios"
-            style="padding: 48px 0 56px;">
+            style="background: linear-gradient(180deg, #faf7f2 0%, #f5efe4 50%, #eee6d8 100%);">
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max relative z-10">
 
                 <!-- Premium Header: Title left + Next Prayer right (desktop) / stacked (mobile) -->
@@ -427,33 +480,33 @@
                     <div>
                         <div class="inline-flex items-center gap-2 mb-3">
                             <span class="w-6 h-[2px] bg-primary rounded-full"></span>
-                            <span class="font-['Outfit'] text-xs font-semibold text-primary uppercase tracking-widest">Sincronizado con Mawaqit</span>
-                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="font-['Outfit'] text-xs font-bold text-primary uppercase tracking-widest" data-i18n="prayer.synced">Sincronizado con Mawaqit</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         </div>
                         <h2 class="font-['Outfit'] uppercase font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl text-on-surface" data-i18n="prayer.title">Horarios de Oración</h2>
-                        <p class="text-on-surface-variant mt-2 text-sm md:text-base" id="today-date-label"></p>
+                        <p class="text-on-surface-variant font-medium mt-2 text-sm md:text-base" id="today-date-label"></p>
                     </div>
                     <!-- Right: Compact Next Prayer + Countdown -->
                     <div class="flex-shrink-0 w-full md:w-auto">
-                        <div class="glass-panel rounded-2xl px-6 py-5 flex flex-col sm:flex-row md:flex-col items-center gap-4 border border-primary/20 shadow-[0_4px_30px_rgba(168,124,43,0.12)] relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/60 to-transparent"></div>
+                        <div class="glass-panel rounded-2xl px-6 py-5 flex flex-col sm:flex-row md:flex-col items-center gap-4 border border-primary/30 shadow-[0_8px_30px_rgba(168,124,43,0.12)] bg-white/75 backdrop-blur-md relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#a87c2b] via-[#fbca1f] to-[#a87c2b]"></div>
                             <div class="text-center">
                                 <p class="font-['Outfit'] text-xs font-bold text-primary uppercase tracking-widest mb-1" data-i18n="prayer.next">Próxima Oración</p>
                                 <h3 id="next-prayer-name" class="font-['Outfit'] text-3xl md:text-4xl text-on-surface font-black tracking-tight uppercase">Isha</h3>
-                                <div id="next-prayer-time-val" class="text-2xl font-light text-primary mt-0.5">22:51</div>
+                                <div id="next-prayer-time-val" class="text-2xl font-bold text-primary mt-0.5">22:51</div>
                             </div>
                             <div id="countdown-container" class="flex items-center gap-2">
-                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
+                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px] bg-primary/10 border border-primary/20">
                                     <strong class="text-2xl font-black text-on-surface" id="countdown-h">00</strong>
-                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.hrs">h</span>
+                                    <span class="text-[9px] text-primary font-bold tracking-widest uppercase" data-i18n="prayer.hrs">h</span>
                                 </div>
-                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
+                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px] bg-primary/10 border border-primary/20">
                                     <strong class="text-2xl font-black text-on-surface" id="countdown-m">00</strong>
-                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.min">min</span>
+                                    <span class="text-[9px] text-primary font-bold tracking-widest uppercase" data-i18n="prayer.min">min</span>
                                 </div>
-                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px]">
+                                <div class="timer-glass-box rounded-xl px-3 py-2 flex flex-col items-center justify-center min-w-[52px] bg-primary/10 border border-primary/20">
                                     <strong class="text-2xl font-black text-on-surface" id="countdown-s">00</strong>
-                                    <span class="text-[9px] text-on-surface-variant tracking-widest uppercase" data-i18n="prayer.sec">seg</span>
+                                    <span class="text-[9px] text-primary font-bold tracking-widest uppercase" data-i18n="prayer.sec">seg</span>
                                 </div>
                             </div>
                         </div>
@@ -466,15 +519,15 @@
                         
                         <!-- Fajr -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
-                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                                    bg-white/85 backdrop-blur-md border border-primary/15 shadow-[0_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300"
                             data-prayer="Fajr" data-time="05:46">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
-                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                        bg-[#fbca1f] text-black border border-black/10 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap" data-i18n="prayer.now">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">wb_twilight</span>
-                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Fajr</h4>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el" data-i18n="prayer.fajr">Fajr</h4>
                             <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">05:46</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
@@ -485,15 +538,15 @@
 
                         <!-- Dhuhr -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
-                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                                    bg-white/85 backdrop-blur-md border border-primary/15 shadow-[0_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300"
                             data-prayer="Dhuhr" data-time="13:48">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
-                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                        bg-[#fbca1f] text-black border border-black/10 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap" data-i18n="prayer.now">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">light_mode</span>
-                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Dhuhr</h4>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el" data-i18n="prayer.dhuhr">Dhuhr</h4>
                             <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">13:48</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
@@ -504,15 +557,15 @@
 
                         <!-- Asr -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
-                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                                    bg-white/85 backdrop-blur-md border border-primary/15 shadow-[0_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300"
                             data-prayer="Asr" data-time="17:27">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
-                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                        bg-[#fbca1f] text-black border border-black/10 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap" data-i18n="prayer.now">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">wb_sunny</span>
-                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Asr</h4>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el" data-i18n="prayer.asr">Asr</h4>
                             <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">17:27</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
@@ -523,15 +576,15 @@
 
                         <!-- Maghrib -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
-                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                                    bg-white/85 backdrop-blur-md border border-primary/15 shadow-[0_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300"
                             data-prayer="Maghrib" data-time="20:16">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
-                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                        bg-[#fbca1f] text-black border border-black/10 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap" data-i18n="prayer.now">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">bedtime</span>
-                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Maghrib</h4>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el" data-i18n="prayer.maghrib">Maghrib</h4>
                             <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">20:16</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
@@ -542,15 +595,15 @@
 
                         <!-- Isha -->
                         <div class="prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center
-                                    bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer
-                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px]"
+                                    bg-white/85 backdrop-blur-md border border-primary/15 shadow-[0_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 cursor-pointer
+                                    rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300"
                             data-prayer="Isha" data-time="21:44">
                             <div class="current-indicator hidden absolute -top-3 left-1/2 -translate-x-1/2
-                                        bg-tertiary text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap">
+                                        bg-[#fbca1f] text-black border border-black/10 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-md whitespace-nowrap" data-i18n="prayer.now">
                                 ● Ahora
                             </div>
                             <span class="material-symbols-outlined text-primary/70 mb-3 text-4xl md:text-5xl icon-el transition-colors">dark_mode</span>
-                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el">Isha</h4>
+                            <h4 class="font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el" data-i18n="prayer.isha">Isha</h4>
                             <span class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface time-el">21:44</span>
                             <div class="prayer-progress hidden mt-3 w-full">
                                 <div class="h-1 bg-white/30 rounded-full overflow-hidden">
@@ -565,47 +618,32 @@
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mt-8 mb-2">
                     <a href="https://quran.com/es" target="_blank" rel="noopener noreferrer" 
-                       class="group relative flex items-center justify-center gap-2 px-8 py-3.5 bg-[#1a1a1a] text-white font-['Outfit'] font-semibold text-[12px] md:text-[13px] uppercase tracking-wider rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto">
-                        <!-- Sweep Background -->
-                        <div class="absolute inset-0 w-0 bg-primary transition-all duration-[400ms] ease-out group-hover:w-full"></div>
+                       class="group relative flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-amber-700 via-amber-600 to-yellow-600 hover:from-amber-600 hover:to-yellow-500 text-white font-['Outfit'] font-bold text-[12px] md:text-[13px] uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 shadow-[0_4px_20px_rgba(180,120,20,0.3)] hover:shadow-xl hover:-translate-y-0.5 border border-amber-500/30 w-full sm:w-auto">
                         <span class="relative z-10 flex items-center gap-2">
                             <span data-i18n="hero.quran">Leer y Escuchar el Corán</span>
-                            <span class="material-symbols-outlined text-[16px] font-bold transition-transform duration-300 group-hover:translate-x-1">menu_book</span>
+                            <span class="material-symbols-outlined text-[18px]">menu_book</span>
                         </span>
                     </a>
                     
                     <a href="assets/horario-mensual.html" target="_blank" rel="noopener noreferrer"
-                        class="relative cursor-pointer py-3.5 px-6 text-center font-['Outfit'] inline-flex justify-center items-center gap-2 text-[12px] md:text-[13px] font-semibold uppercase text-primary border-2 border-primary/40 hover:border-primary/80 hover:bg-primary/5 rounded-lg border-solid transition-all duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-primary focus:outline-offset-4 overflow-hidden w-full sm:w-auto tracking-wider">
+                        class="relative cursor-pointer py-3.5 px-6 text-center font-['Outfit'] inline-flex justify-center items-center gap-2 text-[12px] md:text-[13px] font-bold uppercase text-primary border-2 border-primary/40 hover:border-primary/80 hover:bg-primary/5 rounded-xl border-solid transition-all duration-300 ease-in-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-primary focus:outline-offset-4 overflow-hidden w-full sm:w-auto tracking-wider bg-white/60 backdrop-blur-md">
                         <span class="relative z-20 flex items-center gap-2">
                             <span class="material-symbols-outlined text-[18px]">calendar_month</span>
                             <span data-i18n="prayer.download_monthly">Descargar horario del mes</span>
                             <span class="text-[10px] font-bold bg-primary/10 text-primary px-1.5 py-0.5 rounded uppercase tracking-wider">PDF</span>
                         </span>
-
-                        <span class="absolute left-[-75%] top-0 h-full w-[50%] bg-primary/10 rotate-12 z-10 blur-lg group-hover:left-[125%] transition-all duration-1000 ease-in-out"></span>
-
-                        <span class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-primary/30 absolute h-[20%] rounded-tl-lg border-l-2 border-t-2 top-0 left-0"></span>
-                        <span class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-primary/30 absolute group-hover:h-[90%] h-[60%] rounded-tr-lg border-r-2 border-t-2 top-0 right-0"></span>
-                        <span class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-primary/30 absolute h-[60%] group-hover:h-[90%] rounded-bl-lg border-l-2 border-b-2 left-0 bottom-0"></span>
-                        <span class="w-1/2 drop-shadow-3xl transition-all duration-300 block border-primary/30 absolute h-[20%] rounded-br-lg border-r-2 border-b-2 right-0 bottom-0"></span>
-                    </a>
-                    
-                    <a href="#" id="download-ramadan-btn" class="hidden flex-shrink-0 cursor-pointer py-3.5 px-6 font-['Outfit'] inline-flex justify-center items-center gap-2 text-[12px] md:text-[13px] font-semibold uppercase text-tertiary
-                               border-2 border-tertiary/40 rounded-lg
-                               transition-all duration-300 hover:-translate-y-0.5 hover:border-tertiary hover:bg-tertiary/5">
-                        <span class="material-symbols-outlined text-[18px]">nights_stay</span>
-                        <span data-i18n="prayer.download_ramadan">Horario Especial Ramadán</span>
-                        <span class="text-[10px] font-bold bg-tertiary/10 text-tertiary px-1.5 py-0.5 rounded uppercase">PDF</span>
                     </a>
                 </div>
 
                 <!-- Quran Quick Access Block -->
-                <div class="mt-10 pt-8 border-t border-primary/10 w-full max-w-6xl mx-auto">
+                <div class="mt-12 pt-10 border-t border-primary/20 w-full max-w-6xl mx-auto">
                     
                     <!-- Section Header -->
                     <div class="flex items-center gap-3 mb-6">
-                        <span class="material-symbols-outlined text-2xl" style="color: #95d3ba;">menu_book</span>
-                        <h3 class="font-['Outfit'] text-xl md:text-2xl font-bold uppercase tracking-wide" data-i18n="quran.section_title">Suras del Corán</h3>
+                        <div class="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-xl text-primary">menu_book</span>
+                        </div>
+                        <h3 class="font-['Outfit'] text-2xl md:text-3xl font-black text-on-surface uppercase tracking-tight" data-i18n="quran.section_title">Suras del Corán</h3>
                     </div>
 
                     <!-- Filter Tabs -->
@@ -997,8 +1035,8 @@
 
             <div class="container mx-auto px-margin-mobile md:px-gutter max-w-container-max relative z-10">
                 
-                <!-- Section Header (gpt-taste hierarchy: Eyebrow + massive H1 tracking-tighter + max-w-prose body) -->
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <!-- Section Header with Carousel Controls -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                     <div>
                         <div class="inline-flex items-center gap-2 mb-3">
                             <span class="w-6 h-[2px] bg-[#a87c2b] rounded-full"></span>
@@ -1010,19 +1048,31 @@
                         </p>
                     </div>
 
-                    <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="flex flex-wrap items-center gap-3">
                         <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
                             <span class="material-symbols-outlined text-base">mosque</span>
                             <span data-i18n="khutba.jumuah_badge">Jumu'ah • الجمعة</span>
                         </span>
+
+                        <!-- Carousel Controls -->
+                        <div class="flex items-center gap-2">
+                            <button id="jutba-prev-btn" aria-label="Jutba anterior"
+                                class="w-10 h-10 rounded-full bg-white/80 hover:bg-white text-primary border border-primary/20 hover:border-primary flex items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-95">
+                                <span class="material-symbols-outlined text-xl rtl:rotate-180">arrow_back</span>
+                            </button>
+                            <button id="jutba-next-btn" aria-label="Siguiente Jutba"
+                                class="w-10 h-10 rounded-full bg-white/80 hover:bg-white text-primary border border-primary/20 hover:border-primary flex items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-95">
+                                <span class="material-symbols-outlined text-xl rtl:rotate-180">arrow_forward</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Bento Grid (uipro-max: Asymmetric layout, Swiss minimalism, rich cards) -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+                <!-- Horizontal Carousel Track -->
+                <div id="jutba-carousel-track" class="flex items-stretch gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 pt-2 no-scrollbar" style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
                     
-                    <!-- Card 1 (Destacada / Col-span 7 on desktop): Pregunta 8003 - Istinyah y Oración -->
-                    <div class="md:col-span-7 jutba-card p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+                    <!-- Card 1: Pregunta 8003 - Istinyah y Oración -->
+                    <div class="jutba-card p-6 md:p-8 flex flex-col justify-between flex-shrink-0 w-[88vw] sm:w-[480px] md:w-[450px] lg:w-[470px] snap-center min-h-[440px]">
                         <div>
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                                 <span class="jutba-badge jutba-badge-fiqh">
@@ -1032,7 +1082,7 @@
                                 <span class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase" data-i18n="khutba.c2_tag">Jutba 2 • Pregunta 8003</span>
                             </div>
 
-                            <h3 class="font-['Outfit'] text-xl sm:text-2xl md:text-2xl lg:text-3xl font-black text-on-surface tracking-tight mb-2" data-i18n="khutba.c2_title">
+                            <h3 class="font-['Outfit'] text-xl sm:text-2xl font-black text-on-surface tracking-tight mb-2" data-i18n="khutba.c2_title">
                                 Purificación fuera de casa y la Oración a tiempo
                             </h3>
                             <p class="text-xs md:text-sm font-semibold text-[#a87c2b] uppercase tracking-wide mb-4" data-i18n="khutba.c2_sub">
@@ -1041,27 +1091,27 @@
 
                             <!-- Question Quote Box -->
                             <div class="bg-primary/5 rounded-xl p-4 mb-4 border-l-4 border-primary rtl:border-l-0 rtl:border-r-4">
-                                <p class="text-xs md:text-sm italic text-on-surface-variant leading-relaxed" data-i18n="khutba.c2_quote">
+                                <p class="text-xs md:text-sm italic text-on-surface-variant leading-relaxed line-clamp-3" data-i18n="khutba.c2_quote">
                                     «Normalmente paso la mayor parte del día en el colegio y tengo que ir al baño. Ya que no puedo ir hasta mi casa para hacer istinyah, ¿debo hacer el wudú y rezar o debo perderme la oración y recuperarla más tarde?»
                                 </p>
                             </div>
 
-                            <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mb-6" data-i18n="khutba.c2_desc">
+                            <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-3" data-i18n="khutba.c2_desc">
                                 La duda de un creyente que pasa el día fuera: ¿debe hacer wudú y rezar o retrasar el rezo? La explicación del Sheij Ibn 'Uzaimin sobre el Istimyár y la estricta obligación de rezar a su hora.
                             </p>
                         </div>
 
-                        <div class="pt-4 border-t border-primary/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="pt-4 border-t border-primary/10 flex items-center justify-between gap-3 mt-auto">
                             <span class="text-xs text-on-surface-variant/70" data-i18n="khutba.c2_ref">Ash-Sharh Al Mumti' 1/103</span>
-                            <button type="button" class="jutba-cta-btn jutba-open-btn w-full sm:w-auto justify-center" data-jutba="2">
+                            <button type="button" class="jutba-cta-btn jutba-open-btn justify-center" data-jutba="2">
                                 <span data-i18n="khutba.btn_read">Leer Jutba Completa</span>
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Card 2 (Col-span 5 on desktop): Jutba 1 - Al-I'tisam y la Unión de la Comunidad -->
-                    <div class="md:col-span-5 jutba-card p-5 sm:p-6 md:p-8 flex flex-col justify-between">
+                    <!-- Card 2: Jutba 1 - Al-I'tisam y la Unión de la Comunidad -->
+                    <div class="jutba-card p-6 md:p-8 flex flex-col justify-between flex-shrink-0 w-[88vw] sm:w-[480px] md:w-[450px] lg:w-[470px] snap-center min-h-[440px]">
                         <div>
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                                 <span class="jutba-badge jutba-badge-unity">
@@ -1071,7 +1121,7 @@
                                 <span class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase" data-i18n="khutba.c1_tag">Jutba 1 • Al-I'tisam</span>
                             </div>
 
-                            <h3 class="font-['Outfit'] text-xl sm:text-2xl md:text-2xl font-black text-on-surface tracking-tight mb-2" data-i18n="khutba.c1_title">
+                            <h3 class="font-['Outfit'] text-xl sm:text-2xl font-black text-on-surface tracking-tight mb-2" data-i18n="khutba.c1_title">
                                 La Unión de la Comunidad y Aferrarse a la Guía
                             </h3>
                             <p class="text-xs md:text-sm font-semibold text-[#006233] uppercase tracking-wide mb-4" data-i18n="khutba.c1_sub">
@@ -1086,24 +1136,24 @@
                                 <p class="text-[11px] text-on-surface-variant/80 mt-1" data-i18n="khutba.c1_verse_ref">Surah Al-Imran: 103</p>
                             </div>
 
-                            <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mb-6" data-i18n="khutba.c1_desc">
+                            <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-3" data-i18n="khutba.c1_desc">
                                 «Y aferraos a la cuerda de Alá todos juntos y no os dividáis...» Los mandatos que complacen a Alá y la promesa de no extraviarse jamás siguiendo el Corán y la Sunnah.
                             </p>
                         </div>
 
-                        <div class="pt-4 border-t border-primary/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="pt-4 border-t border-primary/10 flex items-center justify-between gap-3 mt-auto">
                             <span class="text-xs text-on-surface-variant/70" data-i18n="khutba.c1_source">Sahih Muslim</span>
-                            <button type="button" class="jutba-cta-btn jutba-open-btn w-full sm:w-auto justify-center" data-jutba="1">
+                            <button type="button" class="jutba-cta-btn jutba-open-btn justify-center" data-jutba="1">
                                 <span data-i18n="khutba.btn_read">Leer Jutba Completa</span>
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Card 3 (Col-span 12 on desktop): Jutba 3 - El Respeto a los Límites y la Propiedad -->
-                    <div class="md:col-span-12 jutba-card p-5 sm:p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                        <div class="flex-1 w-full">
-                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                    <!-- Card 3: Jutba 3 - El Respeto a los Límites y la Propiedad -->
+                    <div class="jutba-card p-6 md:p-8 flex flex-col justify-between flex-shrink-0 w-[88vw] sm:w-[480px] md:w-[450px] lg:w-[470px] snap-center min-h-[440px]">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                                 <span class="jutba-badge jutba-badge-ethics">
                                     <span class="material-symbols-outlined text-xs">gavel</span>
                                     <span data-i18n="khutba.badge_ethics">Ética y Justicia</span>
@@ -1111,28 +1161,48 @@
                                 <span class="text-xs font-semibold text-on-surface-variant tracking-wider uppercase" data-i18n="khutba.c3_tag">Jutba 3 • Derechos y Propiedad</span>
                             </div>
 
-                            <h3 class="font-['Outfit'] text-xl sm:text-2xl md:text-2xl lg:text-3xl font-black text-on-surface tracking-tight mb-2" data-i18n="khutba.c3_title">
+                            <h3 class="font-['Outfit'] text-xl sm:text-2xl font-black text-on-surface tracking-tight mb-2" data-i18n="khutba.c3_title">
                                 El Respeto a los Límites y la Propiedad Ajena
                             </h3>
-                            <p class="text-xs md:text-sm font-semibold text-[#C1272D] uppercase tracking-wide mb-3" data-i18n="khutba.c3_sub">
+                            <p class="text-xs md:text-sm font-semibold text-[#C1272D] uppercase tracking-wide mb-4" data-i18n="khutba.c3_sub">
                                 La gravedad de alterar linderos o usurpar derechos ajenos
                             </p>
-                            <p class="text-sm md:text-base text-on-surface-variant leading-relaxed max-w-3xl mb-3" data-i18n="khutba.c3_desc">
-                                «Que Allah maldiga a quien altere los límites de la tierra.» El Islam protege los derechos de propiedad y advierte con severidad contra toda injusticia territorial.
-                            </p>
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-on-surface-variant/70 font-medium" data-i18n="khutba.c3_source">Sahih Muslim</span>
+                            
+                            <!-- Ethics Box -->
+                            <div class="bg-[#C1272D]/5 rounded-xl p-4 mb-4 border-l-4 border-[#C1272D] rtl:border-l-0 rtl:border-r-4">
+                                <p class="text-xs md:text-sm italic text-on-surface-variant leading-relaxed line-clamp-3" data-i18n="khutba.c3_hadith">
+                                    «Que Allah maldiga a quien altere los límites de la tierra.»
+                                </p>
                             </div>
+
+                            <p class="text-sm text-on-surface-variant leading-relaxed mb-4 line-clamp-3" data-i18n="khutba.c3_desc">
+                                Advertencias del Profeta (ﷺ) sobre no usurpar tierras ni alterar linderos. Explicación completa del Hadiz en Sahih Muslim.
+                            </p>
                         </div>
 
-                        <div class="flex-shrink-0 flex flex-col sm:flex-row md:flex-col items-stretch sm:items-end gap-3 w-full md:w-auto">
-                            <button type="button" class="jutba-cta-btn jutba-open-btn w-full md:w-auto justify-center" data-jutba="3">
+                        <div class="pt-4 border-t border-primary/10 flex items-center justify-between gap-3 mt-auto">
+                            <span class="text-xs text-on-surface-variant/70 font-medium" data-i18n="khutba.c3_source">Sahih Muslim</span>
+                            <button type="button" class="jutba-cta-btn jutba-open-btn justify-center" data-jutba="3">
                                 <span data-i18n="khutba.btn_read">Leer Jutba Completa</span>
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
                             </button>
                         </div>
                     </div>
 
+                </div>
+
+                <!-- Indicator Dots & Touch Hint -->
+                <div class="flex items-center justify-between mt-4 px-2">
+                    <div class="flex items-center gap-2" id="jutba-dots-container">
+                        <button class="w-3.5 h-3.5 rounded-full bg-primary transition-all duration-300 jutba-dot" data-slide="0" aria-label="Ir a Jutba 1"></button>
+                        <button class="w-2.5 h-2.5 rounded-full bg-primary/30 hover:bg-primary/60 transition-all duration-300 jutba-dot" data-slide="1" aria-label="Ir a Jutba 2"></button>
+                        <button class="w-2.5 h-2.5 rounded-full bg-primary/30 hover:bg-primary/60 transition-all duration-300 jutba-dot" data-slide="2" aria-label="Ir a Jutba 3"></button>
+                    </div>
+
+                    <div class="flex items-center gap-1.5 text-xs text-on-surface-variant/70 font-medium">
+                        <span class="material-symbols-outlined text-sm text-primary animate-pulse">swipe</span>
+                        <span data-i18n="khutba.swipe_hint">Desliza para ver más</span>
+                    </div>
                 </div>
 
             </div>
@@ -1223,69 +1293,69 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Contact Form -->
-                    <div class="rounded-xl p-6 md:p-8 relative overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-primary/20">
+                    <!-- Contact Form (Dark Luxury Aesthetic) -->
+                    <div class="rounded-2xl p-6 md:p-8 relative overflow-hidden bg-black/90 backdrop-blur-xl border-2 border-[#a87c2b]/40 shadow-[0_15px_45px_rgba(0,0,0,0.35)]">
                         <!-- Background Image & Overlay -->
-                        <div class="absolute inset-0 bg-[url('assets/contacto_bg.webp')] bg-cover bg-right-top z-0 opacity-50"></div>
-                        <div class="absolute inset-0 bg-white/75 z-0"></div>
+                        <div class="absolute inset-0 bg-[url('assets/contacto_bg.webp')] bg-cover bg-right-top z-0 opacity-20 mix-blend-luminosity"></div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/90 to-black/95 z-0"></div>
                         
                         <!-- Decorative element -->
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-bl-full pointer-events-none z-0"></div>
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[#a87c2b]/15 rounded-bl-full pointer-events-none z-0"></div>
                         <div id="imam-form-success"
-                            class="hidden absolute inset-0 z-20 bg-surface flex flex-col items-center justify-center text-center p-8 rounded border border-primary/20">
-                            <span class="material-symbols-outlined text-primary text-6xl mb-4">check_circle</span>
-                            <h3 class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-on-surface mb-2"
+                            class="hidden absolute inset-0 z-20 bg-neutral-950 flex flex-col items-center justify-center text-center p-8 rounded-2xl border border-[#a87c2b]/40">
+                            <span class="material-symbols-outlined text-[#fbca1f] text-6xl mb-4">check_circle</span>
+                            <h3 class="font-['Outfit'] text-xl font-bold uppercase tracking-wide text-white mb-2"
                                 data-i18n="imam.success_title">Mensaje Enviado</h3>
-                            <p class="font-body-md text-body-md text-on-surface-variant" data-i18n="imam.success_desc">
+                            <p class="font-body-md text-body-md text-white/80" data-i18n="imam.success_desc">
                                 Que la paz sea contigo. El Imán ha recibido tu mensaje y te responderá a la brevedad
                                 posible insha'Allah.</p>
                             <button id="imam-form-reset"
-                                class="mt-8 px-6 py-2 border border-outline rounded-full font-body-md text-body-md text-on-surface hover:bg-surface-variant transition-colors"
+                                class="mt-8 px-6 py-2 border border-[#a87c2b]/50 rounded-full font-body-md text-body-md text-white hover:bg-white/10 transition-colors"
                                 data-i18n="imam.success_reset">Enviar otro mensaje</button>
                         </div>
                         <form id="imam-form" class="space-y-5 relative z-10 transition-opacity duration-300">
                             <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                                <label class="block font-label-caps text-label-caps text-[#fbca1f] font-bold mb-2 tracking-wider"
                                     for="name" data-i18n="imam.name">Nombre Completo</label>
                                 <input required
-                                    class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors"
+                                    class="w-full bg-white/5 border-0 border-b border-[#a87c2b]/50 focus:border-[#fbca1f] focus:ring-0 px-3 py-2.5 font-body-md text-white placeholder-white/40 transition-all duration-300 rounded-t-lg"
                                     id="name" placeholder="Su nombre" type="text" data-i18n="imam.name_ph" />
                             </div>
                             <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                                <label class="block font-label-caps text-label-caps text-[#fbca1f] font-bold mb-2 tracking-wider"
                                     for="email" data-i18n="imam.email">Correo Electrónico</label>
                                 <input required
-                                    class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors"
+                                    class="w-full bg-white/5 border-0 border-b border-[#a87c2b]/50 focus:border-[#fbca1f] focus:ring-0 px-3 py-2.5 font-body-md text-white placeholder-white/40 transition-all duration-300 rounded-t-lg"
                                     id="email" placeholder="su@email.com" type="email" data-i18n="imam.email_ph" />
                             </div>
                             <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                                <label class="block font-label-caps text-label-caps text-[#fbca1f] font-bold mb-2 tracking-wider"
                                     for="subject" data-i18n="imam.subject">Asunto</label>
                                 <select required
-                                    class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors"
+                                    class="w-full bg-white/5 border-0 border-b border-[#a87c2b]/50 focus:border-[#fbca1f] focus:ring-0 px-3 py-2.5 font-body-md text-white transition-all duration-300 rounded-t-lg cursor-pointer"
                                     id="subject">
-                                    <option value="" disabled selected data-i18n="imam.subj_opt1">Seleccione un asunto
+                                    <option value="" disabled selected class="bg-neutral-900 text-white/70" data-i18n="imam.subj_opt1">Seleccione un asunto
                                     </option>
-                                    <option value="Fatwa" data-i18n="imam.subj_opt2">Pregunta Religiosa (Fatwa)</option>
-                                    <option value="Matrimonio" data-i18n="imam.subj_opt3">Consejería Matrimonial
+                                    <option value="Fatwa" class="bg-neutral-900 text-white" data-i18n="imam.subj_opt2">Pregunta Religiosa (Fatwa)</option>
+                                    <option value="Matrimonio" class="bg-neutral-900 text-white" data-i18n="imam.subj_opt3">Consejería Matrimonial
                                     </option>
-                                    <option value="Conversion" data-i18n="imam.subj_opt4">Conversión al Islam</option>
-                                    <option value="Otro" data-i18n="imam.subj_opt5">Otro</option>
+                                    <option value="Conversion" class="bg-neutral-900 text-white" data-i18n="imam.subj_opt4">Conversión al Islam</option>
+                                    <option value="Otro" class="bg-neutral-900 text-white" data-i18n="imam.subj_opt5">Otro</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block font-label-caps text-label-caps text-on-surface-variant mb-2"
+                                <label class="block font-label-caps text-label-caps text-[#fbca1f] font-bold mb-2 tracking-wider"
                                     for="message" data-i18n="imam.msg">Mensaje</label>
                                 <textarea required
-                                    class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors resize-none"
+                                    class="w-full bg-white/5 border-0 border-b border-[#a87c2b]/50 focus:border-[#fbca1f] focus:ring-0 px-3 py-2.5 font-body-md text-white placeholder-white/40 transition-all duration-300 rounded-t-lg resize-none"
                                     id="message" placeholder="¿En qué podemos ayudarle?" rows="3"
                                     data-i18n="imam.msg_ph"></textarea>
                             </div>
                             <button id="imam-form-submit"
-                                class="w-full bg-primary text-on-primary py-3 rounded font-body-md text-body-md font-semibold mt-4 hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
+                                class="w-full bg-gradient-to-r from-amber-700 via-amber-600 to-yellow-600 hover:from-amber-600 hover:to-yellow-500 text-white py-3.5 rounded-xl font-body-md text-body-md font-bold mt-6 transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(180,120,20,0.35)] border border-amber-500/30 active:scale-95 disabled:opacity-70"
                                 type="submit">
                                 <span class="submit-text" data-i18n="imam.send">Enviar Mensaje</span>
-                                <span class="material-symbols-outlined text-sm submit-icon">send</span>
+                                <span class="material-symbols-outlined text-base submit-icon">send</span>
                             </button>
                         </form>
                     </div>
@@ -1369,12 +1439,11 @@
                             <span
                                 class="material-symbols-outlined text-primary text-3xl mb-3 opacity-80">format_quote</span>
                             <blockquote
-                                class="text-on-surface-variant font-body-md text-body-md italic leading-relaxed">
-                                "Aquellos que gastan sus bienes de noche y de día, en secreto y en público, tendrán su
-                                recompensa junto a su Señor..."
+                                class="text-on-surface-variant font-body-md text-body-md italic leading-relaxed" data-i18n="support.quote">
+                                «Aquellos que gastan sus bienes de noche y de día, en secreto y en público, tendrán su recompensa junto a su Señor...»
                             </blockquote>
                             <span
-                                class="text-xs text-on-surface-variant/50 mt-3 font-label-caps uppercase tracking-widest">Corán</span>
+                                class="text-xs text-on-surface-variant/50 mt-3 font-label-caps uppercase tracking-widest" data-i18n="support.verse">Corán 2:274</span>
                         </div>
                     </div>
                 </div>
@@ -1467,14 +1536,24 @@
 
                         <!-- Map Wrapper -->
                         <div
-                            class="bg-surface rounded-xl overflow-hidden w-full h-full relative border-2 border-[#fbca1f] z-10 shadow-[0_0_15px_rgba(251,202,31,0.4)]">
+                            class="bg-surface rounded-xl overflow-hidden w-full h-full min-h-[400px] relative border-2 border-[#fbca1f] z-10 shadow-[0_0_15px_rgba(251,202,31,0.4)]">
                             <iframe
                                 src="https://maps.google.com/maps?q=Mezquita%20Arrahma%20la%20misericordia,%20Carrer%20Hort%20de%20Torrella,%2011C,%2007005%20Palma&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                title="Ubicación Mezquita Arrahma Palma de Mallorca"
+                                class="w-full h-full min-h-[400px] border-0"
+                                style="border:0; width:100%; height:100%; min-height:400px;"
+                                allowfullscreen=""
+                                loading="eager"
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
 
-
+                            <!-- Direct Google Maps Open Button (iOS Safari Fallback & Quick Navigation) -->
+                            <a href="https://maps.google.com/?q=Mezquita+Arrahma+la+misericordia,+Carrer+Hort+de+Torrella,+11C,+07005+Palma"
+                                target="_blank" rel="noopener noreferrer"
+                                class="absolute bottom-4 right-4 z-20 bg-black/85 hover:bg-black text-[#fbca1f] text-xs font-semibold px-4 py-2.5 rounded-xl backdrop-blur-md border border-[#fbca1f]/50 flex items-center gap-2 shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all hover:scale-105 active:scale-95">
+                                <span class="material-symbols-outlined text-base text-[#fbca1f]">near_me</span>
+                                <span data-i18n="contact.open_maps">Abrir en Google Maps</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1677,7 +1756,7 @@
                     class="font-body-md text-body-md text-white/30 text-xs text-center mt-2 tracking-wider uppercase opacity-85 hover:opacity-100 transition-opacity duration-300">
                     <a class="hover:text-primary transition-colors flex items-center gap-1.5 justify-center"
                         href="https://mynextbymusa.com" target="_blank" rel="noopener noreferrer">
-                        <span>Made by</span>
+                        <span data-i18n="footer.made_by">Made by</span>
                         <span class="font-bold text-white/60 hover:text-white transition-colors">MYNEXT</span>
                     </a>
                 </p>

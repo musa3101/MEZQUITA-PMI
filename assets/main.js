@@ -1,15 +1,15 @@
-// --- Supabase Client Initialization ---
-const supabaseUrl = 'https://nulblnrdrfmlxribjboc.supabase.co';
-const supabaseKey = 'sb_publishable_5y03TiJC416eBE4iuTW_Qw_yv3qZovI';
-let supabaseClient = null;
+// --- Site Configuration ---
 let siteContactEmail = 'Skimarrakech@gmail.com';
 
-try {
-    if (supabaseUrl && window.supabase) {
-        supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-    }
-} catch (e) {
-    console.error("Supabase init error:", e);
+// --- Microsoft Clarity Analytics (Carga respetuosa con RGPD / Opt-in) ---
+function initClarity() {
+    if (window.clarityLoaded) return;
+    window.clarityLoaded = true;
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yd3a9thuo2");
 }
 
 // --- 0. PRELOADER LOGIC ---
@@ -252,7 +252,11 @@ const nextPrayerTimeValEl = document.getElementById('next-prayer-time-val');
 
 const prayerNamesMap = {
     es: { Fajr: 'Fajr', Shuruq: 'Shuruq', Dhuhr: 'Dhuhr', Asr: 'Asr', Maghrib: 'Maghrib', Isha: 'Isha' },
-    ar: { Fajr: 'الفجر', Shuruq: 'الشروق', Dhuhr: 'الظهر', Asr: 'العصر', Maghrib: 'المغرب', Isha: 'العشاء' }
+    ar: { Fajr: 'الفجر', Shuruq: 'الشروق', Dhuhr: 'الظهر', Asr: 'العصر', Maghrib: 'المغرب', Isha: 'العشاء' },
+    fr: { Fajr: 'Fajr', Shuruq: 'Chourouq', Dhuhr: 'Dhuhr', Asr: 'Asr', Maghrib: 'Maghrib', Isha: 'Isha' },
+    en: { Fajr: 'Fajr', Shuruq: 'Shuruq', Dhuhr: 'Dhuhr', Asr: 'Asr', Maghrib: 'Maghrib', Isha: 'Isha' },
+    bn: { Fajr: 'ফজর', Shuruq: 'সূর্যোদয়', Dhuhr: 'যোহর', Asr: 'আসর', Maghrib: 'মাগরিব', Isha: 'ইশা' },
+    ur: { Fajr: 'فجر', Shuruq: 'اشراق', Dhuhr: 'ظہر', Asr: 'عصر', Maghrib: 'مغرب', Isha: 'عشاء' }
 };
 
 function getLocalizedPrayerName(name) {
@@ -298,8 +302,8 @@ function updatePrayers() {
         if (nameEl) nameEl.innerText = getLocalizedPrayerName(prayer.name);
 
         if (isCurrent) {
-            // Active card: solid green, prominent cartulina style
-            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300 bg-[#2C5F44] text-white border-2 border-[#2C5F44] shadow-[0_10px_20px_rgba(44,95,68,0.4)] scale-[1.02] md:scale-100 md:-translate-y-2 z-10';
+            // Active card: Imperial Gold Luxury style
+            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300 bg-gradient-to-br from-[#a87c2b] via-[#966d24] to-[#785517] text-white border-2 border-[#fbca1f] shadow-[0_12px_35px_rgba(168,124,43,0.35)] scale-[1.03] md:scale-105 md:-translate-y-2 z-10';
             
             // Auto-scroll to current prayer on mobile
             if (col.dataset.scrolled !== 'true' && window.innerWidth < 768) {
@@ -326,7 +330,6 @@ function updatePrayers() {
             const progressWrap = col.querySelector('.prayer-progress');
             if (progressWrap) {
                 progressWrap.classList.remove('hidden');
-                // Calculate progress since this prayer started
                 const prevIdx = prayers.indexOf(currentPrayer);
                 const nextIdx = prayers.indexOf(nextPrayer);
                 const currentStart = currentPrayer.hours * 3600 + currentPrayer.minutes * 60;
@@ -338,7 +341,7 @@ function updatePrayers() {
                 if (bar) bar.style.width = pct + '%';
             }
         } else {
-            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300 bg-white border border-black/10 shadow-[4px_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-md hover:-translate-y-1 cursor-pointer';
+            col.className = 'prayer-col flex-shrink-0 w-[45vw] max-w-[160px] md:max-w-none md:w-auto snap-center rounded-2xl flex flex-col items-center justify-center p-5 md:p-7 relative md:min-h-[220px] transition-all duration-300 bg-white/85 backdrop-blur-md border border-primary/15 shadow-[0_4px_15px_rgba(0,0,0,0.03)] opacity-90 hover:opacity-100 hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 cursor-pointer';
             iconEl.className = 'material-symbols-outlined mb-3 text-4xl md:text-5xl icon-el text-primary/70';
             iconEl.style.fontVariationSettings = 'normal';
             nameEl.className = "font-['Outfit'] text-base md:text-lg font-bold uppercase tracking-wide text-on-surface mb-2 name-el";
@@ -373,36 +376,6 @@ function updatePrayers() {
     }
 }
 
-// Fetch site config from Supabase (phone, email, overrides)
-async function fetchSupabaseConfig() {
-    if (!supabaseClient) return;
-    try {
-        const { data: configs, error: configErr } = await supabaseClient
-            .from('site_config')
-            .select('key, value');
-        if (!configErr && configs) {
-            configs.forEach(c => {
-                if (c.key === 'phone_number') {
-                    const phoneEl = document.getElementById('phone-number');
-                    if (phoneEl) phoneEl.innerText = c.value;
-                }
-                if (c.key === 'contact_email') {
-                    siteContactEmail = c.value;
-                    const emailEl = document.getElementById('contact-email-display');
-                    if (emailEl) emailEl.innerText = c.value;
-                }
-                if (c.key === 'prayer_overrides') {
-                    try {
-                        const overrides = JSON.parse(c.value);
-                        applyPrayerTimes(overrides);
-                    } catch (err) {}
-                }
-            });
-        }
-    } catch (e) {
-        console.error("Error fetching Supabase config:", e);
-    }
-}
 
 // Sincronización dinámica opcional con el JSON de Mawaqit
 async function syncMawaqitLive() {
@@ -428,7 +401,6 @@ if (todayMawaqitTimes) applyPrayerTimes(todayMawaqitTimes);
 initializePrayersArray();
 updatePrayers();
 setInterval(updatePrayers, 1000);
-setTimeout(fetchSupabaseConfig, 500);
 setTimeout(syncMawaqitLive, 800);
 
 // Set today's date label with Arabic/Spanish localization
@@ -436,8 +408,8 @@ function updateDateLabel() {
     const dateLabel = document.getElementById('today-date-label');
     if (dateLabel) {
         const now = new Date();
-        const isAr = (typeof currentLang !== 'undefined' && currentLang === 'ar');
-        const locale = isAr ? 'ar-SA' : 'es-ES';
+        const langLocales = { es: 'es-ES', ar: 'ar-SA', fr: 'fr-FR', en: 'en-US', bn: 'bn-BD', ur: 'ur-PK' };
+        const locale = langLocales[currentLang] || 'es-ES';
         const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         dateLabel.textContent = now.toLocaleDateString(locale, opts).replace(/^(.)/, c => c.toUpperCase());
     }
@@ -469,7 +441,11 @@ if (imamForm) {
         const originalIcon = submitIcon.innerText;
 
         submitBtn.disabled = true;
-        submitText.innerText = 'Abriendo Correo...';
+        const curLang = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+        const loadingMsg = (typeof translations !== 'undefined' && translations[curLang] && translations[curLang]['imam.opening_mail']) 
+            ? translations[curLang]['imam.opening_mail'] 
+            : 'Abriendo Correo...';
+        submitText.innerText = loadingMsg;
         submitIcon.innerText = 'hourglass_empty';
         submitIcon.classList.add('animate-spin');
 
@@ -482,7 +458,10 @@ if (imamForm) {
                 imamFormSuccess.classList.remove('hidden');
                 // Reset button state
                 submitBtn.disabled = false;
-                submitText.innerText = originalText;
+                const sendLabel = (typeof translations !== 'undefined' && translations[curLang] && translations[curLang]['imam.send'])
+                    ? translations[curLang]['imam.send']
+                    : originalText;
+                submitText.innerText = sendLabel;
                 submitIcon.innerText = originalIcon;
                 submitIcon.classList.remove('animate-spin');
                 imamForm.reset();
@@ -550,7 +529,13 @@ const closeTextModal = document.getElementById('close-text-modal');
 function openTextModal(type) {
     const data = legalTexts[type];
     if (data) {
-        textModalTitle.innerText = data.title;
+        const lang = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+        const titleMap = {
+            'aviso-legal': { es: 'Aviso Legal', ar: 'إشعار قانوني', fr: 'Mentions Légales', en: 'Legal Notice', bn: 'আইনি বিজ্ঞপ্তি', ur: 'قانونی نوٹس' },
+            'privacidad': { es: 'Política de Privacidad', ar: 'سياسة الخصوصية', fr: 'Politique de Confidentialité', en: 'Privacy Policy', bn: 'গোপনীয়তা নীতি', ur: 'رازداری کی پالیسی' },
+            'cookies': { es: 'Política de Cookies', ar: 'سياسة ملفات تعريف الارتباط', fr: 'Politique des Cookies', en: 'Cookie Policy', bn: 'কুকি নীতি', ur: 'کوکیز پالیسی' }
+        };
+        textModalTitle.innerText = (titleMap[type] && titleMap[type][lang]) ? titleMap[type][lang] : data.title;
         textModalContent.innerHTML = data.content;
         textModal.showModal();
     }
@@ -577,27 +562,14 @@ if (!localStorage.getItem('cookiesAccepted')) {
     setTimeout(() => {
         cookieBanner.classList.remove('translate-y-[150%]');
     }, 1500);
+} else {
+    initClarity();
 }
 
-acceptCookiesBtn.addEventListener('click', async () => {
+acceptCookiesBtn.addEventListener('click', () => {
     localStorage.setItem('cookiesAccepted', 'true');
     cookieBanner.classList.add('translate-y-[150%]');
-
-    // Guardar el registro en la base de datos de Supabase si está configurada
-    if (supabaseClient) {
-        try {
-            // Reemplaza 'cookie_consents' por el nombre real de tu tabla si es diferente
-            await supabaseClient.from('cookie_consents').insert([
-                {
-                    consent_given: true,
-                    user_agent: navigator.userAgent,
-                    timestamp: new Date().toISOString()
-                }
-            ]);
-        } catch (e) {
-            console.error('Error saving consent to Supabase:', e);
-        }
-    }
+    initClarity();
 });
 
 // WhatsApp Logic
@@ -824,10 +796,31 @@ document.addEventListener('DOMContentLoaded', initQuranFilters);
 // ==========================================================================
 const jutbaData = {
     1: {
-        tag: { es: 'Jutba 1 • Al-I\'tisam', ar: 'الخطبة 1 • الاعتصام' },
+        tag: { 
+            es: 'Jutba 1 • Al-I\'tisam', 
+            ar: 'الخطبة 1 • الاعتصام',
+            fr: 'Khutba 1 • Al-I\'tisam',
+            en: 'Khutbah 1 • Al-I\'tisam',
+            bn: 'খুতবা ১ • আল-ইতিসাম',
+            ur: 'خطبہ ۱ • الاعتصام'
+        },
         badgeClass: 'jutba-badge-unity',
-        badge: { es: 'Unidad y Sunnah', ar: 'الاعتصام والجماعة' },
-        title: { es: 'La Unión de la Comunidad y Aferrarse a la Guía', ar: 'الاعتصام بكتاب الله وسنة نبيه ولزوم الجماعة' },
+        badge: { 
+            es: 'Unidad y Sunnah', 
+            ar: 'الاعتصام والجماعة',
+            fr: 'Unité et Sunnah',
+            en: 'Unity and Sunnah',
+            bn: 'ঐক্য ও সুন্নাহ',
+            ur: 'اتحاد اور سنت'
+        },
+        title: { 
+            es: 'La Unión de la Comunidad y Aferrarse a la Guía', 
+            ar: 'الاعتصام بكتاب الله وسنة نبيه ولزوم الجماعة',
+            fr: 'L\'Union de la Communauté et l\'Attachement à la Guidance',
+            en: 'Holding Fast to the Rope of Allah and Unity of the Ummah',
+            bn: 'আল্লাহর রজ্জুকে দৃঢ়ভাবে ধারণ ও মুসলিম উম্মাহর ঐক্য',
+            ur: 'اللہ کی رسی کو مضبوطی سے تھامنا اور اتحادِ امت'
+        },
         content: {
             es: `
                 <div class="space-y-6 text-on-surface-variant">
@@ -914,14 +907,233 @@ const jutbaData = {
                         </div>
                     </div>
                 </div>
+            `,
+            fr: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-[#006233]/10 border-l-4 border-[#006233] p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-[#006233] block mb-2">Saint Coran • Sourate Al-Imran (103)</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-3" dir="rtl">
+                            ﴿ وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُم بِنِعْمَتِهِ إِخْوَانًا وَكُنتُمْ عَلَىٰ شَفَا حُفْرَةٍ مِّنَ النَّارِ فَأَنقَذَكُم مِّنْهَا ۗ كَذَٰلِكَ يُبَيِّنُ اللَّهُ لَكُمْ آيَاتِهِ لَعَلَّكُمْ تَهْتَدُونَ ﴾
+                        </p>
+                        <p class="text-sm italic text-on-surface leading-relaxed">
+                            « Et cramponnez-vous tous ensemble au câble d'Allah et ne soyez pas divisés; et rappelez-vous le bienfait d'Allah sur vous: lorsque vous étiez ennemis, c'est Lui qui réconcilia vos cœurs; puis, par Son bienfait, vous êtes devenus frères; et alors que vous étiez au bord d'un abîme de Feu, c'est Lui qui vous en a sauvés. Ainsi Allah vous montre Ses signes afin que vous soyez bien guidés. »
+                        </p>
+                        <span class="text-[11px] text-on-surface-variant/80 block mt-2">Sourate Al-Imran : 103 • Juz 4 • Page 63</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            Hadiths Prophétiques Authentiques sur l'Attachement et l'Unité
+                        </h4>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">1. L'agrément d'Allah et de Son Messager (Sahih Muslim) :</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا، وَيَكْرَهُ لَكُمْ ثَلَاثًا: يَرْضَى لَكُمْ أَنْ تَعْبُدوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا، وَأَنْ تَعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا، وَيَكْرَهُ لَكُمْ قِيلَ وَقَالَ، وَكَثْرَةَ السُّؤَالِ، وَإِضَاعَةَ الْمَالِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                D'après Abou Hourayra (qu'Allah l'agrée), le Messager d'Allah ﷺ a dit : <em>« Certes Allah agrée pour vous trois choses et en déteste trois : Il agrée que vous L'adoriez sans rien Lui associer, que vous vous cramponniez tous ensemble au câble d'Allah et ne vous divisiez point ; et Il déteste pour vous les commérages, le fait de poser trop de questions inutiles et le gaspillage des biens. »</em> (Rapporté par Muslim).
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">2. S'attacher au Livre d'Allah et à la Sunnah (Al-Hakim, authentifié par Al-Albani) :</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنِّي قَدْ خَلَّفْتُ فِيكُمْ شَيْئَيْنِ لَنْ تَضِلُّوا بَعْدَهُمَا أَبَدًا مَا أَخَذْتُمْ بِهِمَا وَعَمِلْتُمْ بِهِمَا: كِتَابَ اللَّهِ وَسُنَّتِي، وَلَنْ يَتَفَرَّقَا حَتَّى يَرِدَا عَلَى الْحَوْضِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                Le Messager d'Allah ﷺ a dit : <em>« Je vous ai laissé deux choses grâce auxquelles vous ne vous égarerez jamais tant que vous vous y attacherez et œuvrerez selon elles : le Livre d'Allah et ma Sunnah. Et ils ne se sépareront point jusqu'à ce qu'ils me rejoignent au Bassin (Al-Hawd). »</em>
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">3. Rester attaché à la communauté unie (At-Tirmidhi, Hassan) :</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنِ ابْنِ عُمَرَ رضي الله عنهما أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنَّ اللَّهَ لَا يَجْمَعُ أُمَّةَ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَلَى ضَلَالَةٍ، وَيَدُ اللَّهِ مَعَ الْجَمَاعَةِ، وَمَنْ شَذَّ شَذَّ فِي النَّارِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                Ibn Omar (qu'Allah soit satisfait d'eux deux) a rapporté que le Messager d'Allah ﷺ a dit : <em>« Certes Allah ne rassemblera pas la communauté de Muhammad sur un égarement. La Main d'Allah est avec le groupe uni, et quiconque s'en écarte s'écarte vers le Feu. »</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            en: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-[#006233]/10 border-l-4 border-[#006233] p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-[#006233] block mb-2">Holy Quran • Surah Ali 'Imran (103)</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-3" dir="rtl">
+                            ﴿ وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُم بِنِعْمَتِهِ إِخْوَانًا وَكُنتُمْ عَلَىٰ شَفَا حُفْرَةٍ مِّنَ النَّارِ فَأَنقَذَكُم مِّنْهَا ۗ كَذَٰلِكَ يُبَيِّنُ اللَّهُ لَكُمْ آيَاتِهِ لَعَلَّكُمْ تَهْتَدُونَ ﴾
+                        </p>
+                        <p class="text-sm italic text-on-surface leading-relaxed">
+                            « And hold fast, all of you together, to the rope of Allah, and do not be divided among yourselves; and remember Allah's favor upon you: how you were enemies and He joined your hearts together, so that by His grace you became brethren; and you were on the brink of a pit of fire, and He saved you from it. Thus Allah makes His signs clear to you, that you may be guided. »
+                        </p>
+                        <span class="text-[11px] text-on-surface-variant/80 block mt-2">Surah Ali 'Imran: 103 • Juz 4 • Page 63</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            Authentic Prophetic Hadiths on Holding Fast and Unity
+                        </h4>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">1. The Pleasure of Allah and His Messenger (Sahih Muslim):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا، وَيَكْرَهُ لَكُمْ ثَلَاثًا: يَرْضَى لَكُمْ أَنْ تَعْبُدوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا، وَأَنْ تَعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا، وَيَكْرَهُ لَكُمْ قِيلَ وَقَالَ، وَكَثْرَةَ السُّؤَالِ، وَإِضَاعَةَ الْمَالِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                Narrated Abu Huraira (may Allah be pleased with him): The Messenger of Allah ﷺ said: <em>«Verily Allah is pleased with three things for you and displeased with three: He is pleased that you worship Him without associating anything with Him, and that you hold fast all together to the rope of Allah and not be divided; and He dislikes for you idle talk, excessive questioning, and wasting wealth.»</em> (Sahih Muslim).
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">2. Clinging to the Book of Allah and the Sunnah (Al-Hakim, Sahih by Al-Albani):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنِّي قَدْ خَلَّفْتُ فِيكُمْ شَيْئَيْنِ لَنْ تَضِلُّوا بَعْدَهُمَا أَبَدًا مَا أَخَذْتُمْ بِهِمَا وَعَمِلْتُمْ بِهِمَا: كِتَابَ اللَّهِ وَسُنَّتِي، وَلَنْ يَتَفَرَّقَا حَتَّى يَرِدَا عَلَى الْحَوْضِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                The Messenger of Allah ﷺ said: <em>«I have left among you two matters of the which if you hold fast to them and act upon them, you will never be misguided: the Book of Allah and my Sunnah. And they will never separate until they meet me at the Pond (Al-Hawd).»</em>
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">3. Remaining with the Main Body of Believers (At-Tirmidhi, Hasan):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنِ ابْنِ عُمَرَ رضي الله عنهما أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنَّ اللَّهَ لَا يَجْمَعُ أُمَّةَ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَلَى ضَلَالَةٍ، وَيَدُ اللَّهِ مَعَ الْجَمَاعَةِ، وَمَنْ شَذَّ شَذَّ فِي النَّارِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                Ibn Umar (may Allah be pleased with both) reported that the Messenger of Allah ﷺ said: <em>«Indeed, Allah will not gather the nation of Muhammad upon misguidance. The Hand of Allah is with the community, and whoever deviates, deviates towards the Fire.»</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            bn: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-[#006233]/10 border-l-4 border-[#006233] p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-[#006233] block mb-2">পবিত্র কুরআন • সূরা আলে ইমরান (১০৩)</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-3" dir="rtl">
+                            ﴿ وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُم بِنِعْمَتِهِ إِخْوَانًا وَكُنتُمْ عَلَىٰ شَفَا حُفْرَةٍ مِّنَ النَّارِ فَأَنقَذَكُم مِّنْهَا ۗ كَذَٰلِكَ يُبَيِّنُ اللَّهُ لَكُمْ آيَاتِهِ لَعَلَّكُمْ تَهْتَدُونَ ﴾
+                        </p>
+                        <p class="text-sm italic text-on-surface leading-relaxed">
+                            «আর তোমরা সকলে আল্লাহর রজ্জুকে শক্তভাবে ধারণ কর এবং পরস্পর বিচ্ছিন্ন হয়ো না। আর তোমাদের প্রতি আল্লাহর অনুগ্রহ স্মরণ কর: যখন তোমরা পরস্পরে শত্রু ছিলে, অতঃপর তিনি তোমাদের অন্তরে প্রীতি সঞ্চার করলেন, ফলে তাঁর অনুগ্রহে তোমরা পরস্পরে ভাই হয়ে গেলে। আর তোমরা ছিলে এক অগ্নিকুণ্ডের কিনারায়, অতঃপর তিনি তোমাদেরকে তা থেকে রক্ষা করলেন। এভাবেই আল্লাহ তোমাদের জন্য তাঁর নিদর্শনসমূহ স্পষ্টভাবে বর্ণনা করেন যাতে তোমরা হিদায়াত পেতে পারো।’»
+                        </p>
+                        <span class="text-[11px] text-on-surface-variant/80 block mt-2">সূরা আলে ইমরান: ১০৩ • পারা ৪ • পৃষ্ঠা ৬৩</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            ঐক্য ও সুন্নাহর অনুসরণের ওপর সহীহ হাদীসসমূহ
+                        </h4>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">১. আল্লাহর সন্তুষ্টির তিনটি বিষয় (সহীহ মুসলিম):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا، وَيَكْرَهُ لَكُمْ ثَلَاثًا: يَرْضَى لَكُمْ أَنْ تَعْبُدوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا، وَأَنْ تَعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا، وَيَكْرَهُ لَكُمْ قِيلَ وَقَالَ، وَكَثْرَةَ السُّؤَالِ، وَإِضَاعَةَ الْمَالِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                হযরত আবু হুরায়রা (রা.) থেকে বর্ণিত, রাসূলুল্লাহ ﷺ বলেছেন: <em>«নিশ্চয়ই আল্লাহ তোমাদের জন্য তিনটি বিষয়ে সন্তুষ্ট হন এবং তিনটি অপছন্দ করেন: তিনি সন্তুষ্ট হন যে তোমরা শুধুমাত্র তাঁরই ইবাদত করবে এবং তাঁর সাথে কোন কিছুকে শরীক করবে না, এবং তোমরা সকলে মিলে আল্লাহর রজ্জুকে দৃঢ়ভাবে আঁকড়ে থাকবে ও বিচ্ছিন্ন হবে না; আর তিনি অপছন্দ করেন অনর্থক কথাবার্তা ও পরচর্চা, অহেতুক অতিরিক্ত প্রশ্ন করা এবং ধনসম্পদ নষ্ট করা।’»</em> (সহীহ মুসলিম)।
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">২. কুরআন ও সুন্নাহকে আঁকড়ে ধরা (আল-হাকিম, আলবানী সহীহ বলেছেন):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنِّي قَدْ خَلَّفْتُ فِيكُمْ شَيْئَيْنِ لَنْ تَضِلُّوا بَعْدَهُمَا أَبَدًا مَا أَخَذْتُمْ بِهِمَا وَعَمِلْتُمْ بِهِمَا: كِتَابَ اللَّهِ وَسُنَّتِي، وَلَنْ يَتَفَرَّقَا حَتَّى يَرِدَا عَلَى الْحَوْضِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                রাসূলুল্লাহ ﷺ বলেছেন: <em>«আমি তোমাদের মাঝে দুটি বস্তু রেখে যাচ্ছি, যতদিন তোমরা তা শক্তভাবে ধারণ করবে ও সে অনুযায়ী আমল করবে, ততদিন তোমরা কখনো পথভ্রষ্ট হবে না: আল্লাহর কিতাব ও আমার সুন্নাহ। এবং এ দুটি কখনই বিচ্ছিন্ন হবে না যতক্ষণ না তারা হাউজে কাউসারে আমার সাথে মিলিত হবে।’»</em>
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] uppercase tracking-wider block mb-1">৩. মুসলিম জামাআতের সাথে থাকা (তিরমিযী, হাসান):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2" dir="rtl">
+                                عَنِ ابْنِ عُمَرَ رضي الله عنهما أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنَّ اللَّهَ لَا يَجْمَعُ أُمَّةَ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَلَى ضَلَالَةٍ، وَيَدُ اللَّهِ مَعَ الْجَمَاعَةِ، وَمَنْ شَذَّ شَذَّ فِي النَّارِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                ইবনে উমর (রা.) বর্ণনা করেন যে, রাসূলুল্লাহ ﷺ বলেছেন: <em>«নিশ্চয়ই আল্লাহ মুহাম্মাদ ﷺ-এর উম্মতকে কোন পথভ্রষ্টতার ওপর একত্রিত করবেন না। আর আল্লাহর হাত জামাআতের ওপর রয়েছে; এবং যে ব্যক্তি জামাআত থেকে বিচ্ছিন্ন হয়, সে জাহান্নামের দিকে বিচ্ছিন্ন হয়।’»</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            ur: `
+                <div class="space-y-6 text-on-surface-variant" dir="rtl">
+                    <div class="bg-[#006233]/10 border-r-4 border-[#006233] p-5 rounded-l-2xl">
+                        <span class="font-['Cairo'] text-xs font-bold uppercase tracking-widest text-[#006233] block mb-2">قرآن مجید • سورۂ آل عمران (آیت 103)</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-3">
+                            ﴿ وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ۚ وَاذْكُرُوا نِعْمَتَ اللَّهِ عَلَيْكُمْ إِذْ كُنتُمْ أَعْدَاءً فَأَلَّفَ بَيْنَ قُلُوبِكُمْ فَأَصْبَحْتُم بِنِعْمَتِهِ إِخْوَانًا وَكُنتُمْ عَلَىٰ شَفَا حُفْرَةٍ مِّنَ النَّارِ فَأَنقَذَكُم مِّنْهَا ۗ كَذَٰلِكَ يُبَيِّنُ اللَّهُ لَكُمْ آيَاتِهِ لَعَلَّكُمْ تَهْتَدُونَ ﴾
+                        </p>
+                        <p class="text-sm italic text-on-surface leading-relaxed font-['Cairo']">
+                            «اور تم سب مل کر اللہ کی رسی کو مضبوطی سے تھام لو اور تفرقہ میں نہ پڑو؛ اور اپنے اوپر اللہ کی اس نعمت کو یاد کرو جب تم ایک دوسرے کے دشمن تھے تو اس نے تمہارے دلوں میں الفت پیدا کر دی، پھر تم اس کے فضل سے بھائی بھائی بن گئے؛ اور تم آگ کے گڑھے کے کنارے پر کھڑے تھے تو اس نے تمہیں اس سے بچا لیا۔ اسی طرح اللہ تمہارے لیے اپنی نشانیاں بیان فرماتا ہے تاکہ تم ہدایت پا جاؤ۔»
+                        </p>
+                        <span class="text-[11px] text-on-surface-variant/80 block mt-2 font-['Cairo']">سورۂ آل عمران: 103 • پارہ 4 • صفحہ 63</span>
+                    </div>
+
+                    <div class="space-y-4 font-['Cairo']">
+                        <h4 class="text-lg font-bold text-on-surface">اعتصام اور لزومِ جماعت پر صحیح احادیثِ نبویہ</h4>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] block mb-1">۱. اللہ تعالیٰ کی پسندیدہ اور ناپسندیدہ باتیں (صحیح مسلم):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا، وَيَكْرَهُ لَكُمْ ثَلَاثًا: يَرْضَى لَكُمْ أَنْ تَعْبُدوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا، وَأَنْ تَعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا، وَيَكْرَهُ لَكُمْ قِيلَ وَقَالَ، وَكَثْرَةَ السُّؤَالِ، وَإِضَاعَةَ الْمَالِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                حضرت ابو ہریرہ رضی اللہ عنہ سے روایت ہے کہ رسول اللہ ﷺ نے فرمایا: <em>«بے شک اللہ تعالیٰ تمہارے لیے تین چیزیں پسند فرماتا ہے اور تین چیزیں ناپسند: وہ پسند کرتا ہے کہ تم صرف اسی کی عبادت کرو اور اس کے ساتھ کسی کو شریک نہ ٹھہراؤ، اور سب مل کر اللہ کی رسی کو مضبوطی سے تھام لو اور تفرقہ بازی نہ کرو؛ اور تمہارے لیے قیل و قال (فضول باتوں)، کثرتِ سوال اور مال ضائع کرنے کو ناپسند فرماتا ہے۔»</em> (صحیح مسلم)۔
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] block mb-1">۲. کتاب اللہ اور سنتِ نبوی کو لازم پکڑنا (الحاکم، علامہ البانی نے صحیح قرار دیا):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2">
+                                عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنِّي قَدْ خَلَّفْتُ فِيكُمْ شَيْئَيْنِ لَنْ تَضِلُّوا بَعْدَهُمَا أَبَدًا مَا أَخَذْتُمْ بِهِمَا وَعَمِلْتُمْ بِهِمَا: كِتَابَ اللَّهِ وَسُنَّتِي، وَلَنْ يَتَفَرَّقَا حَتَّى يَرِدَا عَلَى الْحَوْضِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                رسول اللہ ﷺ نے ارشاد فرمایا: <em>«میں تمہارے درمیان دو ایسی چیزیں چھوڑے جا رہا ہوں کہ اگر تم نے انہیں تھامے رکھا تو کبھی گمراہ نہ ہو گے: اللہ کی کتاب اور میری سنت۔ اور یہ دونوں کبھی جدا نہ ہوں گی یہاں تک کہ حوضِ کوثر پر مجھ سے آ ملیں۔»</em>
+                            </p>
+                        </div>
+
+                        <div class="arabic-hadith-box">
+                            <span class="text-xs font-bold text-[#a87c2b] block mb-1">۳. جماعت کے ساتھ وابستگی (سنن الترمذی، حدیث حسن):</span>
+                            <p class="font-['Amiri'] text-base md:text-lg text-primary text-right mb-2">
+                                عَنِ ابْنِ عُمَرَ رضي الله عنهما أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ: «إِنَّ اللَّهَ لَا يَجْمَعُ أُمَّةَ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَلَى ضَلَالَةٍ، وَيَدُ اللَّهِ مَعَ الْجَمَاعَةِ، وَمَنْ شَذَّ شَذَّ فِي النَّارِ».
+                            </p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">
+                                حضرت ابن عمر رضی اللہ عنہما فرماتے ہیں کہ رسول اللہ ﷺ نے فرمایا: <em>«یقیناً اللہ تعالیٰ امتِ محمدیہ کو گمراہی پر جمع نہیں فرمائے گا۔ جماعت پر اللہ کا دستِ رحمت ہے، اور جو جماعت سے الگ ہوا وہ آگ کی طرف ہی الگ ہوا۔»</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             `
         }
     },
     2: {
-        tag: { es: 'Jutba 2 • Pregunta 8003', ar: 'الخطبة 2 • سؤال 8003' },
+        tag: { 
+            es: 'Jutba 2 • Pregunta 8003', 
+            ar: 'الخطبة 2 • سؤال 8003',
+            fr: 'Khutba 2 • Question 8003',
+            en: 'Khutbah 2 • Question 8003',
+            bn: 'খুতবা ২ • প্রশ্ন ৮০০৩',
+            ur: 'خطبہ ۲ • سوال ۸۰۰۳'
+        },
         badgeClass: 'jutba-badge-fiqh',
-        badge: { es: 'Fiqh y Pureza', ar: 'فقه وطهارة' },
-        title: { es: 'Purificación fuera de casa y la Oración a tiempo', ar: 'الطهارة والاستنجاء خارج البيت وأداء الصلاة في وقتها' },
+        badge: { 
+            es: 'Fiqh y Pureza', 
+            ar: 'فقه وطهارة',
+            fr: 'Fiqh et Pureté',
+            en: 'Fiqh & Purity',
+            bn: 'ফিকহ ও পবিত্রতা',
+            ur: 'فقہ اور طہارت'
+        },
+        title: { 
+            es: 'Purificación fuera de casa y la Oración a tiempo', 
+            ar: 'الطهارة والاستنجاء خارج البيت وأداء الصلاة في وقتها',
+            fr: 'La Purification hors du domicile et la Prière à l\'heure',
+            en: 'Purification Outside Home and Performing Prayer on Time',
+            bn: 'ঘরের বাইরে পবিত্রতা অর্জন এবং সময়মতো সালাত আদায়',
+            ur: 'گھر سے باہر طہارت اور وقت پر نماز کی ادائیگی'
+        },
         content: {
             es: `
                 <div class="space-y-6 text-on-surface-variant">
@@ -1005,14 +1217,207 @@ const jutbaData = {
                         </div>
                     </div>
                 </div>
+            `,
+            fr: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-primary/5 border-l-4 border-primary p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-primary block mb-2">Question de la Communauté • Question 8003</span>
+                        <p class="text-sm md:text-base italic text-on-surface font-medium leading-relaxed">
+                            « Je passe la majeure partie de ma journée à l'école ou au travail et je dois aller aux toilettes. Ne pouvant pas rentrer chez moi pour faire l'istinja avec de l'eau, dois-je faire les ablutions (woudhou) et prier, ou retarder la prière pour la rattraper chez moi ? »
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            Éclaircissement Fiqh
+                        </h4>
+                        <p class="text-sm leading-relaxed">
+                            Louange à Allah, et que la paix et les bénédictions soient sur le Messager d'Allah. Après avoir satisfait ses besoins naturels, le musulman doit enlever l'impureté avec de l'eau (ce qui est le meilleur et le plus parfait), ou avec un moyen propre qui élimine l'impureté comme des mouchoirs en papier propres, du tissu ou des pierres (l'istijmar).
+                        </p>
+
+                        <div class="bg-white/80 p-5 rounded-xl border border-[#a87c2b]/20 space-y-3">
+                            <p class="font-bold text-on-surface text-sm">
+                                Cheikh Ibn Outhaymine (qu'Allah lui fasse miséricorde) a dit : <em>« Après avoir satisfait ses besoins, l'individu accomplit l'un des trois actes suivants :</em>
+                            </p>
+                            <ol class="space-y-3 text-sm list-decimal list-inside pl-2">
+                                <li>
+                                    <strong>Se purifier avec de l'eau (l'Istinja) :</strong> C'est la base pour éliminer les impuretés conformément au hadith d'Anas (qu'Allah l'agrée) dans Al-Boukhari et Muslim.
+                                </li>
+                                <li>
+                                    <strong>Se purifier avec des pierres ou des mouchoirs propres (l'Istijmar) :</strong> C'est suffisant et valide selon la Sunnah, à condition d'effectuer au minimum trois passages purificateurs.
+                                </li>
+                                <li>
+                                    <strong>Combiner l'istijmar (mouchoirs) puis l'eau :</strong> C'est le plus efficace et complet pour la propreté.
+                                </li>
+                            </ol>
+                            <p class="text-xs text-[#a87c2b] font-semibold mt-2">(Ash-Sharh Al-Mumti', 1/103-105)</p>
+                        </div>
+
+                        <div class="bg-amber-500/10 p-5 rounded-xl border border-amber-500/30">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">Conclusion et Règle :</h5>
+                            <p class="text-sm leading-relaxed">
+                                Par conséquent, <strong>vous n'avez aucune excuse pour retarder la prière au-delà de son temps prescrit</strong> sous prétexte de ne pas disposer d'eau pour l'istinja. Il vous suffit d'enlever l'impureté avec du papier hygiénique ou des mouchoirs propres, puis de faire vos ablutions (woudhou) au lavabo et de prier à l'heure. <strong>La prière prescrite ne doit jamais être reportée hors de son intervalle.</strong>
+                            </p>
+                            <p class="text-xs font-semibold text-primary mt-3">Et Allah sait mieux.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            en: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-primary/5 border-l-4 border-primary p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-primary block mb-2">Community Inquiry • Question 8003</span>
+                        <p class="text-sm md:text-base italic text-on-surface font-medium leading-relaxed">
+                            « I spend most of my day at school or work and need to use the restroom. Since I cannot return home to perform istinja with water, should I perform wudu and pray on time, or delay the prayer to make it up later at home? »
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            The Ruling & Explanation
+                        </h4>
+                        <p class="text-sm leading-relaxed">
+                            Praise be to Allah, and peace and blessings be upon the Messenger of Allah. After answering the call of nature, a person must clean the impurity with water—which is best and most complete—or with clean materials that remove it, such as clean toilet paper, tissues, or stones (istijmar).
+                        </p>
+
+                        <div class="bg-white/80 p-5 rounded-xl border border-[#a87c2b]/20 space-y-3">
+                            <p class="font-bold text-on-surface text-sm">
+                                Sheikh Ibn 'Uthaymeen (may Allah have mercy on him) stated: <em>“After answering the call of nature, a person does one of three things:</em>
+                            </p>
+                            <ol class="space-y-3 text-sm list-decimal list-inside pl-2">
+                                <li>
+                                    <strong>Purifying with water (Istinja):</strong> This is the primary method to remove physical impurities according to the authentic hadith of Anas in Bukhari and Muslim.
+                                </li>
+                                <li>
+                                    <strong>Purifying with stones or clean paper (Istijmar):</strong> Doing istijmar with clean paper or tissues is completely valid and sufficient under Islamic law, requiring at least three thorough wipes.
+                                </li>
+                                <li>
+                                    <strong>Combining both (paper first, then water):</strong> This is undeniably the cleanest method when both are available.
+                                </li>
+                            </ol>
+                            <p class="text-xs text-[#a87c2b] font-semibold mt-2">(Ash-Sharh Al-Mumti', 1/103-105)</p>
+                        </div>
+
+                        <div class="bg-amber-500/10 p-5 rounded-xl border border-amber-500/30">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">Conclusion & Ruling:</h5>
+                            <p class="text-sm leading-relaxed">
+                                Based on this, <strong>there is no valid excuse to miss or delay the prayer beyond its prescribed time</strong> due to an inability to perform istinja with water. Simply clean the impurity using clean tissues, perform standard wudu at the washbasin, and pray on time. <strong>Delaying prayer past its set time is strictly impermissible.</strong>
+                            </p>
+                            <p class="text-xs font-semibold text-primary mt-3">And Allah knows best.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            bn: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-primary/5 border-l-4 border-primary p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-primary block mb-2">কমিউনিটি জিজ্ঞাসা • প্রশ্ন ৮০০৩</span>
+                        <p class="text-sm md:text-base italic text-on-surface font-medium leading-relaxed">
+                            «আমি দিনের অধিকাংশ সময় স্কুল বা কর্মক্ষেত্রে থাকি এবং বাথরুমে যেতে হয়। পানি দিয়ে ইস্তিঞ্জা করতে বাসায় যাওয়া সম্ভব হয় না। এক্ষেত্রে আমি কি ওযু করে সময়মতো সালাত আদায় করব, নাকি সালাত কাজা করে বাসায় ফিরে পড়ব?»
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            শরয়ী সমাধান ও ফতোয়া
+                        </h4>
+                        <p class="text-sm leading-relaxed">
+                            সকল প্রশংসা আল্লাহর জন্য, এবং সালাত ও সালাম রাসূলুল্লাহ ﷺ-এর ওপর। প্রাকৃতিক প্রয়োজন সারার পর পানি দিয়ে নাপাকী দূর করা সবচেয়ে উত্তম ও পূর্ণাঙ্গ। তবে পানি না থাকলে বা সহজলভ্য না হলে পবিত্র টিস্যু পেপার, কাপড় বা পাথর দিয়ে নাপাকী দূর করাও (ইস্তিজমার) সম্পূর্ণ বৈধ ও যথেষ্ট।
+                        </p>
+
+                        <div class="bg-white/80 p-5 rounded-xl border border-[#a87c2b]/20 space-y-3">
+                            <p class="font-bold text-on-surface text-sm">
+                                শায়খ ইবনে উসাইমীন (রহ.) বলেন: <em>«প্রাকৃতিক প্রয়োজন পূরণের পর একজন ব্যক্তি তিনটি পদ্ধতির যেকোনো একটি গ্রহণ করতে পারে:</em>
+                            </p>
+                            <ol class="space-y-3 text-sm list-decimal list-inside pl-2">
+                                <li>
+                                    <strong>পানি দিয়ে পবিত্রতা অর্জন (ইস্তিঞ্জা):</strong> এটি নাপাকী দূর করার মূল ভিত্তি, যেমনটি আনাস (রা.)-এর সূত্রে বুখারী ও মুসলিমের হাদীসে বর্ণিত হয়েছে।
+                                </li>
+                                <li>
+                                    <strong>পবিত্র টিস্যু বা পাথর দিয়ে নাপাকী দূর করা (ইস্তিজমার):</strong> পরিষ্কার টিস্যু দিয়ে অন্তত তিনবার উত্তমরূপে মোছা যথেষ্ট এবং শরীয়তসম্মত।
+                                </li>
+                                <li>
+                                    <strong>টিস্যু ও পানি উভয়টি ব্যবহার করা:</strong> এটি অধিকতর পরিষ্কার-পরিচ্ছন্নতা নিশ্চিত করে।
+                                </li>
+                            </ol>
+                            <p class="text-xs text-[#a87c2b] font-semibold mt-2">(আশ-শারহুল মুমতি ১/১০৩-১০৫)</p>
+                        </div>
+
+                        <div class="bg-amber-500/10 p-5 rounded-xl border border-amber-500/30">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">সিদ্ধান্ত ও নির্দেশনা:</h5>
+                            <p class="text-sm leading-relaxed">
+                                অতএব, <strong>পানি নেই—এই অজুহাতে সালাত দেরি করা বা নির্ধারিত সময় পার করে দেওয়া কোনোভাবেই বৈধ নয়।</strong> আপনি পবিত্র টিস্যু দিয়ে নাপাকী পরিষ্কার করে বেসিনে স্বাভাবিক ওযু করে স্কুল বা কর্মস্থলে যথাসময়ে সালাত আদায় করবেন। <strong>ওয়াক্ত পার করে সালাত পড়া গুরুতর গুনাহ।</strong>
+                            </p>
+                            <p class="text-xs font-semibold text-primary mt-3">আল্লাহই সর্বাধিক অবগত।</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            ur: `
+                <div class="space-y-6 text-on-surface-variant" dir="rtl">
+                    <div class="bg-primary/5 border-r-4 border-primary p-5 rounded-l-2xl">
+                        <span class="font-['Cairo'] text-xs font-bold uppercase tracking-widest text-primary block mb-2">سوال نمبر 8003</span>
+                        <p class="text-sm md:text-base font-semibold text-on-surface leading-relaxed font-['Cairo']">
+                            «میں اپنے دن کا بیشتر حصہ اسکول یا ملازمت پر گزارتا ہوں اور بیت الخلاء کی ضرورت پیش آتی ہے۔ پانی سے استنجاء کرنے کے لیے گھر جانا ممکن نہیں، تو کیا میں وضو کر کے وقت پر نماز پڑھوں یا گھر واپس جا کر قضا کروں؟»
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 font-['Cairo']">
+                        <h4 class="text-lg font-bold text-on-surface">شرعی فتویٰ اور وضاحت</h4>
+                        <p class="text-sm leading-relaxed">
+                            الحمد للہ، والصلاۃ والسلام علی رسول اللہ۔ قضاءِ حاجت کے بعد نجاست کو پانی سے دور کرنا افضل اور اکمل طریقہ ہے، لیکن اگر پانی میسر نہ ہو تو پاک ٹشو پیپر، کپڑے یا ڈھیلے وغیرہ سے نجاست زائل کرنا (استجمار) بھی مکمل طور پر جائز اور شرعاً کافی ہے۔
+                        </p>
+
+                        <div class="bg-white/80 p-5 rounded-xl border border-[#a87c2b]/20 space-y-3">
+                            <p class="font-bold text-on-surface text-sm">
+                                شیخ ابن عثیمین رحمہ اللہ فرماتے ہیں: <em>«قضاءِ حاجت کے بعد انسان تین میں سے کوئی ایک طریقہ اختیار کر سکتا ہے:</em>
+                            </p>
+                            <ol class="space-y-2 text-sm list-decimal list-inside pr-2 leading-relaxed">
+                                <li><strong>پانی سے طہارت (استنجاء):</strong> یہ اصل ہے جیسا کہ حضرت انس رضی اللہ عنہ کی حدیث سے صحیحین میں ثابت ہے۔</li>
+                                <li><strong>پاک ٹشو پیپر یا ڈھیلے سے استجمار:</strong> کم از کم تین بار اچھی طرح صاف کرنا شرعاً جائز اور نماز کے لیے بالکل کافی ہے۔</li>
+                                <li><strong>ٹشو پیپر اور پانی دونوں کا استعمال:</strong> یہ صفائی کے اعتبار سے سب سے کامل ہے۔</li>
+                            </ol>
+                            <p class="text-xs text-[#a87c2b] font-semibold mt-1">(الشرح الممتع 1/103-105)</p>
+                        </div>
+
+                        <div class="bg-amber-500/10 p-5 rounded-xl border border-amber-500/30">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">حتمی حکم اور رہنمائی:</h5>
+                            <p class="text-sm leading-relaxed">
+                                پس معلوم ہوا کہ <strong>پانی نہ ملنے کے بہانے نماز کو اس کے وقت سے مؤخر کرنا ہرگز جائز نہیں ہے۔</strong> پاک ٹشو سے استجمار کر کے بیسن پر وضو کریں اور وقت پر اسکول یا دفتر میں نماز ادا کریں۔ <strong>نماز کو اس کے مقررہ وقت سے نکالنا ممنوع ہے۔</strong>
+                            </p>
+                            <p class="text-xs font-bold text-primary mt-2">واللہ اعلم۔</p>
+                        </div>
+                    </div>
+                </div>
             `
         }
     },
     3: {
-        tag: { es: 'Jutba 3 • Derechos y Propiedad', ar: 'الخطبة 3 • حقوق العباد' },
+        tag: { 
+            es: 'Jutba 3 • Derechos y Propiedad', 
+            ar: 'الخطبة 3 • حقوق العباد',
+            fr: 'Khutba 3 • Droits et Propriété',
+            en: 'Khutbah 3 • Rights & Property',
+            bn: 'খুতবা ৩ • অধিকার ও সম্পত্তি',
+            ur: 'خطبہ ۳ • حقوق العباد'
+        },
         badgeClass: 'jutba-badge-ethics',
-        badge: { es: 'Ética y Justicia', ar: 'حقوق وأخلاق' },
-        title: { es: 'El Respeto a los Límites y la Propiedad Ajena', ar: 'حرمة التعدي على حقوق الآخرين وحدود الأرض' },
+        badge: { 
+            es: 'Ética y Justicia', 
+            ar: 'حقوق وأخلاق',
+            fr: 'Éthique et Justice',
+            en: 'Ethics & Justice',
+            bn: 'নৈতিকতা ও ন্যায়বিচার',
+            ur: 'اخلاقیات اور انصاف'
+        },
+        title: { 
+            es: 'El Respeto a los Límites y la Propiedad Ajena', 
+            ar: 'حرمة التعدي على حقوق الآخرين وحدود الأرض',
+            fr: 'Le Respect des Limites et de la Propriété d\'Autrui',
+            en: 'Respecting Property Boundaries and Inviolability of Rights',
+            bn: 'ভূমির সীমানা পরিবর্তন ও অন্যের অধিকারের প্রতি সম্মান',
+            ur: 'زمین کی حدود تبدیل کرنے کی ممانعت اور حقوق العباد'
+        },
         content: {
             es: `
                 <div class="space-y-6 text-on-surface-variant">
@@ -1086,6 +1491,160 @@ const jutbaData = {
                         </div>
                     </div>
                 </div>
+            `,
+            fr: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-[#C1272D]/10 border-l-4 border-[#C1272D] p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-[#C1272D] block mb-2">Hadith Prophétique • Sahih Muslim</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-2" dir="rtl">
+                            قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «لَعَنَ اللَّهُ مَنْ غَيَّرَ مَنَارَ الْأَرْضِ»
+                        </p>
+                        <p class="text-base font-bold text-on-surface">
+                            Le Prophète Muhammad ﷺ a dit : « Qu'Allah maudisse quiconque modifie les bornes de la terre. »
+                        </p>
+                        <span class="text-xs text-on-surface-variant/80 block mt-1">(Rapporté par Muslim)</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            Sens et Enseignements
+                        </h4>
+                        
+                        <div class="space-y-3 text-sm leading-relaxed">
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• « Qu'Allah maudisse » :</strong> Indique que cet acte fait partie des péchés majeurs (Kabira), car la malédiction divine signifie l'éloignement de la miséricorde d'Allah.
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• « Les bornes de la terre » :</strong> Ce sont les repères, pierres ou limites physiques séparant les propriétés et les terres des gens.
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• « Modifier les bornes » :</strong> Signifie déplacer, reculer ou avancer ces repères dans le but d'usurper injustement la terre de son voisin ou de s'approprier un droit illégitime.
+                            </div>
+                        </div>
+
+                        <div class="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">Enseignement Prophétique :</h5>
+                            <p class="text-sm leading-relaxed">
+                                Ce hadith affirme avec vigueur le caractère sacré des biens d'autrui et condamne sévèrement toute atteinte aux droits des voisins. L'injustice est ténèbres le Jour du Jugement dernier.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            en: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-[#C1272D]/10 border-l-4 border-[#C1272D] p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-[#C1272D] block mb-2">Prophetic Hadith • Sahih Muslim</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-2" dir="rtl">
+                            قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «لَعَنَ اللَّهُ مَنْ غَيَّرَ مَنَارَ الْأَرْضِ»
+                        </p>
+                        <p class="text-base font-bold text-on-surface">
+                            The Prophet Muhammad ﷺ said: «May Allah curse the one who alters the boundary markers of the land.»
+                        </p>
+                        <span class="text-xs text-on-surface-variant/80 block mt-1">(Sahih Muslim)</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            Meaning & Commentary
+                        </h4>
+                        
+                        <div class="space-y-3 text-sm leading-relaxed">
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «May Allah curse»:</strong> Indicates that this is a major sin (Kabirah), as divine curse implies being cast out from the mercy of Allah.
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «Boundary markers of the land»:</strong> The stones, signs, or landmarks that delineate the boundaries between properties.
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «Altering boundary markers»:</strong> Moving, displacing, or destroying markers to unlawfully usurp part of a neighbor's property or land.
+                            </div>
+                        </div>
+
+                        <div class="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">Prophetic Moral:</h5>
+                            <p class="text-sm leading-relaxed">
+                                This hadith establishes the sanctity of personal property in Islam, strictly prohibiting any encroachment upon neighbors' rights or fraudulent acquisition of wealth. Injustice leads to severe darkness on the Day of Resurrection.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            bn: `
+                <div class="space-y-6 text-on-surface-variant">
+                    <div class="bg-[#C1272D]/10 border-l-4 border-[#C1272D] p-5 rounded-r-2xl">
+                        <span class="font-['Outfit'] text-xs font-bold uppercase tracking-widest text-[#C1272D] block mb-2">হাদীস শরীফ • সহীহ মুসলিম</span>
+                        <p class="font-['Amiri'] text-xl text-primary font-semibold leading-loose text-right mb-2" dir="rtl">
+                            قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «لَعَنَ اللَّهُ مَنْ غَيَّرَ مَنَارَ الْأَرْضِ»
+                        </p>
+                        <p class="text-base font-bold text-on-surface">
+                            রাসূলুল্লাহ ﷺ বলেছেন: «যে ব্যক্তি জমিনের সীমানা পরিবর্তন করে, তার ওপর আল্লাহর অভিশাপ।’»
+                        </p>
+                        <span class="text-xs text-on-surface-variant/80 block mt-1">(সহীহ মুসলিম)</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-['Outfit'] text-lg font-bold text-on-surface uppercase tracking-wide">
+                            হাদীসের অর্থ ও ব্যাখ্যা
+                        </h4>
+                        
+                        <div class="space-y-3 text-sm leading-relaxed">
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «আল্লাহর অভিশাপ»:</strong> এটি প্রমাণ করে যে কাজটি কবীরাহ গুনাহসমূহের অন্তর্ভুক্ত, কারণ অভিশাপ অর্থ আল্লাহর রহমত থেকে বহিষ্কৃত হওয়া।
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «জমিনের সীমানা»:</strong> মানুষের ব্যক্তিগত সম্পত্তি ও ভূমির বিভাজন নির্দেশকারী চিহ্ন, সীমানা খুঁটি বা প্রাচীর।
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «সীমানা পরিবর্তন করা»:</strong> অন্যের জমি আত্মসাৎ বা প্রতিবেশীর অধিকার হরণের উদ্দেশ্যে অসদুপায়ে সীমানা এগিয়ে বা পিছিয়ে দেওয়া।
+                            </div>
+                        </div>
+
+                        <div class="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">নববী নির্দেশনা:</h5>
+                            <p class="text-sm leading-relaxed">
+                                এই হাদীসটি অন্যের সম্পদের পবিত্রতা এবং প্রতিবেশীর অধিকারের প্রতি কঠোর নির্দেশ দেয়। অন্যায়ভাবে অন্যের অধিকার বা জমি গ্রাস করা কিয়ামতের দিন চরম অন্ধকারের কারণ হবে।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            ur: `
+                <div class="space-y-6 text-on-surface-variant" dir="rtl">
+                    <div class="bg-[#C1272D]/10 border-r-4 border-[#C1272D] p-5 rounded-l-2xl">
+                        <span class="font-['Cairo'] text-xs font-bold uppercase tracking-widest text-[#C1272D] block mb-2">حدیث نبوی • صحیح مسلم</span>
+                        <p class="font-['Amiri'] text-2xl text-primary font-bold leading-loose mb-2">
+                            قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: «لَعَنَ اللَّهُ مَنْ غَيَّرَ مَنَارَ الْأَرْضِ»
+                        </p>
+                        <p class="text-base font-bold text-on-surface font-['Cairo']">
+                            رسول اللہ ﷺ نے ارشاد فرمایا: «اللہ تعالیٰ کی لعنت ہو اس پر جو زمین کے نشانات و حدود کو تبدیل کرے۔»
+                        </p>
+                        <span class="text-xs text-on-surface-variant font-['Cairo'] block mt-1">(صحیح مسلم)</span>
+                    </div>
+
+                    <div class="space-y-4 font-['Cairo']">
+                        <h4 class="text-lg font-bold text-on-surface">حدیث کے مفاہیم اور احکام</h4>
+
+                        <div class="space-y-3 text-sm leading-relaxed">
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «اللہ کی لعنت»:</strong> اس سے مراد یہ ہے کہ یہ عمل گناہِ کبیرہ ہے، کیونکہ لعنت کا مطلب اللہ کی رحمت سے دوری ہے۔
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «منار الارض (زمین کے نشانات)»:</strong> وہ علامات، پتھر اور حدود ہیں جو لوگوں کی اراضی اور جائیدادوں کو الگ کرتی ہیں۔
+                            </div>
+                            <div class="p-3 bg-white/70 rounded-xl border border-black/5">
+                                <strong class="text-on-surface">• «حدود تبدیل کرنا»:</strong> یعنی پڑوسی کی زمین پر ناحق قبضہ کرنے یا دوسروں کے حقوق دبانے کے لیے ان نشانات کو آگے پیچھے کرنا۔
+                            </div>
+                        </div>
+
+                        <div class="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                            <h5 class="font-bold text-on-surface text-sm mb-2">نبوی رہنمائی:</h5>
+                            <p class="text-sm leading-relaxed">
+                                یہ حدیث مبارکہ لوگوں کے اموال اور اراضی کے احترام کا قطعی حکم دیتی ہے اور پڑوسی کے حقوق پر ڈاکہ ڈالنے کی سخت مذمت کرتی ہے۔ ظلم قیامت کے دن اندھیریوں کا سبب بنے گا۔
+                            </p>
+                        </div>
+                    </div>
+                </div>
             `
         }
     }
@@ -1119,6 +1678,7 @@ function initJutbaReader() {
         if (modalContent) {
             modalContent.innerHTML = item.content[lang] || item.content.es;
             modalContent.scrollTop = 0;
+            modalContent.setAttribute('dir', (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr');
         }
 
         modal.classList.add('active');
@@ -1169,5 +1729,73 @@ function initJutbaReader() {
 document.addEventListener('DOMContentLoaded', initJutbaReader);
 initJutbaReader();
 
+// --- Jutba Horizontal Carousel Controller ---
+function initJutbaCarousel() {
+    const track = document.getElementById('jutba-carousel-track');
+    const prevBtn = document.getElementById('jutba-prev-btn');
+    const nextBtn = document.getElementById('jutba-next-btn');
+    const dots = document.querySelectorAll('.jutba-dot');
 
+    if (!track) return;
+
+    function getCardWidth() {
+        const firstCard = track.querySelector('.jutba-card');
+        return firstCard ? (firstCard.offsetWidth + 24) : 480;
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const isRTL = (typeof currentLang !== 'undefined' && (currentLang === 'ar' || currentLang === 'ur'));
+            const direction = isRTL ? 1 : -1;
+            track.scrollBy({ left: direction * getCardWidth(), behavior: 'smooth' });
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const isRTL = (typeof currentLang !== 'undefined' && (currentLang === 'ar' || currentLang === 'ur'));
+            const direction = isRTL ? -1 : 1;
+            track.scrollBy({ left: direction * getCardWidth(), behavior: 'smooth' });
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            const cards = track.querySelectorAll('.jutba-card');
+            if (cards[index]) {
+                cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+        });
+    });
+
+    // Update active dot indicator on scroll
+    track.addEventListener('scroll', () => {
+        const cards = track.querySelectorAll('.jutba-card');
+        if (cards.length === 0) return;
+        
+        let activeIdx = 0;
+        let minDistance = Infinity;
+        const trackCenter = track.getBoundingClientRect().left + track.offsetWidth / 2;
+
+        cards.forEach((card, idx) => {
+            const cardCenter = card.getBoundingClientRect().left + card.offsetWidth / 2;
+            const dist = Math.abs(cardCenter - trackCenter);
+            if (dist < minDistance) {
+                minDistance = dist;
+                activeIdx = idx;
+            }
+        });
+
+        dots.forEach((dot, idx) => {
+            if (idx === activeIdx) {
+                dot.className = 'w-3.5 h-3.5 rounded-full bg-primary transition-all duration-300 jutba-dot';
+            } else {
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-primary/30 hover:bg-primary/60 transition-all duration-300 jutba-dot';
+            }
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initJutbaCarousel);
+initJutbaCarousel();
 
