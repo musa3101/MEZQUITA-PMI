@@ -8,12 +8,14 @@ const translations = {
         'nav.donate': 'Donar',
         'nav.support': 'Apoya la Mezquita',
         'nav.ramadan': 'Ramadán',
+        'nav.khutba': 'Jutba del Viernes',
         
         // Hero 1
         'hero.title': 'Mezquita Arrahma',
         'hero.subtitle': 'Un espacio de paz, adoración y comunidad en Palma de Mallorca',
         'hero.cta': 'Ver horarios de rezos',
         'hero.quran': 'Leer y Escuchar el Corán',
+        'hero.quran_cta': 'Leer Corán gratis',
         
         // Hero 2
         'hero2.title': 'Una Comunidad Viva',
@@ -33,6 +35,13 @@ const translations = {
         'prayer.remaining': 'Faltan',
         'prayer.download_monthly': 'Descargar horario del mes',
         'prayer.download_month': 'Descargar horario del mes',
+        'prayer.download_ramadan': 'Horario Especial Ramadán',
+        'prayer.days': 'Días',
+        'prayer.hrs': 'h',
+        'prayer.min': 'min',
+        'prayer.mins': 'Min',
+        'prayer.sec': 'seg',
+        'prayer.secs': 'Seg',
         
         // Imam
         'imam.title': 'Consulta al Imán',
@@ -186,7 +195,48 @@ const translations = {
         'ramadan.isha': 'Isha',
         'ramadan.placeholder_title': 'El horario estará disponible pronto',
         'ramadan.placeholder_desc': 'El calendario detallado de los 30 días aparecerá aquí de forma automática una vez que comience el mes bendito de Ramadán.',
-        'ramadan.notice': '* Los horarios son calculados según la posición del sol para Palma de Mallorca. Durante el mes de Ramadán es recomendable dejar un margen de precaución para el inicio y ruptura del ayuno.'
+        'ramadan.notice': '* Los horarios son calculados según la posición del sol para Palma de Mallorca. Durante el mes de Ramadán es recomendable dejar un margen de precaución para el inicio y ruptura del ayuno.',
+
+        // Khutba / Enseñanzas del Imán
+        // Prayer extra
+        'prayer.synced': 'Sincronizado con Mawaqit',
+        'prayer.now': '● Ahora',
+        'prayer.today': 'Horarios de hoy',
+        'prayer.fajr': 'Fajr',
+        'prayer.shuruq': 'Shuruq',
+        'prayer.dhuhr': 'Dhuhr',
+        'prayer.asr': 'Asr',
+        'prayer.maghrib': 'Maghrib',
+        'prayer.isha': 'Isha',
+        'khutba.eyebrow': 'Orientación y Sermones del Imán',
+        'khutba.title': 'Enseñanzas de la Jutba',
+        'khutba.subtitle': 'Reflexiones, respuestas a dudas religiosas y enseñanzas prácticas que el Imán Yusuf comparte los viernes con nuestra comunidad.',
+        'khutba.btn_read': 'Leer Jutba Completa',
+        'khutba.badge_unity': 'Unidad y Sunnah',
+        'khutba.badge_fiqh': 'Fiqh y Pureza',
+        'khutba.badge_ethics': 'Ética y Justicia',
+        'khutba.c1_tag': 'Jutba 1 • Al-I\'tisam',
+        'khutba.c1_title': 'La Unión de la Comunidad y Aferrarse a la Guía',
+        'khutba.c1_sub': 'Aferrarse al Corán y a la Sunnah y evitar la división',
+        'khutba.c1_desc': '«Y aferraos a la cuerda de Alá todos juntos y no os dividáis...» Los mandatos que complacen a Alá y la promesa de no extraviarse jamás siguiendo el Corán y la Sunnah.',
+        'khutba.c2_tag': 'Jutba 2 • Pregunta 8003',
+        'khutba.c2_title': 'Purificación fuera de casa y la Oración a tiempo',
+        'khutba.c2_sub': '¿Cómo actuar en el colegio o empleo si no dispones de agua para Istinyah?',
+        'khutba.c2_desc': 'La duda de un creyente que pasa el día fuera: ¿debe hacer wudú y rezar o retrasar el rezo? La explicación del Sheij Ibn \'Uzaimin sobre el Istimyár y la estricta obligación de rezar a su hora.',
+        'khutba.c3_tag': 'Jutba 3 • Derechos y Propiedad',
+        'khutba.c3_title': 'El Respeto a los Límites y la Propiedad Ajena',
+        'khutba.c3_sub': 'La gravedad de alterar linderos o usurpar derechos ajenos',
+        'khutba.c3_desc': '«Que Allah maldiga a quien altere los límites de la tierra.» El Islam protege los derechos de propiedad y advierte con severidad contra toda injusticia territorial.',
+        'khutba.jumuah_badge': 'Jumu\'ah • الجمعة',
+        'khutba.c1_verse': '﴿ وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ﴾',
+        'khutba.c1_verse_ref': 'Surah Al-Imran: 103',
+        'khutba.c1_source': 'Sahih Muslim',
+        'khutba.c2_quote': '«Normalmente paso la mayor parte del día en el colegio y tengo que ir al baño. Ya que no puedo ir hasta mi casa para hacer istinyah, ¿debo hacer el wudú y rezar o debo perderme la oración y recuperarla más tarde?»',
+        'khutba.c2_ref': 'Ash-Sharh Al Mumti\' 1/103',
+        'khutba.c3_hadith': '«Que Allah maldiga a quien altere los límites de la tierra.»',
+        'khutba.c3_source': 'Sahih Muslim',
+        'khutba.modal_close': 'Cerrar lectura',
+        'khutba.modal_source': 'Compartido por el Imán Yusuf • Mezquita Arrahma'
     },
     ar: {
         // Navigation
@@ -197,12 +247,14 @@ const translations = {
         'nav.donate': 'تبرع',
         'nav.support': 'ادعم المسجد',
         'nav.ramadan': 'رمضان',
+        'nav.khutba': 'خطبة الجمعة',
         
         // Hero 1
         'hero.title': 'المركز الإسلامي الرحمة',
         'hero.subtitle': 'مساحة للسلام والعبادة والمجتمع في بالما دي مايوركا',
         'hero.cta': 'عرض مواقيت الصلاة',
         'hero.quran': 'قراءة واستماع للقرآن',
+        'hero.quran_cta': 'قراءة القرآن الكريم',
         
         // Hero 2
         'hero2.title': 'مجتمع حي',
@@ -223,10 +275,25 @@ const translations = {
         'prayer.today': 'مواقيت اليوم',
         'prayer.download_monthly': 'تحميل جدول الشهر',
         'prayer.download_month': 'تحميل جدول الشهر',
+        'prayer.download_ramadan': 'جدول رمضان الخاص',
+        'prayer.days': 'أيام',
+        'prayer.hrs': 'س',
+        'prayer.min': 'د',
+        'prayer.mins': 'دقيقة',
+        'prayer.sec': 'ث',
+        'prayer.secs': 'ثانية',
+        'prayer.synced': 'متزامن مع مواقيت',
+        'prayer.now': '● الآن',
+        'prayer.fajr': 'الفجر',
+        'prayer.shuruq': 'الشروق',
+        'prayer.dhuhr': 'الظهر',
+        'prayer.asr': 'العصر',
+        'prayer.maghrib': 'المغرب',
+        'prayer.isha': 'العشاء',
         
         // Imam
         'imam.title': 'اسأل الإمام',
-        'imam.desc': 'الإمام متاح لإرشادك في الأمور الدينية، أو الاستشارات الأserية، أو أي استفسارات حول الإسلام.',
+        'imam.desc': 'الإمام متاح لإرشادك في الأمور الدينية، أو الاستشارات الأسرية، أو أي استفسارات حول الإسلام.',
         'imam.subtitle': 'بيتك الروحي في مايوركا',
         'imam.section_title': 'مساحة للاستماع والتوجيه',
         'imam.section_desc': 'إمامنا متواجد دائمًا لمرافقتك وتقديم التوجيه لك، أو ببساطة ليوفر لك مساحة آمنة للاستماع إليك بسرية تامة. باب مفتوح دائمًا لك ولعائلتك.',
@@ -291,10 +358,6 @@ const translations = {
         'cookie.accept_btn': 'قبول ومتابعة',
 
         // Additional translations
-        'prayer.days': 'أيام',
-        'prayer.hrs': 'ساعات',
-        'prayer.mins': 'دقيقة',
-        'prayer.secs': 'ثانية',
         'wa.title': 'استشارة عبر الواتساب',
         'wa.desc': 'اختر موضوع استشارتك:',
         'wa.opt1': 'سؤال ديني (فتوى)',
@@ -376,14 +439,54 @@ const translations = {
         'ramadan.isha': 'العشاء',
         'ramadan.placeholder_title': 'سيتوفر الجدول قريباً',
         'ramadan.placeholder_desc': 'سيظهر تقويم الـ 30 يوماً المفصل هنا تلقائياً بمجرد بدء شهر رمضان المبارك.',
-        'ramadan.notice': '* يتم حساب المواقيت بناءً على موقع الشمس في بالما دي مايوركا. خلال شهر رمضان، يوصى بترك هامش احتياطي لبدء الصيام والإفطار.'
+        'ramadan.notice': '* يتم حساب المواقيت بناءً على موقع الشمس في بالما دي مايوركا. خلال شهر رمضان، يوصى بترك هامش احتياطي لبدء الصيام والإفطار.',
+
+        // Khutba / خطب الجمعة ودروس الإمام
+        'khutba.eyebrow': 'توجيهات وخطب الإمام',
+        'khutba.title': 'دروس وخطب الجمعة',
+        'khutba.subtitle': 'تأملات أسبوعية وإجابات فقهية وتوجيهات يشاركها الإمام يوسف في خطب الجمعة لترشيد وتوجيه مجتمعنا.',
+        'khutba.btn_read': 'اقرأ الخطبة كاملة',
+        'khutba.badge_unity': 'الاعتصام والجماعة',
+        'khutba.badge_fiqh': 'فقه وطهارة',
+        'khutba.badge_ethics': 'حقوق وأخلاق',
+        'khutba.c1_tag': 'الخطبة 1 • الاعتصام',
+        'khutba.c1_title': 'الاعتصام بكتاب الله وسنة نبيه ولزوم الجماعة',
+        'khutba.c1_sub': 'التمسك بالوحي والتحذير من الفرقة والتنازع',
+        'khutba.c1_desc': '﴿وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا﴾. الأحاديث الصحيحة في رضا الله بالاعتصام والأمان من الضلال بالتمسك بالقرآن والسنة ولزوم جماعة المسلمين.',
+        'khutba.c2_tag': 'الخطبة 2 • سؤال 8003',
+        'khutba.c2_title': 'الطهارة والاستنجاء خارج البيت وأداء الصلاة في وقتها',
+        'khutba.c2_sub': 'كيف يتصرف المسلم في مدرسته أو مكان عمله لأداء الصلاة؟',
+        'khutba.c2_desc': 'بيان الشيخ ابن عثيمين لجواز الاستجمار بالمناديل الطاهرة والوضوء، والتأكيد الحاسم على تحريم تأخير الصلاة عن وقتها بحجة عدم تيسر الماء للاستنجاء.',
+        'khutba.c3_tag': 'الخطبة 3 • حقوق العباد',
+        'khutba.c3_title': 'حرمة التعدي على حقوق الآخرين وحدود الأرض',
+        'khutba.c3_sub': 'عقوبة تغيير المنار واغتصاب الأملاك والأراضي دون حق',
+        'khutba.c3_desc': 'قال النبي ﷺ: «لعن الله من غير منار الأرض». حماية الإسلام لحقوق الملكية وتجريم أي محاولة للاستيلاء على أراضي الآخرين أو تغيير معالمها.',
+        'khutba.jumuah_badge': 'الجمعة • Jumu\'ah',
+        'khutba.c1_verse': '﴿ وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا ﴾',
+        'khutba.c1_verse_ref': 'سورة آل عمران: 103',
+        'khutba.c1_source': 'صحيح مسلم',
+        'khutba.c2_quote': '«أقضي معظم يومي في المدرسة أو العمل وأحتاج لدخول الخلاء، ولا أستطيع العودة إلى بيتي للاستنجاء بالماء. فهل أتوضأ وأصلي أم أؤخر الصلاة حتى أعود للمنزل؟»',
+        'khutba.c2_ref': 'الشرح الممتع 1/103',
+        'khutba.c3_hadith': '«لعن الله من غير منار الأرض»',
+        'khutba.c3_source': 'صحيح مسلم',
+        'khutba.modal_close': 'إغلاق القراءة',
+        'khutba.modal_source': 'من خطب وتوجيهات الإمام يوسف • مسجد الرحمة'
     }
 };
 
-let currentLang = 'es';
+const savedLang = (typeof localStorage !== 'undefined' && localStorage.getItem('arrahma_language')) || 'es';
+let currentLang = savedLang;
 
 function setLanguage(lang) {
     currentLang = lang;
+    try {
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('arrahma_language', lang);
+        }
+    } catch (e) {
+        console.warn('localStorage not available', e);
+    }
+
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
@@ -398,6 +501,8 @@ function setLanguage(lang) {
             }
         }
     });
+
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
 function toggleLanguage() {
@@ -409,6 +514,13 @@ function toggleLanguage() {
 document.addEventListener('DOMContentLoaded', () => {
     const langBtns = document.querySelectorAll('.lang-toggle-btn');
     langBtns.forEach(btn => {
-        btn.addEventListener('click', toggleLanguage);
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleLanguage();
+        });
     });
+
+    if (savedLang === 'ar') {
+        setLanguage('ar');
+    }
 });

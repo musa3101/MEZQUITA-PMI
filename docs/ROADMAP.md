@@ -12,10 +12,13 @@
 - Separadores decorativos marroquíes (Zellige) con colores de la bandera de Marruecos para transiciones entre secciones.
 - Nueva sección de Horarios de Oración en fondo verde oscuro elegante y tarjetas de oración glassmorphic integradas.
 - Catálogo extendido de 14 Suras con filtrado interactivo por categorías (Esenciales, Viernes, Ramadán, Protección) y paginación con botón expandible "Ver más/menos".
+- **Nueva sección de Jutba del Viernes:** Bento Grid de 3 tarjetas asimétricas y modal de lectura interactivo con tipografía árabe e instrucciones del Imán Yusuf.
+- **Internacionalización (i18n) 100% limpia y sincronizada:** 201 claves ES/AR, nombres de oraciones y fecha de hoy traducidos reactivamente, y persistencia en localStorage.
+- **Responsividad 100% Mobile Full:** Optimización en móvil, tablet y escritorio para la sección de Jutba y el modal.
 
 ## Tareas en Progreso
-- Verificación en dispositivos físicos móviles una vez se refresque la caché de red del cliente.
+- Verificación del despliegue en producción en Cloudflare Pages tras el push.
 
 ## Próximas Mejoras Prioritarias
-- Refinar el SEO y Structured Data si se añaden nuevos eventos o páginas.
-- Ampliar la base de traducciones (i18n.js) si se requieren más idiomas (ej. Catalán o Inglés).
+- Nuevas publicaciones de Jutbas semanales a medida que el Imán las comparta.
+- Refinar el SEO y Structured Data para eventos comunitarios.

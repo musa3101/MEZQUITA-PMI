@@ -204,17 +204,26 @@
             const placeholder = document.getElementById('ramadan-placeholder');
             const countdownTitle = document.querySelector('[data-i18n="ramadan.countdown_title"]');
 
-            // 2. Extraer los datos reales de Mawaqit desde tu archivo main.js
+            // 2. Extraer los datos reales de Mawaqit (mawaqit-data.json o main.js)
             let MAWAQIT_CALENDAR = [];
             try {
-                const res = await fetch('assets/main.js');
-                const text = await res.text();
-                const match = text.match(/const MAWAQIT_CALENDAR = (\[[\s\S]*?\]);/);
-                if (match && match[1]) {
-                    MAWAQIT_CALENDAR = JSON.parse(match[1]);
+                const resJson = await fetch('assets/mawaqit-data.json');
+                if (resJson.ok) {
+                    const jsonData = await resJson.json();
+                    if (jsonData && jsonData.calendar) MAWAQIT_CALENDAR = jsonData.calendar;
                 }
-            } catch(e) {
-                console.error('No se pudo cargar el calendario de Mawaqit:', e);
+            } catch(e) {}
+            if (MAWAQIT_CALENDAR.length === 0) {
+                try {
+                    const res = await fetch('assets/main.js');
+                    const text = await res.text();
+                    const match = text.match(/const MAWAQIT_CALENDAR = (\[[\s\S]*?\]);/);
+                    if (match && match[1]) {
+                        MAWAQIT_CALENDAR = JSON.parse(match[1]);
+                    }
+                } catch(e) {
+                    console.error('No se pudo cargar el calendario de Mawaqit:', e);
+                }
             }
 
             const formatDate = (date) => {

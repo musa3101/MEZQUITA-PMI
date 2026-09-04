@@ -513,3 +513,188 @@ body {
     background: rgba(255, 150, 150, 0.12);
     color: #ffb0b0;
 }
+
+/* ==========================================================================
+   JUTBA SECTION & BENTO GRID (MYNEXT uipro-max / gpt-taste / motion-design)
+   ========================================================================== */
+.jutba-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(168, 124, 43, 0.2);
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.jutba-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 45px rgba(168, 124, 43, 0.13), 0 6px 16px rgba(0, 0, 0, 0.04);
+    border-color: rgba(168, 124, 43, 0.5);
+}
+
+.jutba-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #006233, #a87c2b, #C1272D);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.jutba-card:hover::before {
+    opacity: 1;
+}
+
+/* Badges */
+.jutba-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.jutba-badge-unity {
+    background: rgba(0, 98, 51, 0.08);
+    color: #006233;
+    border: 1px solid rgba(0, 98, 51, 0.25);
+}
+
+.jutba-badge-fiqh {
+    background: rgba(168, 124, 43, 0.1);
+    color: #a87c2b;
+    border: 1px solid rgba(168, 124, 43, 0.28);
+}
+
+.jutba-badge-ethics {
+    background: rgba(193, 39, 45, 0.08);
+    color: #C1272D;
+    border: 1px solid rgba(193, 39, 45, 0.22);
+}
+
+/* CTA button inside Bento card */
+.jutba-cta-btn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    background: rgba(168, 124, 43, 0.1);
+    color: #006233;
+    border: 1.5px solid rgba(168, 124, 43, 0.25);
+}
+
+.jutba-cta-btn:hover {
+    background: #006233;
+    color: #ffffff;
+    border-color: #006233;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 98, 51, 0.28);
+}
+
+.jutba-cta-btn .material-symbols-outlined {
+    font-size: 17px;
+    transition: transform 0.3s ease;
+}
+
+.jutba-cta-btn:hover .material-symbols-outlined {
+    transform: translateX(4px);
+}
+
+[dir="rtl"] .jutba-cta-btn .material-symbols-outlined {
+    transform: rotate(180deg);
+}
+
+[dir="rtl"] .jutba-cta-btn:hover .material-symbols-outlined {
+    transform: rotate(180deg) translateX(4px);
+}
+
+/* Modal Reader Animation & Glass */
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#jutba-modal.active {
+    display: flex !important;
+    animation: modalFadeIn 0.25s ease-out forwards;
+}
+
+#jutba-modal.active .jutba-modal-box {
+    animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.arabic-hadith-box {
+    font-family: 'Amiri', 'Cairo', serif;
+    line-height: 2.2;
+    background: rgba(168, 124, 43, 0.05);
+    border-left: 4px solid #a87c2b;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+[dir="rtl"] .arabic-hadith-box,
+.arabic-hadith-box[dir="rtl"] {
+    border-left: none !important;
+    border-right: 4px solid #a87c2b !important;
+}
+
+[dir="ltr"] .arabic-hadith-box,
+.arabic-hadith-box[dir="ltr"] {
+    border-right: none !important;
+    border-left: 4px solid #a87c2b !important;
+}
+
+@media (max-width: 640px) {
+    .jutba-card {
+        border-radius: 18px;
+    }
+    .jutba-cta-btn {
+        padding: 12px 18px;
+        font-size: 11px;
+    }
+    .arabic-hadith-box {
+        padding: 12px 14px;
+        line-height: 2;
+    }
+    #jutba-modal .jutba-modal-box {
+        max-height: 94vh;
+    }
+}
+
+
